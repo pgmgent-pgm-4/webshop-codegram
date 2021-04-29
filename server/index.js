@@ -26,7 +26,9 @@ app.use(express.json());
  * API Routes
  */
 // app.use('/api', cors(), apiRoutes)
-
+app.get('/', (req, res) => {
+  res.send('Hello World! This is CodeGram')
+})
 
 /**
  * Not found routes
@@ -89,7 +91,7 @@ process.on('SIGINT', () => {
 /*
 Exports the app for testing
 */
-module.exports = {
+export {
   app,
   handleClose,
   handleGracefully,

@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Webshop for Programming Courses",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon -e js,html,nj src/server/index.js --watch src/*",
+    "dev": "cross-env NODE_ENV=development nodemon -e js,html,nj server/index.js --watch src/server/*",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
-    "seeder": ""
+    "seeder": "",
+    "sass": "sass --no-source-map client/assets/_sass/main.scss client/assets/css/main.css"
   },
   "keywords": [
     "client",
