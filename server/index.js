@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 /**
  * Import custom packages
  */
+import apiRoutes from './api/routes.js';
 
 dotenv.config();
 
@@ -25,15 +26,17 @@ app.use(express.json());
 /**
  * API Routes
  */
-// app.use('/api', cors(), apiRoutes)
-app.get('/', (req, res) => {
-  res.send('Hello World! This is CodeGram')
-})
+app.use('/api', apiRoutes);
 
 /**
- * Not found routes
+ * Test server and say Hello world
  */
-app.get('*', (req, res, next) => {
+app.use(express.static('client'));
+
+/**
+ * API routes not found
+ */
+app.get('/api/*', (req, res, next) => {
   const err = new Error(
     `${req.ip} tried to access ${req.originalUrl}`,
   );
@@ -41,6 +44,49 @@ app.get('*', (req, res, next) => {
   next(err);
 });
 
+/**
+ * Error routes
+ */
+app.get('/404', (req, res, next) => { // Not found
+  // trigger a 404
+  next();
+});
+
+app.get('403', (req, res, next) => { // Not allowed
+  // trigger a 403 error
+  const err = new Error(`Not allowed!`);
+  err.statusCode = 403;
+  next(err);
+});
+
+app.get('500', (req, res, next) => {
+  // trigger a generic (500) error
+  const err = new Error(`Keyboard chinchilla!`)
+  next(err);
+});
+
+/**
+ * Error handling
+ */
+app.use((req, res, next) => {
+  res.status(404);
+  res.format({
+    html: () => {
+      res.status(404).send(`Woops, 404: ${req.url} not found!`)
+    },
+    json: () => {
+      res.json({ error: 'Not found' })
+    },
+    default: () => {
+      res.type('txt').send('Not found')
+    }
+  })
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send('500', { error: err });
+});
 
 /**
  * Start the server
