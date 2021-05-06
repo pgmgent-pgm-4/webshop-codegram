@@ -29,9 +29,9 @@ app.use(express.json());
 app.use('/api', apiRoutes);
 
 /**
- * Test server and say Hello world
+ * Serves the static files
  */
-app.use(express.static('client'));
+app.use('/', express.static('client'));
 
 /**
  * API routes not found
