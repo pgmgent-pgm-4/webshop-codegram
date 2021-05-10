@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       email_verification: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BOOLEAN
       },
       password: {
         type: Sequelize.STRING

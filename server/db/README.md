@@ -41,3 +41,10 @@ module.exports = (sequelize, DataTypes) => {
 
 
 Bron van de gebruikte commands en relevant artikel: [StackAbuse - Using Sequelize.js and SQLite in an Express app](https://stackabuse.com/using-sequelize-js-and-sqlite-in-an-express-js-app/).
+
+Important note: 
+> Om gebruik te maken van het command
+
+`..\..\node_modules\.bin\sequelize db:migrate`
+
+> Is het belangrijk om de gegenereerde bestanden in `/migrations/*-create-*.js` te hernoemen naar `.cjs`
