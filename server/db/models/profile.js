@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Profile.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     dob: DataTypes.DATE,
     img_url: DataTypes.STRING,
     subscription: DataTypes.STRING,

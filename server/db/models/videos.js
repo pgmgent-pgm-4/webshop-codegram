@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Videos.init({
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     playlist_id: DataTypes.INTEGER,
     url: DataTypes.STRING,
     name: DataTypes.STRING,

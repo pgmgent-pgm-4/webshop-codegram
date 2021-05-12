@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Product_Reviews.init({
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     user_id: DataTypes.INTEGER,
     course_id: DataTypes.INTEGER,
     stars: DataTypes.INTEGER,

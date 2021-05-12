@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Courses.init({
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     user_id: DataTypes.INTEGER,
     unlocked: DataTypes.BOOLEAN,
     name: DataTypes.STRING,
@@ -23,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     lecturer: DataTypes.STRING,
     duration: DataTypes.INTEGER,
     difficulty_level: DataTypes.TEXT,
-    certificatate: DataTypes.BOOLEAN,
+    certificate: DataTypes.BOOLEAN,
     language: DataTypes.STRING
   }, {
     sequelize,

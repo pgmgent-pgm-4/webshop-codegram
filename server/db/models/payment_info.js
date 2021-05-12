@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Payment_Info.init({
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     user_id: DataTypes.INTEGER,
     payment_id: DataTypes.INTEGER,
     first_name: DataTypes.STRING,

@@ -1,37 +1,25 @@
-'use strict';
+import pkg from 'sequelize';
+import { databaseVariables, EnvironmentVariables } from '../config/index.js';
+const { Sequelize, DataTypes } = pkg;
+const sequelize = new Sequelize(databaseVariables[EnvironmentVariables.NODE_ENV]);
+const database = {};
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
+database.sequelize = sequelize;
+database.Sequelize = Sequelize;
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+database.Category = require('./category.js')(sequelize, DataTypes);
+database.CourseHasCategories = require('./course_has_categories')(sequelize, DataTypes);
+database.CourseVideos = require('./course_videos')(sequelize, DataTypes);
+database.Courses = require('./courses')(sequelize, DataTypes);
+database.NewsLetter = require('./newsletter')(sequelize, DataTypes);
+database.OrderProducts = require('./order_products')(sequelize, DataTypes);
+database.Orders = require('./orders')(sequelize, DataTypes);
+database.PaymentInfo = require('./payment_info')(sequelize, DataTypes);
+database.Payments = require('./payments')(sequelize, DataTypes);
+database.ProductReviews = require('./product_reviews')(sequelize, DataTypes);
+database.Profile = require('./profile')(sequelize, DataTypes);
+database.Promotions = require('./promotions')(sequelize, DataTypes);
+database.User = require('./user')(sequelize, DataTypes);
+database.Videos = require('./videos')(sequelize, DataTypes);
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-module.exports = db;
+export default database;

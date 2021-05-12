@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Course_Has_Categories.init({
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     category_id: DataTypes.INTEGER,
     course_id: DataTypes.INTEGER
   }, {

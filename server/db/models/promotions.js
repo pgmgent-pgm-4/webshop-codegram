@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Promotions.init({
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     course_id: DataTypes.INTEGER,
     subscription_id: DataTypes.INTEGER,
     price_modifier: DataTypes.INTEGER

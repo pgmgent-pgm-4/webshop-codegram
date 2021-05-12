@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Subscriptions.init({
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     profile_id: DataTypes.INTEGER,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
