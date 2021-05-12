@@ -13,7 +13,7 @@ module.exports = {
      * }], {});
     */
 
-    return queryInterface.bulkInsert('Users', [{
+    await queryInterface.bulkInsert('Users', [{
       id: uuidv4(),
       username: 'GrijsRooster',
       email: 'grijs@example.com',
@@ -21,8 +21,8 @@ module.exports = {
       password: 'boe123',
       role: 'member',
       last_login: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
     }, {
       id: uuidv4(),
       username: 'GrijsFooster',
@@ -31,8 +31,8 @@ module.exports = {
       password: 'boe123',
       role: 'guest',
       last_login: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
     }])
   },
 
