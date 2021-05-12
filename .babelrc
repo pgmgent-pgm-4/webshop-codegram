@@ -6,7 +6,12 @@
                 "targets": {
                     "node": "current"
                 }
+            },
+            "@babel/es2015",
+            {
+
             }
         ]    
-    ]
+    ],
+    "plugins": ["add-module-exports"]
 }
