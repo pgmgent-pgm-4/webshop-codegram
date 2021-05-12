@@ -8,7 +8,8 @@
     "dev": "cross-env NODE_ENV=development nodemon -e js,html,nj server/index.js --watch *",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
     "seeder": "",
-    "sass": "sass --no-source-map client/assets/_sass/main.scss client/assets/css/main.css"
+    "sass": "sass --no-source-map client/assets/_sass/main.scss client/assets/css/main.css",
+    "sequelize": "sequelize $*"
   },
   "keywords": [
     "client",
