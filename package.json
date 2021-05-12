@@ -23,6 +23,7 @@
   "author": "Team CodeGram",
   "license": "MIT",
   "dependencies": {
+    "@babel/register": "^7.13.16",
     "bcrypt": "^5.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
