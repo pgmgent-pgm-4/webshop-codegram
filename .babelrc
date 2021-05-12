@@ -6,10 +6,6 @@
                 "targets": {
                     "node": "current"
                 }
-            },
-            "@babel/es2015",
-            {
-
             }
         ]    
     ],
