@@ -6,7 +6,7 @@ import express from 'express';
 /**
  * Import custom packages
  */
-import { db } from '../db/models/index.js';
+// import db from '../db/models/index.js';
 // controllers i.e.: import * as parseUsers from './controllers/parseUsers.js';
 // middleware i.e.: import { isUserAuthenticated } from './middleware/auth.js';
 
