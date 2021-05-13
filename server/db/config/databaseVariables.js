@@ -1,7 +1,7 @@
 const config = {
 	development: {
 		dialect: 'sqlite',
-		storage: './db/database.sqlite3',
+		storage: './server/db/database.sqlite3',
 	},
 	test: {
 		dialect: 'sqlite',
@@ -9,7 +9,7 @@ const config = {
 	},
 	production: {
 		dialect: 'sqlite',
-		storage: './db/database.sqlite3',
+		storage: './server/db/database.sqlite3',
 	},
 };
 

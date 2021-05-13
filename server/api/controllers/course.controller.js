@@ -2,14 +2,14 @@ import { handleHTTPError } from '../../utils';
 import database from '../../db/models';
 
 /*
-Get all categories
+Get all courses
 */
-const getCategories = async (req, res, next) => {
+const getCourses = async (req, res, next) => {
 	try {
-		// Get categories from database
-		const categories = await database.Category.findAll();
+		// Get courses from database
+		const courses = await database.Course.findAll();
 		// Send response
-		res.status(200).json(categories);
+		res.status(200).json(courses);
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
@@ -18,12 +18,12 @@ const getCategories = async (req, res, next) => {
 /*
 Get a specific category
 */
-const getCategoryById = async (req, res, next) => {
+const getCourseById = async (req, res, next) => {
 	try {
 		// Get categoryId parameter
 		const { categoryId } = req.params;
 		// Get specific post from database
-		const category = await database.Category.findAll({
+		const category = await database.Course.findAll({
 			where: {
 				id: categoryId,
 			},
@@ -36,6 +36,6 @@ const getCategoryById = async (req, res, next) => {
 };
 
 export {
-	getCategoryById,
-	getCategories,
+	getCourseById,
+	getCourses,
 };

@@ -8,12 +8,12 @@ import bodyParser from 'body-parser';
 Custom modules
 */
 import { EnvironmentVariables } from './db/config/index.js';
-import apiRoutes from './api/routes.js';
+import apiRoutes from './api/routes';
 
 /*
 Database
 */
-import database from './db/models/index.js';
+import database from './db/models/index.cjs';
 
 database.sequelize.sync();
 
