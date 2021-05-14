@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    category_id: DataTypes.INTEGER,
-    course_id: DataTypes.INTEGER
+    category_id: DataTypes.STRING,
+    course_id: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Course_Has_Categories',

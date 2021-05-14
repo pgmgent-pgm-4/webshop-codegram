@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     dob: DataTypes.DATE,
     img_url: DataTypes.STRING,
     subscription: DataTypes.STRING,
-    recent_activity: DataTypes.STRING
+    recent_activity: DataTypes.STRING,
+    user_id: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Profile',

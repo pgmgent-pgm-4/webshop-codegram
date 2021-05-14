@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    playlist_id: DataTypes.INTEGER,
+    course_id: DataTypes.STRING,
     url: DataTypes.STRING,
     name: DataTypes.STRING,
     paused_at: DataTypes.INTEGER,

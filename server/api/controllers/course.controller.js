@@ -16,20 +16,20 @@ const getCourses = async (req, res, next) => {
 };
 
 /*
-Get a specific category
+Get a specific course
 */
 const getCourseById = async (req, res, next) => {
 	try {
-		// Get categoryId parameter
-		const { categoryId } = req.params;
+		// Get courseId parameter
+		const { courseId } = req.params;
 		// Get specific post from database
-		const category = await database.Course.findAll({
+		const course = await database.Course.findAll({
 			where: {
-				id: categoryId,
+				id: courseId,
 			},
 		});
 		// Send response
-		res.status(200).json(category);
+		res.status(200).json(course);
 	} catch (error) {
 		handleHTTPError(error, next);
 	}

@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    user_id: DataTypes.INTEGER,
+    user_id: DataTypes.STRING,
     unlocked: DataTypes.BOOLEAN,
     name: DataTypes.STRING,
     description: DataTypes.STRING,

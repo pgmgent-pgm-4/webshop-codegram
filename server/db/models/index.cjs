@@ -22,4 +22,9 @@ database.Promotion = require('./promotions')(sequelize, DataTypes);
 database.User = require('./user')(sequelize, DataTypes);
 database.Video = require('./videos')(sequelize, DataTypes);
 
+database.Category.belongsToMany(database.Course, { through: 'CourseHasCategories' });
+database.Course.belongsToMany(database.Category, { through: 'CourseHasCategories' });
+database.Profile.hasOne(database.User, { foreignKey: 'user_id' });
+database.Course.hasMany(database.Video, { foreignKey: 'course_id' });
+
 export default database;

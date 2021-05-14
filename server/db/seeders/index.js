@@ -1,1 +1,1 @@
-console.log(new Date());
+import categoryController from '../../api/controllers/category.controller';

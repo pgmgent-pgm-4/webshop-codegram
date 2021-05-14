@@ -1,5 +1,6 @@
 import { handleHTTPError } from '../../utils';
 import database from '../../db/models';
+import { v4 as uuidv4 } from 'uuid';
 
 /*
 Get all categories
@@ -35,7 +36,34 @@ const getCategoryById = async (req, res, next) => {
 	}
 };
 
+/*
+Create a category
+*/
+const createCategory = async (req, res, next) => {
+	try {
+		// Get the category data from the request body
+		const { category } = req.body;
+		const now = new Date();
+		const categoryToCreate = {
+			id: uuidv4(),
+			name: category.name,
+			description: category.description,
+			createdAt: now,
+			updatedAt: now,
+		};
+		const response = await database.Category.create(categoryToCreate);
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(201).send(`Created category: ${JSON.stringify(category)}`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+}
+
 export {
 	getCategoryById,
 	getCategories,
+	createCategory,
 };

@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    user_id: DataTypes.INTEGER,
-    payments_id: DataTypes.INTEGER,
+    user_id: DataTypes.STRING,
+    payments_id: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
     total: DataTypes.INTEGER
   }, {
