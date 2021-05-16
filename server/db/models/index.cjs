@@ -19,6 +19,7 @@ database.Payment = require('./payments')(sequelize, DataTypes);
 database.ProductReviews = require('./product_reviews')(sequelize, DataTypes);
 database.Profile = require('./profile')(sequelize, DataTypes);
 database.Promotion = require('./promotions')(sequelize, DataTypes);
+database.Subscription = require('./subscriptions')(sequelize, DataTypes);
 database.User = require('./user')(sequelize, DataTypes);
 database.Video = require('./videos')(sequelize, DataTypes);
 

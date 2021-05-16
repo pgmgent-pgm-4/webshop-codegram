@@ -20,7 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     courses_id: DataTypes.STRING,
     order_id: DataTypes.STRING,
-    price: DataTypes.INTEGER
+    price: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Order_Products',

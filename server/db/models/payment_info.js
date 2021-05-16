@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     card_number: DataTypes.INTEGER,
     cvv: DataTypes.INTEGER,
     expiration_date: DataTypes.DATE,
-    country: DataTypes.STRING
+    country: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Payment_Info',

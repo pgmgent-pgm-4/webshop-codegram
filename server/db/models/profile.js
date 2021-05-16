@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     img_url: DataTypes.STRING,
     subscription: DataTypes.STRING,
     recent_activity: DataTypes.STRING,
-    user_id: DataTypes.STRING
+    user_id: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Profile',

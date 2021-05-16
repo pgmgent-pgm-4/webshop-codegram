@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
     price: DataTypes.INTEGER,
-    subscription_type: DataTypes.STRING
+    subscription_type: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Subscriptions',

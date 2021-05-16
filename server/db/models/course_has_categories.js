@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     category_id: DataTypes.STRING,
-    course_id: DataTypes.STRING
+    course_id: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Course_Has_Categories',

@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.STRING,
     course_id: DataTypes.STRING,
     stars: DataTypes.INTEGER,
-    review: DataTypes.STRING
+    review: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Product_Reviews',

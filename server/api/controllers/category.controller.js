@@ -44,6 +44,7 @@ const createCategory = async (req, res, next) => {
 		// Get the category data from the request body
 		const { category } = req.body;
 		const now = new Date();
+		// Add id and date strings
 		const categoryToCreate = {
 			id: uuidv4(),
 			name: category.name,
@@ -51,6 +52,7 @@ const createCategory = async (req, res, next) => {
 			createdAt: now,
 			updatedAt: now,
 		};
+		// Send response
 		const response = await database.Category.create(categoryToCreate);
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)

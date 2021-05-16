@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     url: DataTypes.STRING,
     name: DataTypes.STRING,
     paused_at: DataTypes.INTEGER,
-    duration: DataTypes.INTEGER
+    duration: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Videos',

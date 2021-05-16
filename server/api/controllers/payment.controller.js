@@ -35,7 +35,37 @@ const getPaymentById = async (req, res, next) => {
 	}
 };
 
+/*
+Create a payment
+*/
+const createPayment = async (req, res, next) => {
+	try {
+		// Get the payment data from the request body
+		const { payment } = req.body;
+		const now = new Date();
+		// Add id and date strings
+		const paymentToCreate = {
+			id: uuidv4(),
+			user_id: payment.user_id,
+			order_id: payment.order_id,
+			total: payment.total,
+			createdAt: now,
+			updatedAt: now,
+		};
+		// Send response
+		const response = await database.Payment.create(paymentToCreate);
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(201).send(`Created payment: ${JSON.stringify(payment)}`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+}
+
 export {
 	getPaymentById,
 	getPayments,
+	createPayment,
 };

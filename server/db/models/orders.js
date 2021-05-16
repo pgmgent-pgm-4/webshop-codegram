@@ -19,9 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     user_id: DataTypes.STRING,
-    payments_id: DataTypes.STRING,
-    status: DataTypes.BOOLEAN,
-    total: DataTypes.INTEGER
+    payment_id: DataTypes.STRING,
+    order_completed: DataTypes.BOOLEAN,
+    total: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Orders',

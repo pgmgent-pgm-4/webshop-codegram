@@ -20,7 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     course_id: DataTypes.STRING,
     subscription_id: DataTypes.STRING,
-    price_modifier: DataTypes.INTEGER
+    price_modifier: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Promotions',
