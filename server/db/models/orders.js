@@ -8,10 +8,13 @@ export default (sequelize) => {
 	}
 
 	Order.init({
+    id: DataTypes.UUID,
     user_id: DataTypes.STRING,
     payment_id: DataTypes.STRING,
     order_completed: DataTypes.BOOLEAN,
     total: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
 	}, {
 		sequelize,
 		modelName: 'Order',

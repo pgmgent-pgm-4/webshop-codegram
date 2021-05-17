@@ -8,11 +8,14 @@ export default (sequelize) => {
 	}
 
 	Video.init({
+    id: DataTypes.UUID,
     course_id: DataTypes.STRING,
     url: DataTypes.STRING,
     name: DataTypes.STRING,
     paused_at: DataTypes.INTEGER,
     duration: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
 	}, {
 		sequelize,
 		modelName: 'Video',

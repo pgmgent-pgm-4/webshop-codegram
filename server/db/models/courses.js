@@ -8,6 +8,7 @@ export default (sequelize) => {
 	}
 
 	Course.init({
+    id: DataTypes.UUID,
     unlocked: DataTypes.BOOLEAN,
     name: DataTypes.STRING,
     description: DataTypes.STRING,
@@ -18,6 +19,8 @@ export default (sequelize) => {
     difficulty_level: DataTypes.INTEGER,
     certificate: DataTypes.BOOLEAN,
     language: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
 	}, {
 		sequelize,
 		modelName: 'Course',
