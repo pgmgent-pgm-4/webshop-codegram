@@ -3,6 +3,8 @@ import express from 'express';
 import path from 'path';
 import nunjucks from 'nunjucks';
 import bodyParser from 'body-parser';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 /*
 Custom modules
@@ -38,6 +40,44 @@ bodyParser
 */
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+/**
+ * Swagger - JSDoc set-up
+ */
+
+ const options = {
+	definition: {
+	  openapi: "3.0.0",
+	  info: {
+		title: "CodeGram Express API with Swagger",
+		version: "0.1.0",
+		description:
+		  "This is a simple CRUD API application made with Express and documented with Swagger",
+		license: {
+		  name: "MIT",
+		  url: "https://spdx.org/licenses/MIT.html",
+		},
+		contact: {
+		  name: "CodeGram",
+		  url: "https://CodeGram.com",
+		  email: "info@email.com",
+		},
+	  },
+	  servers: [
+		{
+		  url: "http://localhost:6001/categories",
+		},
+	  ],
+	},
+	apis: ["server/api/controllers/category.controller.js"],
+  };
+  
+  const specs = swaggerJsdoc(options);
+  app.use(
+	"/api-docs",
+	swaggerUi.serve,
+	swaggerUi.setup(specs)
+  );
 
 /*
 API Routes
