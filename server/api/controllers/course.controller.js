@@ -68,10 +68,49 @@ const createCourse = async (req, res, next) => {
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
-}
+};
+
+/*
+Update course
+*/
+const updateCourse = async (req, res, next) => {
+	try {
+		// Get the course data from the request body
+		const { courseId } = req.params;
+		const { name, description, price, tags, difficulty_level, certificate, duration, lecturer } = req.body;
+
+		const response = await database.Course.update({ name, description, price, tags, difficulty_level, certificate, duration, lecturer }, { where: {
+			id: courseId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated course: ${name} - ${description} in ${courseId}`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Delete course
+*/
+const deleteCourse = async (req, res, next) => {
+	try {
+		const { courseId } = req.params;
+		const response = await database.Course.destroy({
+			where: { id: courseId}
+		});
+		res.status(204).send(`Deleted course with id ${courseId}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+};
 
 export {
 	getCourseById,
 	getCourses,
 	createCourse,
+	updateCourse,
+	deleteCourse,
 };

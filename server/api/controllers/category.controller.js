@@ -17,7 +17,7 @@ const getCategories = async (req, res, next) => {
 };
 
 /*
-Get a specific category
+Get a specific category by id
 */
 const getCategoryById = async (req, res, next) => {
 	try {
@@ -27,6 +27,26 @@ const getCategoryById = async (req, res, next) => {
 		const category = await database.Category.findAll({
 			where: {
 				id: categoryId,
+			},
+		});
+		// Send response
+		res.status(200).json(category);
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Get a specific category by name
+*/
+const getCategoryByName = async (req, res, next) => {
+	try {
+		// Get categoryName parameter
+		const { categoryName } = req.params;
+		// Get specific post from database
+		const category = await database.Category.findAll({
+			where: {
+				name: categoryName,
 			},
 		});
 		// Send response
@@ -70,46 +90,43 @@ Update category
 const updateCategory = async (req, res, next) => {
 	try {
 		// Get the category data from the request body
-		const { categoryId } = req.params;
-		const { category } = await database.Category.findAll({
-			where: {
-				id: categoryId,
-			},
-		});
+		const { categoryName } = req.params;
 		const { name, description } = req.body;
-		const now = new Date();
-		// Add id and date strings
-		const categoryToUpdate = {
-			...category,
-		};
-		if (name !== null) {
-			categoryToUpdate.name = name;
-		} else if (description !== null) {
-			categoryToUpdate.description = description;
-		} 
-		categoryToUpdate.updatedAt = now;
-		// Send response
-		const response = await database.Category.update(categoryToUpdate, { where: {
-			id: categoryId
+
+		const response = await database.Category.update({ name, description }, { where: {
+			name: categoryName
 		}});
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(201).send(`Updated category: ${JSON.stringify(categoryToUpdate)}`)
+			res.status(200).send(`Updated category: ${name} - ${description}!`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
 }
 
-
 /*
 Delete category
 */
+const deleteCategory = async (req, res, next) => {
+	try {
+		const { categoryName } = req.params;
+		const response = await database.Category.destroy({
+			where: { name: categoryName}
+		});
+		res.status(204).send(`Deleted category ${categoryName}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+}
+
 
 export {
+	getCategoryByName,
 	getCategoryById,
 	getCategories,
 	createCategory,
-	updateCategory
+	updateCategory,
+	deleteCategory
 };
