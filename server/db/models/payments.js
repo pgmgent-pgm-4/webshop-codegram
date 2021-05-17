@@ -8,9 +8,12 @@ export default (sequelize) => {
 	}
 
 	Payment.init({
+    id: DataTypes.UUID,
     user_id: DataTypes.STRING,
     order_id: DataTypes.STRING,
     total: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
 	}, {
 		sequelize,
 		modelName: 'Payment',

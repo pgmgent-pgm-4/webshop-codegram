@@ -8,12 +8,15 @@ export default (sequelize) => {
 	}
 
 	User.init({
+    id: DataTypes.UUID,
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     email_verified: DataTypes.BOOLEAN,
     password: DataTypes.STRING,
     role: DataTypes.STRING,
     last_login: DataTypes.DATE,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
 	}, {
 		sequelize,
 		modelName: 'User',
