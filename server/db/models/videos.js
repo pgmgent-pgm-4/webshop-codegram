@@ -8,7 +8,10 @@ export default (sequelize) => {
 	}
 
 	Video.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true
+    },
     course_id: DataTypes.STRING,
     url: DataTypes.STRING,
     name: DataTypes.STRING,

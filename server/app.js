@@ -95,7 +95,7 @@ Listen to incoming requests
 let server;
 if (EnvironmentVariables.NODE_ENV !== 'test') {
 	server = app.listen(EnvironmentVariables.PORT, EnvironmentVariables.HOSTNAME, (err) => {
-		if (err) throw err;
+		if (err) {logger.error(`This is an error`); throw err;};
 		if (EnvironmentVariables.NODE_ENV === 'development') {
 			logger.info(`Server is listening at http://${EnvironmentVariables.HOSTNAME}:${EnvironmentVariables.PORT}!`);
 		}
@@ -111,7 +111,7 @@ const handleGracefully = async () => {
 			if (err) throw err;
 
 			if (EnvironmentVariables.NODE_ENV === 'development') {
-				console.log('Server is gracefully closed!');
+				logger.info('Server is gracefully closed!');
 			}
 			process.exit(0);
 		});

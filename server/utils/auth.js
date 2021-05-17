@@ -14,8 +14,7 @@
 
  import logger from './logger.js'
 
-/*  import * as parseUsers from '../api/controllers/parseUsers.js';  // TODO: decide on filename and file structure for these
- import { logger } from './logger.js'; */ // TODO: create logger
+/*  import * as parseUsers from '../api/controllers/parseUsers.js';  // TODO: decide on filename and file structure for these*/
  
  // Initialize dotenv
  dotenv.config();

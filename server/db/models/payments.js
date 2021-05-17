@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	Payment.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     user_id: DataTypes.STRING,
     order_id: DataTypes.STRING,
     total: DataTypes.INTEGER,

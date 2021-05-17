@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	Profile.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     dob: DataTypes.DATE,
     img_url: DataTypes.STRING,
     subscription: DataTypes.STRING,

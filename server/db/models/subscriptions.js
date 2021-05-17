@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	Subscription.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     profile_id: DataTypes.STRING,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,

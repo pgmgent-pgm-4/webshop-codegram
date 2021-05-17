@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	Order.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     user_id: DataTypes.STRING,
     payment_id: DataTypes.STRING,
     order_completed: DataTypes.BOOLEAN,

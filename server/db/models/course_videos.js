@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	CourseVideos.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     course_id: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,

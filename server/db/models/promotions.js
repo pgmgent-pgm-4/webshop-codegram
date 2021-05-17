@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	Promotion.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     course_id: DataTypes.STRING,
     subscription_id: DataTypes.STRING,
     price_modifier: DataTypes.INTEGER,

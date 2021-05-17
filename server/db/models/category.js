@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	Category.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     createdAt: DataTypes.DATE,

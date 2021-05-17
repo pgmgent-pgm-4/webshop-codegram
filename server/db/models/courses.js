@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	Course.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     unlocked: DataTypes.BOOLEAN,
     name: DataTypes.STRING,
     description: DataTypes.STRING,

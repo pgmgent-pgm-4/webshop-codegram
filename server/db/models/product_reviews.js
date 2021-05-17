@@ -8,7 +8,9 @@ export default (sequelize) => {
 	}
 
 	ProductReviews.init({
-    id: DataTypes.UUID,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true},
     user_id: DataTypes.STRING,
     course_id: DataTypes.STRING,
     stars: DataTypes.INTEGER,
