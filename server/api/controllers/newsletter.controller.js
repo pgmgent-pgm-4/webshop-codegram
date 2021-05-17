@@ -61,10 +61,49 @@ const createNewsletter = async (req, res, next) => {
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
-}
+};
+
+/*
+Update newsletter
+*/
+const updateNewsletter = async (req, res, next) => {
+	try {
+		// Get the newsletter data from the request body
+		const { newsletterId } = req.params;
+		const { name, description, price, tags, difficulty_level, certificate, duration, lecturer } = req.body;
+
+		const response = await database.Newsletter.update({ name, description, price, tags, difficulty_level, certificate, duration, lecturer }, { where: {
+			id: newsletterId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated newsletter: ${name} - ${description} in ${newsletterId}`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Delete newsletter
+*/
+const deleteNewsletter = async (req, res, next) => {
+	try {
+		const { newsletterId } = req.params;
+		const response = await database.Newsletter.destroy({
+			where: { id: newsletterId}
+		});
+		res.status(204).send(`Deleted newsletter with id ${newsletterId}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+};
 
 export {
 	getNewsletterById,
 	getNewsletters,
 	createNewsletter,
+	updateNewsletter,
+	deleteNewsletter,
 };

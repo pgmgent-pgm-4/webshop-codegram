@@ -32,13 +32,17 @@ router.get('/', (req, res) => {
 // Categories
 router.get('/categories', categoryController.getCategories);
 router.get('/categories/:categoryId', categoryController.getCategoryById);
+router.get('/categories/:categoryName', categoryController.getCategoryByName);
 router.post('/categories', categoryController.createCategory);
-router.put('/categories/:categoryId', categoryController.updateCategory);
+router.put('/categories/:categoryName', categoryController.updateCategory);
+router.delete('/categories/:categoryName', categoryController.deleteCategory);
 
 // Courses
 router.get('/courses', courseController.getCourses);
 router.get('/courses/:courseId', courseController.getCourseById);
 router.post('/courses', courseController.createCourse);
+router.put('/courses/:courseId', courseController.updateCourse);
+router.delete('/courses/:courseId', courseController.deleteCourse);
 
 // Newsletters
 router.get('/newsletters', newsletterController.getNewsletters);
