@@ -24,6 +24,7 @@ database.Category.belongsToMany(database.Course, { through: 'CourseHasCategories
 database.Course.belongsToMany(database.Category, { through: 'CourseHasCategories' });
 database.Profile.hasOne(database.User, { foreignKey: 'user_id' });
 database.Course.hasMany(database.Video, { foreignKey: 'course_id' });
-database.Order.hasMany(database.Course, { foreignKey: 'order_id'});
+database.Course.belongsToMany(database.Order, { through: 'OrderHasCourses' });
+//database.Order.
 
 export default database;

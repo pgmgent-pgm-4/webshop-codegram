@@ -70,19 +70,32 @@ Update category
 const updateCategory = async (req, res, next) => {
 	try {
 		// Get the category data from the request body
-		const { category } = req.body;
+		const { categoryId } = req.params;
+		const { category } = await database.Category.findAll({
+			where: {
+				id: categoryId,
+			},
+		});
+		const { name, description } = req.body;
 		const now = new Date();
 		// Add id and date strings
-		const categoryToCreate = {
+		const categoryToUpdate = {
 			...category,
-			updatedAt: now(),
 		};
+		if (name !== null) {
+			categoryToUpdate.name = name;
+		} else if (description !== null) {
+			categoryToUpdate.description = description;
+		} 
+		categoryToUpdate.updatedAt = now;
 		// Send response
-		const response = await database.Category.create(categoryToCreate);
+		const response = await database.Category.update(categoryToUpdate, { where: {
+			id: categoryId
+		}});
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(201).send(`Created category: ${JSON.stringify(category)}`)
+			res.status(201).send(`Updated category: ${JSON.stringify(categoryToUpdate)}`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);
