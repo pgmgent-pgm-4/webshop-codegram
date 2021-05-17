@@ -64,8 +64,39 @@ const createCategory = async (req, res, next) => {
 	}
 }
 
+/*
+Update category
+*/
+const updateCategory = async (req, res, next) => {
+	try {
+		// Get the category data from the request body
+		const { category } = req.body;
+		const now = new Date();
+		// Add id and date strings
+		const categoryToCreate = {
+			...category,
+			updatedAt: now(),
+		};
+		// Send response
+		const response = await database.Category.create(categoryToCreate);
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(201).send(`Created category: ${JSON.stringify(category)}`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+}
+
+
+/*
+Delete category
+*/
+
 export {
 	getCategoryById,
 	getCategories,
 	createCategory,
+	updateCategory
 };

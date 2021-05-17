@@ -33,6 +33,7 @@ router.get('/', (req, res) => {
 router.get('/categories', categoryController.getCategories);
 router.get('/categories/:categoryId', categoryController.getCategoryById);
 router.post('/categories', categoryController.createCategory);
+router.put('/categories', categoryController.updateCategory);
 
 // Courses
 router.get('/courses', courseController.getCourses);

@@ -39,7 +39,8 @@
     "path": "^0.12.7",
     "sequelize": "^6.6.2",
     "sqlite3": "^5.0.2",
-    "swagger-doc": "^0.3.0",
+    "swagger-jsdoc": "6.1.0",
+    "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
@@ -61,6 +62,6 @@
     "supertest": "^6.1.3"
   },
   "engines": {
-    "node": "16.14.X"
+    "node": "14.17.X"
   }
 }
