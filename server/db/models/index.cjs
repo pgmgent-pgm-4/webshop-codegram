@@ -11,7 +11,6 @@ database.Category = require('./category.js')(sequelize, DataTypes);
 database.CourseVideos = require('./course_videos')(sequelize, DataTypes);
 database.Course = require('./courses')(sequelize, DataTypes);
 database.NewsLetter = require('./newsletter')(sequelize, DataTypes);
-database.OrderProducts = require('./order_products')(sequelize, DataTypes);
 database.Order = require('./orders')(sequelize, DataTypes);
 database.Payment = require('./payments')(sequelize, DataTypes);
 database.ProductReviews = require('./product_reviews')(sequelize, DataTypes);

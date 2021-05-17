@@ -1,31 +1,20 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Payments extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  };
-  Payments.init({
-    id: {
-      type: DataTypes.STRING,
-      primaryKey: true,
-    },
+import { Model, DataTypes } from 'sequelize';
+
+export default (sequelize) => {
+	class Payment extends Model {
+		static associate(models) {
+			this.hasMany(models.Product);
+		}
+	}
+
+	Payment.init({
     user_id: DataTypes.STRING,
     order_id: DataTypes.STRING,
     total: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
-  }, {
-    sequelize,
-    modelName: 'Payments',
-  });
-  return Payments;
+	}, {
+		sequelize,
+		modelName: 'Payment',
+	});
+
+	return Payment;
 };
