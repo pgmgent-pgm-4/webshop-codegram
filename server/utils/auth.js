@@ -11,6 +11,9 @@
  /**
   * Imports local packages
   */
+
+ import logger from './logger.js'
+
 /*  import * as parseUsers from '../api/controllers/parseUsers.js';  // TODO: decide on filename and file structure for these
  import { logger } from './logger.js'; */ // TODO: create logger
  
@@ -61,9 +64,9 @@
    passport.authenticate('local', (error, user, info) => {
      if (error) {
        res.status(401).send(error);
-       logger.log({level:'error', message: `Failed to authenticate user. View the log for more details.`, label: 'login'}) // TODO: create logger
+       logger.error(`Failed to authenticate user. View the log for more details.`) // TODO: create logger
      } else if (!user) {
-       logger.log({level:'error', message: `Failed to authenticate user. Invalid username.`, label: 'login'}) // TODO: create logger
+       logger.error(`Failed to authenticate user. Invalid username.`) // TODO: create logger
        res.status(401).send(info);
      } else {
        const token = jwt.sign(user, process.env.JWT_SECRET_KEY, {
@@ -78,7 +81,7 @@
            is_admin: user.is_admin // TODO: Fix this field to be relevant to the webshop
          },
        });
-       logger.log({level: 'info', message: `User ${user.username} logged in successfully.`, label: 'auth'}); // TODO: create logger
+       logger.info( `User ${user.username} logged in successfully.`); // TODO: create logger
      }
    })(req, res);
  });

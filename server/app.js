@@ -16,6 +16,7 @@ import apiRoutes from './api/routes';
 Database
 */
 import database from './db/models/index.cjs';
+import logger from './utils/logger.js';
 
 database.sequelize.sync();
 
@@ -96,7 +97,7 @@ if (EnvironmentVariables.NODE_ENV !== 'test') {
 	server = app.listen(EnvironmentVariables.PORT, EnvironmentVariables.HOSTNAME, (err) => {
 		if (err) throw err;
 		if (EnvironmentVariables.NODE_ENV === 'development') {
-			console.log(`Server is listening at http://${EnvironmentVariables.HOSTNAME}:${EnvironmentVariables.PORT}!`);
+			logger.info(`Server is listening at http://${EnvironmentVariables.HOSTNAME}:${EnvironmentVariables.PORT}!`);
 		}
 	});
 }
