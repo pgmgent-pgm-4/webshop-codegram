@@ -2,14 +2,14 @@ import { handleHTTPError } from '../../utils';
 import database from '../../db/models';
 
 /*
-Get all categories
+Get all newsletters
 */
 const getNewsletters = async (req, res, next) => {
 	try {
-		// Get categories from database
-		const categories = await database.Newsletter.findAll();
+		// Get newsletters from database
+		const newsletters = await database.NewsLetter.findAll();
 		// Send response
-		res.status(200).json(categories);
+		res.status(200).json(newsletters);
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
@@ -23,7 +23,7 @@ const getNewsletterById = async (req, res, next) => {
 		// Get newsletterId parameter
 		const { newsletterId } = req.params;
 		// Get specific post from database
-		const newsletter = await database.Newsletter.findAll({
+		const newsletter = await database.NewsLetter.findAll({
 			where: {
 				id: newsletterId,
 			},
@@ -47,12 +47,13 @@ const createNewsletter = async (req, res, next) => {
 		const newsletterToCreate = {
 			id: uuidv4(),
 			user_id: newsletter.user_id,
+			date_since_sub: now,
 			content: newsletter.content,
 			createdAt: now,
 			updatedAt: now,
 		};
 		// Send response
-		const response = await database.Newsletter.create(newsletterToCreate);
+		const response = await database.NewsLetter.create(newsletterToCreate);
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
@@ -72,7 +73,7 @@ const updateNewsletter = async (req, res, next) => {
 		const { newsletterId } = req.params;
 		const { name, description, price, tags, difficulty_level, certificate, duration, lecturer } = req.body;
 
-		const response = await database.Newsletter.update({ name, description, price, tags, difficulty_level, certificate, duration, lecturer }, { where: {
+		const response = await database.NewsLetter.update({ name, description, price, tags, difficulty_level, certificate, duration, lecturer }, { where: {
 			id: newsletterId
 		}});
 		if (response && response.message) {
@@ -91,7 +92,7 @@ Delete newsletter
 const deleteNewsletter = async (req, res, next) => {
 	try {
 		const { newsletterId } = req.params;
-		const response = await database.Newsletter.destroy({
+		const response = await database.NewsLetter.destroy({
 			where: { id: newsletterId}
 		});
 		res.status(204).send(`Deleted newsletter with id ${newsletterId}!`);

@@ -48,41 +48,58 @@ router.delete('/courses/:courseId', courseController.deleteCourse);
 router.get('/newsletters', newsletterController.getNewsletters);
 router.get('/newsletters/:newsletterId', newsletterController.getNewsletterById);
 router.post('/newsletters', newsletterController.createNewsletter);
+router.put('/newsletters/:newsletterId', newsletterController.updateNewsletter);
+router.delete('/newsletters/:newsletterId', newsletterController.deleteNewsletter);
 
 // Orders
 router.get('/orders', orderController.getOrders);
 router.get('/orders/:orderId', orderController.getOrderById);
 router.post('/orders', orderController.createOrder);
+router.put('/orders/:orderId', orderController.updateOrder);
+router.delete('/orders/:orderId', orderController.deleteOrder);
 
 // Payments
 router.get('/payments', paymentController.getPayments);
 router.get('/payments/:paymentId', paymentController.getPaymentById);
 router.post('/payments', paymentController.createPayment);
+router.put('/payments/:paymentId', paymentController.updatePayment);
+router.delete('/payments/:paymentId', paymentController.deletePayment);
 
 // Profiles
 router.get('/profiles', profileController.getProfiles);
 router.get('/profiles/:profileId', profileController.getProfileById);
 router.post('/profiles', profileController.createProfile);
+router.put('/profiles/:profileId', profileController.updateProfile);
+router.delete('/profiles/:profileId', profileController.deleteProfile);
 
 // Promotions
 router.get('/promotions', promotionController.getPromotions);
 router.get('/promotions/:promotionId', promotionController.getPromotionById);
 router.post('/promotions', promotionController.createPromotion);
+router.put('/promotions/:promotionId', promotionController.updatePromotion);
+router.delete('/promotions/:promotionId', promotionController.deletePromotion);
 
 // Subscriptions
 router.get('/subscriptions', subscriptionController.getSubscriptions);
 router.get('/subscriptions/:subscriptionId', subscriptionController.getSubscriptionById);
 router.post('/subscriptions', subscriptionController.createSubscription);
+router.put('/subscriptions/:subscriptionId', subscriptionController.updateSubscription);
+router.delete('/subscriptions/:subscriptionId', subscriptionController.deleteSubscription);
 
 // Users
 router.get('/users', userController.getUsers);
 router.get('/users/:userId', userController.getUserById);
 router.post('/users', userController.createUser);
+router.put('/users/:userId', userController.updateUser);
+router.put('/users/:userId', userController.updateUserByAdmin);
+router.delete('/users/:userId', userController.deleteUser);
 
 // Videos
 router.get('/videos', videoController.getVideos);
 router.get('/videos/:videoId', videoController.getVideoById);
 router.post('/videos', videoController.createVideo);
+router.put('/videos/:videoId', videoController.updateVideo);
+router.delete('/videos/:videoId', videoController.deleteVideo);
 
 
 /**
