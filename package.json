@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Webshop for Programming Courses",
   "main": "app.js",
-  "type": "commonjs",
   "scripts": {
     "dev": "cross-env NODE_ENV=development HOSTNAME=localhost PORT=8080 nodemon --exec babel-node -e js,html,nj server/app.js --watch *",
     "lint": "cross-env NODE_ENV=lint eslint . --ext .js --fix",
@@ -26,6 +25,7 @@
   "author": "Team CodeGram",
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
