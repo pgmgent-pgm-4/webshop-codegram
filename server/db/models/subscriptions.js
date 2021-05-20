@@ -3,7 +3,9 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Subscription extends Model {
 		static associate(models) {
-			this.belongsToMany(models.User);
+			this.belongsToMany(models.User, {
+				through: 'UserSubscription',
+			});
 			this.hasMany(models.Promotion);
 		}
 	}

@@ -3,7 +3,9 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Category extends Model {
 		static associate(models) {
-			this.belongsToMany(models.Course);
+			this.belongsToMany(models.Course, {
+				through: 'CourseCategory',
+			});
 		}
 	}
 

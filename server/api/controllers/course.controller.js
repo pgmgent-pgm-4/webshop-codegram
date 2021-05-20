@@ -1,5 +1,5 @@
 import { handleHTTPError } from '../../utils';
-import database from '../../db/models';
+import database from '../../db/models/index.cjs';
 
 /*
 Get all courses

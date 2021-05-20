@@ -1,5 +1,5 @@
 import { handleHTTPError } from '../../utils';
-import database from '../../db/models';
+import database from '../../db/models/index.cjs';
 import { v4 as uuidv4 } from 'uuid';
 
 /*

@@ -3,7 +3,9 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Newsletter extends Model {
 		static associate(models) {
-			this.belongsToMany(models.User);
+			this.belongsToMany(models.User, {
+				through: 'UserNewsletter',
+			});
 		}
 	}
 
