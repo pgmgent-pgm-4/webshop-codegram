@@ -9,7 +9,7 @@ export default (sequelize) => {
 
 	ProductReviews.init({
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUIDV4,
       primaryKey: true},
     user_id: DataTypes.STRING,
     course_id: DataTypes.STRING,

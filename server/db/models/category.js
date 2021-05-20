@@ -3,15 +3,13 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Category extends Model {
 		static associate(models) {
-			this.belongsToMany(models.Course, {
-				through: 'CourseCategory',
-			});
+			this.hasMany(models.Course, { as: 'courses'})
 		}
 	}
 
 	Category.init({
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUIDV4,
       primaryKey: true},
     name: DataTypes.STRING,
     description: DataTypes.STRING,

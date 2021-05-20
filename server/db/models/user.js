@@ -15,7 +15,7 @@ export default (sequelize) => {
 
 	User.init({
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUIDV4,
       primaryKey: true},
     username: DataTypes.STRING,
     email: DataTypes.STRING,

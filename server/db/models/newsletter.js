@@ -11,7 +11,7 @@ export default (sequelize) => {
 
 	Newsletter.init({
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUIDV4,
       primaryKey: true},
     user_id: DataTypes.STRING,
     date_since_sub: DataTypes.DATE, // Keep? Since createdAt and updatedAt are created in every table

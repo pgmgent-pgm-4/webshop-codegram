@@ -12,7 +12,7 @@ export default (sequelize) => {
 
 	Subscription.init({
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUIDV4,
       primaryKey: true},
     profile_id: DataTypes.STRING,
     start_date: DataTypes.DATE,

@@ -10,7 +10,7 @@ export default (sequelize) => {
 
 	Profile.init({
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUIDV4,
       primaryKey: true},
     dob: DataTypes.DATE,
     img_url: DataTypes.STRING,

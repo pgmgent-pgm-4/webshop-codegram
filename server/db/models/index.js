@@ -1,37 +1,36 @@
-'use strict';
+import fs from 'fs';
+import path from 'path';
+import { Sequelize } from 'sequelize';
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
+import { databaseConfig, EnvironmentVariables } from './config';
+
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../databaseConfig.json')[env];
-const db = {};
-
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
-
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
+const sequelize = new Sequelize({
+	...databaseConfig[EnvironmentVariables.NODE_ENV],
+	logging: EnvironmentVariables.NODE_ENV === 'development' ? console.log : false,
 });
+const database = {};
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+database.connect = async () => {
+	database.sequelize = sequelize;
+	database.Sequelize = Sequelize;
 
-module.exports = db;
+	fs.readdirSync(path.join(__dirname, 'models'))
+		.filter((file) => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
+		.forEach((file) => {
+			// eslint-disable-next-line global-require,import/no-dynamic-require
+			const model = require(path.join(__dirname, 'models', file)).default(sequelize, Sequelize.DataTypes);
+			database[model.name] = model;
+		});
+
+	Object.keys(database).forEach((modelName) => {
+		if (database[modelName].associate) {
+			database[modelName].associate(database);
+		}
+	});
+
+	// Sync all models with the database
+	await database.sequelize.sync();
+};
+
+export default database;

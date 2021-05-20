@@ -6,7 +6,9 @@ export default (sequelize) => {
 			this.belongsToMany(models.User, {
 				through: 'UserCourse',
 			});
-      this.hasOne(models.Category);
+      this.belongsTo(models.Category, {
+        through: 'CourseHasCategory'
+      });
       this.hasMany(models.CourseVideos);
       this.hasMany(models.Video);
 		}
@@ -14,7 +16,7 @@ export default (sequelize) => {
 
 	Course.init({
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUIDV4,
       primaryKey: true},
     unlocked: DataTypes.BOOLEAN,
     name: DataTypes.STRING,
