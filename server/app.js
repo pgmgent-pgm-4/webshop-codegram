@@ -15,10 +15,10 @@ import apiRoutes from './api/routes';
 /*
 Database
 */
-import database from './db/models/index.cjs';
 import logger from './utils/logger.js';
+import database from './db';
 
-database.sequelize.sync();
+database.connect();
 
 /*
 Create Express app
