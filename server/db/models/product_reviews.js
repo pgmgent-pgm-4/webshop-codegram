@@ -11,8 +11,6 @@ export default (sequelize) => {
     id: {
       type: DataTypes.UUIDV4,
       primaryKey: true},
-    user_id: DataTypes.STRING,
-    course_id: DataTypes.STRING,
     stars: DataTypes.INTEGER,
     review: DataTypes.STRING,
     createdAt: DataTypes.DATE,

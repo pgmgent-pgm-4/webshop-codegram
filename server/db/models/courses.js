@@ -23,7 +23,6 @@ export default (sequelize) => {
     description: DataTypes.STRING,
     price: DataTypes.INTEGER,
     tags: DataTypes.STRING,
-    lecturer: DataTypes.STRING,
     duration: DataTypes.INTEGER,
     difficulty_level: DataTypes.INTEGER,
     certificate: DataTypes.BOOLEAN,

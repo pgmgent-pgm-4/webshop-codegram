@@ -3,8 +3,8 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Subscription extends Model {
 		static associate(models) {
-			this.belongsToMany(models.User, {
-				through: 'UserSubscription',
+			this.belongsToMany(models.Profile, {
+				through: 'ProfileSubscription',
 			});
 			this.hasMany(models.Promotion);
 		}
@@ -14,7 +14,6 @@ export default (sequelize) => {
     id: {
       type: DataTypes.UUIDV4,
       primaryKey: true},
-    profile_id: DataTypes.STRING,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
     price: DataTypes.INTEGER,

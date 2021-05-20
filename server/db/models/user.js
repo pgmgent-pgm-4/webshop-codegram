@@ -5,10 +5,7 @@ export default (sequelize) => {
 		static associate(models) {
       this.hasOne(models.Profile);
 			this.hasMany(models.Course);
-			this.hasOne(models.Subscription);
-			this.hasMany(models.Order);
       this.hasOne(models.Newsletter);
-      this.hasMany(models.Payment);
       this.hasMany(models.ProductReviews);
 		}
 	}

@@ -13,8 +13,6 @@ export default (sequelize) => {
     id: {
       type: DataTypes.UUIDV4,
       primaryKey: true},
-    user_id: DataTypes.STRING,
-    date_since_sub: DataTypes.DATE, // Keep? Since createdAt and updatedAt are created in every table
     content: DataTypes.TEXT,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,

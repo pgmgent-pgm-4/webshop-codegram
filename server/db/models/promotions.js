@@ -16,8 +16,6 @@ export default (sequelize) => {
     id: {
       type: DataTypes.UUIDV4,
       primaryKey: true},
-    course_id: DataTypes.STRING,
-    subscription_id: DataTypes.STRING,
     price_modifier: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
