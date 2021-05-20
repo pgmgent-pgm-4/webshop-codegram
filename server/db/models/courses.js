@@ -3,7 +3,9 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Course extends Model {
 		static associate(models) {
-			this.belongsToMany(models.User);
+			this.belongsToMany(models.User, {
+				through: 'UserCourse',
+			});
       this.hasOne(models.Category);
       this.hasMany(models.CourseVideos);
       this.hasMany(models.Video);

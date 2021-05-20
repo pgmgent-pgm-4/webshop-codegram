@@ -3,8 +3,12 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Promotion extends Model {
 		static associate(models) {
-			this.belongsToMany(models.Order);
-			this.belongsToMany(models.Subscription);
+			this.belongsToMany(models.Order, {
+				through: 'PromotionOrder',
+			});
+			this.belongsToMany(models.Subscription, {
+				through: 'SubsscriptionOrder',
+			});
 		}
 	}
 
