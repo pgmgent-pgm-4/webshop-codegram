@@ -62,10 +62,49 @@ const createPayment = async (req, res, next) => {
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
-}
+};
+
+/*
+Update payment
+*/
+const updatePayment = async (req, res, next) => {
+	try {
+		// Get the payment data from the request body
+		const { paymentId } = req.params;
+		const { total } = req.body;
+
+		const response = await database.Payment.update({ total }, { where: {
+			id: paymentId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated payment: ${id} - ${total}!`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Delete payment
+*/
+const deletePayment = async (req, res, next) => {
+	try {
+		const { paymentId } = req.params;
+		const response = await database.Payment.destroy({
+			where: { id: paymentId}
+		});
+		res.status(204).send(`Deleted payment ${paymentId}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+};
 
 export {
 	getPaymentById,
 	getPayments,
 	createPayment,
+	updatePayment,
+	deletePayment,
 };

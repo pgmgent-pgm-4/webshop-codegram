@@ -65,10 +65,72 @@ const createUser = async (req, res, next) => {
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
-}
+};
+
+/*
+Update user
+*/
+const updateUser = async (req, res, next) => {
+	try {
+		// Get the user data from the request body
+		const { userId } = req.params;
+		const { username, email, password } = req.body;
+
+		const response = await database.User.update({ username, email, password }, { where: {
+			id: userId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated user: ${id} | ${req.body}`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Update user by admin
+*/
+const updateUserByAdmin = async (req, res, next) => {
+	try {
+		// Get the user data from the request body
+		const { userId } = req.params;
+		const { username, email, email_verified, role, password, last_login } = req.body;
+
+		const response = await database.User.update({ username, email, password, email_verified, last_login, role }, { where: {
+			id: userId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated user: ${id} | ${req.body}`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Delete user
+*/
+const deleteUser = async (req, res, next) => {
+	try {
+		const { userId } = req.params;
+		const response = await database.User.destroy({
+			where: { id: userId}
+		});
+		res.status(204).send(`Deleted user ${userId}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+};
 
 export {
 	getUserById,
 	getUsers,
 	createUser,
+	updateUser,
+	updateUserByAdmin,
+	deleteUser,
 };

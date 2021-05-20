@@ -64,10 +64,49 @@ const createProfile = async (req, res, next) => {
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
-}
+};
+
+/*
+Update profile
+*/
+const updateProfile = async (req, res, next) => {
+	try {
+		// Get the profile data from the request body
+		const { profileId } = req.params;
+		const { dob, img_url, subscription, recent_activity } = req.body;
+
+		const response = await database.Profile.update({ dob, img_url, subscription, recent_activity }, { where: {
+			id: profileId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated profile: ${id} | Complete: ${req.body}!`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Delete profile
+*/
+const deleteProfile = async (req, res, next) => {
+	try {
+		const { profileId } = req.params;
+		const response = await database.Profile.destroy({
+			where: { id: profileId}
+		});
+		res.status(204).send(`Deleted profile ${profileId}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+};
 
 export {
 	getProfileById,
 	getProfiles,
 	createProfile,
+	updateProfile,
+	deleteProfile,
 };

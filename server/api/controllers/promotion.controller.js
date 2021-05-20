@@ -62,10 +62,49 @@ const createPromotion = async (req, res, next) => {
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
-}
+};
+
+/*
+Update promotion
+*/
+const updatePromotion = async (req, res, next) => {
+	try {
+		// Get the promotion data from the request body
+		const { promotionId } = req.params;
+		const { course_id, subscription_id, price_modifier } = req.body;
+
+		const response = await database.Promotion.update({ course_id, subscription_id, price_modifier }, { where: {
+			id: promotionId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated promotion: ${id} | ${req.body}!`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Delete promotion
+*/
+const deletePromotion = async (req, res, next) => {
+	try {
+		const { promotionId } = req.params;
+		const response = await database.Promotion.destroy({
+			where: { id: promotionId}
+		});
+		res.status(204).send(`Deleted promotion ${promotionId}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+};
 
 export {
 	getPromotionById,
 	getPromotions,
 	createPromotion,
+	updatePromotion,
+	deletePromotion,
 };

@@ -63,10 +63,49 @@ const createOrder = async (req, res, next) => {
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
-}
+};
+
+/*
+Update order
+*/
+const updateOrder = async (req, res, next) => {
+	try {
+		// Get the order data from the request body
+		const { orderId } = req.params;
+		const { order_completed, total, payment_id } = req.body;
+
+		const response = await database.Order.update({ order_completed, total, payment_id }, { where: {
+			id: orderId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated order: ${id} | Complete: ${order_completed} - ${total}!`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Delete order
+*/
+const deleteOrder = async (req, res, next) => {
+	try {
+		const { orderId } = req.params;
+		const response = await database.Order.destroy({
+			where: { id: orderId}
+		});
+		res.status(204).send(`Deleted order ${orderId}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+};
 
 export {
 	getOrderById,
 	getOrders,
 	createOrder,
+	updateOrder,
+	deleteOrder,
 };

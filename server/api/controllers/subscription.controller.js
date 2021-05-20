@@ -64,10 +64,49 @@ const createSubscription = async (req, res, next) => {
 	} catch (error) {
 		handleHTTPError(error, next);
 	}
-}
+};
+
+/*
+Update subscription
+*/
+const updateSubscription = async (req, res, next) => {
+	try {
+		// Get the subscription data from the request body
+		const { subscriptionId } = req.params;
+		const { start_date, end_date, price, subscription_type } = req.body;
+
+		const response = await database.Subscription.update({ start_date, end_date, price, subscription_type }, { where: {
+			id: subscriptionId
+		}});
+		if (response && response.message) {
+			res.status(500).send(`Failed: ${response.message}`)
+		} else {
+			res.status(200).send(`Updated subscription: ${id} | ${req.body}!`)
+		}
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
+Delete subscription
+*/
+const deleteSubscription = async (req, res, next) => {
+	try {
+		const { subscriptionId } = req.params;
+		const response = await database.Subscription.destroy({
+			where: { id: subscriptionId}
+		});
+		res.status(204).send(`Deleted subscription ${subscriptionId}!`);
+	} catch (err) {
+		handleHTTPError(err, next);
+	}
+};
 
 export {
 	getSubscriptionById,
 	getSubscriptions,
 	createSubscription,
+	updateSubscription,
+	deleteSubscription,
 };
