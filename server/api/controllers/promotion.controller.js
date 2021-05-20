@@ -49,8 +49,8 @@ const createPromotion = async (req, res, next) => {
 			course_id: promotion.course_id,
 			subscription_id: promotion.subscription_id,
 			price_modifier: promotion.price_modifier,
-			createdAt: now,
-			updatedAt: now,
+/* 			createdAt: now,
+			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Promotion.create(promotionToCreate);

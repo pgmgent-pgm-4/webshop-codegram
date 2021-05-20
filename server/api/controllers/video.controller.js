@@ -51,8 +51,8 @@ const createVideo = async (req, res, next) => {
 			name: video.name,
 			paused_at: video.paused_at,
 			duration: video.duration,
-			createdAt: now,
-			updatedAt: now,
+/* 			createdAt: now,
+			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Video.create(videoToCreate);

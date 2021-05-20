@@ -55,8 +55,8 @@ const createCourse = async (req, res, next) => {
 			duration: course.duration,
 			difficulty_level: course.difficulty_level,
 			certificate: course.certificate,
-			createdAt: now,
-			updatedAt: now,
+/* 			createdAt: now,
+			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Course.create(courseToCreate);

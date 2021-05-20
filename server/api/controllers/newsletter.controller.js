@@ -49,8 +49,8 @@ const createNewsletter = async (req, res, next) => {
 			user_id: newsletter.user_id,
 			date_since_sub: now,
 			content: newsletter.content,
-			createdAt: now,
-			updatedAt: now,
+/* 			createdAt: now,
+			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.NewsLetter.create(newsletterToCreate);

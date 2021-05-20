@@ -51,8 +51,8 @@ const createSubscription = async (req, res, next) => {
       end_date: subscription.end_date,
       price: subscription.price,
       subscription_type: subscription.subscription_type,
-			createdAt: now,
-			updatedAt: now,
+/* 			createdAt: now,
+			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Subscription.create(subscriptionToCreate);

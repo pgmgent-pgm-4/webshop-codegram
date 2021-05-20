@@ -50,8 +50,8 @@ const createOrder = async (req, res, next) => {
 			payment_id: order.payment_id,
 			order_completed: false,
 			total: order.total,
-			createdAt: now,
-			updatedAt: now,
+/* 			createdAt: now,
+			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Order.create(orderToCreate);

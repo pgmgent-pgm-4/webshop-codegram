@@ -51,8 +51,8 @@ const createProfile = async (req, res, next) => {
 			img_url: profile.img_url,
 			subscription: profile.subscription,
 			recent_activity: profile.recent_activity,
-			createdAt: now,
-			updatedAt: now,
+/* 			createdAt: now,
+			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Profile.create(profileToCreate);
