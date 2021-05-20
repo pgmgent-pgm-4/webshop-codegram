@@ -1,6 +1,4 @@
-import databaseVariables from './databaseVariables.js';
+import databaseConfig from './databaseConfig.json';
 import * as EnvironmentVariables from './environmentVariables.js';
-export {
-	databaseVariables,
-	EnvironmentVariables,
-};
+
+export { databaseConfig, EnvironmentVariables };
