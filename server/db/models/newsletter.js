@@ -3,7 +3,7 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Newsletter extends Model {
 		static associate(models) {
-			this.hasMany(models.Product);
+			this.belongsToMany(models.User);
 		}
 	}
 

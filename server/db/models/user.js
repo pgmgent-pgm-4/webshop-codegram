@@ -3,7 +3,13 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class User extends Model {
 		static associate(models) {
-			this.hasMany(models.Product);
+      this.hasOne(models.Profile);
+			this.hasMany(models.Course);
+			this.hasOne(models.Subscription);
+			this.hasMany(models.Order);
+      this.hasOne(models.Newsletter);
+      this.hasMany(models.Payment);
+      this.hasMany(models.ProductReviews);
 		}
 	}
 

@@ -3,7 +3,10 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Order extends Model {
 		static associate(models) {
-			this.hasMany(models.Product);
+			this.belongsTo(models.User);
+			this.belongsTo(models.Profile);
+			this.hasMany(models.Promotion);
+			this.hasOne(models.Payment)
 		}
 	}
 

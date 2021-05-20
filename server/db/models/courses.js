@@ -3,7 +3,10 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class Course extends Model {
 		static associate(models) {
-			this.hasMany(models.Product);
+			this.belongsToMany(models.User);
+      this.hasOne(models.Category);
+      this.hasMany(models.CourseVideos);
+      this.hasMany(models.Video);
 		}
 	}
 
