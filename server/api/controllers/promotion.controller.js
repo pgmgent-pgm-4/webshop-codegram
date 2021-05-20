@@ -1,5 +1,5 @@
 import { handleHTTPError } from '../../utils';
-import database from '../../db/models';
+import database from '../../db';
 
 /*
 Get all promotions
