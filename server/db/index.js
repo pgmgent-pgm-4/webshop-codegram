@@ -15,11 +15,11 @@ database.connect = async () => {
 	database.sequelize = sequelize;
 	database.Sequelize = Sequelize;
 
-	fs.readdirSync(path.join(__dirname, '..', 'models'))
+	fs.readdirSync(path.join(__dirname, 'models'))
 		.filter((file) => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
 		.forEach((file) => {
 			// eslint-disable-next-line global-require,import/no-dynamic-require
-			const model = require(path.join(__dirname, '..', 'models', file)).default(sequelize, Sequelize.DataTypes);
+			const model = require(path.join(__dirname, 'models', file)).default(sequelize, Sequelize.DataTypes);
 			database[model.name] = model;
 		});
 
