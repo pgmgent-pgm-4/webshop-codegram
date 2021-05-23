@@ -4,12 +4,18 @@
   "description": "Webshop for Programming Courses",
   "main": "app.js",
   "scripts": {
+    "babel": "./node_modules/.bin/babel src -d dist",
     "dev": "cross-env NODE_ENV=development HOSTNAME=localhost PORT=8080 nodemon --exec babel-node -e js,html,nj server/app.js --watch *",
     "lint": "cross-env NODE_ENV=lint eslint . --ext .js --fix",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
-    "seeder": "",
+    "seeder": "cross-env NODE_ENV=development HOSTNAME=localhost PORT=8080 babel-node server/db/seeders",
     "sass": "sass --no-source-map client/assets/_sass/main.scss client/assets/css/main.css",
     "sequelize": "sequelize $*"
+  },
+  "jest": {
+    "transform": {
+      "\\.[jt]sx?$": "babel-jest"
+    }
   },
   "keywords": [
     "node.js",
