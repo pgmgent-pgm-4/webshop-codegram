@@ -46,11 +46,9 @@ const createPromotion = async (req, res, next) => {
 		// Add id and date strings
 		const promotionToCreate = {
 			id: uuidv4(),
-			course_id: promotion.course_id,
-			subscription_id: promotion.subscription_id,
+			CourseId: promotion.CourseId,
+			SubscriptionId: promotion.SubscriptionId,
 			price_modifier: promotion.price_modifier,
-/* 			createdAt: now,
-			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Promotion.create(promotionToCreate);
@@ -71,9 +69,9 @@ const updatePromotion = async (req, res, next) => {
 	try {
 		// Get the promotion data from the request body
 		const { promotionId } = req.params;
-		const { course_id, subscription_id, price_modifier } = req.body;
+		const { CourseId, SubscriptionId, price_modifier } = req.body;
 
-		const response = await database.Promotion.update({ course_id, subscription_id, price_modifier }, { where: {
+		const response = await database.Promotion.update({ CourseId, SubscriptionId, price_modifier }, { where: {
 			id: promotionId
 		}});
 		if (response && response.message) {

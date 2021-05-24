@@ -36,6 +36,26 @@ const getProfileById = async (req, res, next) => {
 };
 
 /*
+Get a specific profile by User ID
+*/
+const getProfileByUserId = async (req, res, next) => {
+	try {
+		// Get profileId parameter
+		const { userId } = req.params;
+		// Get specific post from database
+		const profile = await database.Profile.findAll({
+			where: {
+				UserId: userId,
+			},
+		});
+		// Send response
+		res.status(200).json(profile);
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+};
+
+/*
 Create a profile
 */
 const createProfile = async (req, res, next) => {
@@ -47,12 +67,10 @@ const createProfile = async (req, res, next) => {
 		const profileToCreate = {
 			id: uuidv4(),
 			dob: profile.dob,
-			user_id: profile.user_id,
+			UserId: profile.user_id,
 			img_url: profile.img_url,
 			subscription: profile.subscription,
 			recent_activity: profile.recent_activity,
-/* 			createdAt: now,
-			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Profile.create(profileToCreate);
@@ -105,6 +123,7 @@ const deleteProfile = async (req, res, next) => {
 
 export {
 	getProfileById,
+	getProfileByUserId,
 	getProfiles,
 	createProfile,
 	updateProfile,

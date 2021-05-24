@@ -69,8 +69,6 @@ const createCategory = async (req, res, next) => {
 			id: uuidv4(),
 			name: category.name,
 			description: category.description,
-			//createdAt: now,
-			//updatedAt: now,
 		};
 		// Send response
 		const response = await database.Category.create(categoryToCreate);

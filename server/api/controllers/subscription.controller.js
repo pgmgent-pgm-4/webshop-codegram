@@ -46,13 +46,11 @@ const createSubscription = async (req, res, next) => {
 		// Add id and date strings
 		const subscriptionToCreate = {
 			id: uuidv4(),
-			profile_id: subscription.profile_id,
+			ProfileId: subscription.ProfileId,
       start_date: subscription.start_date,
       end_date: subscription.end_date,
       price: subscription.price,
       subscription_type: subscription.subscription_type,
-/* 			createdAt: now,
-			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Subscription.create(subscriptionToCreate);

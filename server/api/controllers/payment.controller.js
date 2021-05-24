@@ -46,11 +46,9 @@ const createPayment = async (req, res, next) => {
 		// Add id and date strings
 		const paymentToCreate = {
 			id: uuidv4(),
-			user_id: payment.user_id,
-			order_id: payment.order_id,
+			UserId: payment.UserId,
+			OrderId: payment.OrderId,
 			total: payment.total,
-/* 			createdAt: now,
-			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Payment.create(paymentToCreate);

@@ -12,7 +12,6 @@ export default (sequelize) => {
       type: DataTypes.UUIDV4,
       primaryKey: true
     },
-    course_id: DataTypes.STRING,
     url: DataTypes.STRING,
     name: DataTypes.STRING,
     paused_at: DataTypes.INTEGER,

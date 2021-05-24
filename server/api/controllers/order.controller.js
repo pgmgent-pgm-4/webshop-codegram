@@ -46,12 +46,10 @@ const createOrder = async (req, res, next) => {
 		// Add id and date strings
 		const orderToCreate = {
 			id: uuidv4(),
-			user_id: order.user_id,
-			payment_id: order.payment_id,
+			UserId: order.UserId,
+			PaymentId: order.payment_id,
 			order_completed: false,
 			total: order.total,
-/* 			createdAt: now,
-			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Order.create(orderToCreate);
@@ -72,9 +70,9 @@ const updateOrder = async (req, res, next) => {
 	try {
 		// Get the order data from the request body
 		const { orderId } = req.params;
-		const { order_completed, total, payment_id } = req.body;
+		const { order_completed, total, PaymentId } = req.body;
 
-		const response = await database.Order.update({ order_completed, total, payment_id }, { where: {
+		const response = await database.Order.update({ order_completed, total, PaymentId }, { where: {
 			id: orderId
 		}});
 		if (response && response.message) {

@@ -7,7 +7,7 @@ export default (sequelize) => {
 				through: 'PromotionOrder',
 			});
 			this.belongsToMany(models.Subscription, {
-				through: 'SubsscriptionOrder',
+				through: 'SubscriptionOrder',
 			});
 		}
 	}

@@ -51,12 +51,11 @@ const createCourse = async (req, res, next) => {
 			description: course.description,
 			price: course.price,
 			tags: course.tags,
-			lecturer: course.lecturer,
+			UserId: course.UserId,
 			duration: course.duration,
 			difficulty_level: course.difficulty_level,
 			certificate: course.certificate,
-/* 			createdAt: now,
-			updatedAt: now, */
+			language: course.language,
 		};
 		// Send response
 		const response = await database.Course.create(courseToCreate);
@@ -77,9 +76,9 @@ const updateCourse = async (req, res, next) => {
 	try {
 		// Get the course data from the request body
 		const { courseId } = req.params;
-		const { name, description, price, tags, difficulty_level, certificate, duration, lecturer } = req.body;
+		const { name, description, price, tags, difficulty_level, certificate, duration, UserId, language } = req.body;
 
-		const response = await database.Course.update({ name, description, price, tags, difficulty_level, certificate, duration, lecturer }, { where: {
+		const response = await database.Course.update({ name, description, price, tags, difficulty_level, certificate, duration, UserId, language }, { where: {
 			id: courseId
 		}});
 		if (response && response.message) {

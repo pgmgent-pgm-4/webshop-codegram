@@ -1,12 +1,28 @@
-import faker, { seed } from 'faker';
+/*
+Import packages
+*/
+import faker from 'faker';
 import { v4  as uuidv4 } from 'uuid';
-import database from '../index.js';
 
+/*
+Import custom packages
+*/
+import database from '../index.js';
+import { hashPassword } from '../../utils/helper';
+
+
+// Initialize database connection
 database.connect();
 
+// Declare array variables
 let generatedUsers = [];
 let generatedProfiles = [];
 
+/**
+ * Generate users
+ * @param {number} amount 
+ * @returns {array} users
+ */
 const generateUsers = (amount = 50) => {
   let users = [];
   for (let i = 0; i < amount; i++) {
@@ -16,7 +32,7 @@ const generateUsers = (amount = 50) => {
       username: faker.internet.userName(),
       email: faker.internet.email(),
       email_verified: !!random,
-      password: 'chinchillas4ever',
+      password: hashPassword('chinchillas4ever'),
       role: 'guest',
       last_login: faker.date.recent(),
     }
@@ -25,6 +41,10 @@ const generateUsers = (amount = 50) => {
   return users;
 };
 
+/**
+ * Generate profiles
+ * @returns {array} profiles
+ */
 const generateProfiles = () => {
   let profiles = [];
   for (let i = 0; i < generatedUsers.length; i++) {
@@ -41,6 +61,11 @@ const generateProfiles = () => {
   return profiles;
 }
 
+/**
+ * Seed the users into the database
+ * Uses: {array} generatedUsers
+ * Calls seedProfiles after seeding
+ */
 const seedUsers = async () => {
   try {
     generatedUsers = generateUsers();
@@ -54,6 +79,11 @@ const seedUsers = async () => {
   }
 }
 
+
+/**
+ * Seed the profiles into the database
+ * Uses: {array} generatedProfiles
+ */
 const seedProfiles = async () => {
   try {
     generatedProfiles = generateProfiles();
@@ -66,4 +96,7 @@ const seedProfiles = async () => {
   }
 }
 
+/**
+ * Call seed Users
+ */
 seedUsers();

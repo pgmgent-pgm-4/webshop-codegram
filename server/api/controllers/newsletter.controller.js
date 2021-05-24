@@ -46,11 +46,8 @@ const createNewsletter = async (req, res, next) => {
 		// Add id and date strings
 		const newsletterToCreate = {
 			id: uuidv4(),
-			user_id: newsletter.user_id,
-			date_since_sub: now,
+			UserId: newsletter.UserId,
 			content: newsletter.content,
-/* 			createdAt: now,
-			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.NewsLetter.create(newsletterToCreate);
@@ -71,15 +68,15 @@ const updateNewsletter = async (req, res, next) => {
 	try {
 		// Get the newsletter data from the request body
 		const { newsletterId } = req.params;
-		const { name, description, price, tags, difficulty_level, certificate, duration, lecturer } = req.body;
+		const { content } = req.body;
 
-		const response = await database.NewsLetter.update({ name, description, price, tags, difficulty_level, certificate, duration, lecturer }, { where: {
+		const response = await database.NewsLetter.update({ content }, { where: {
 			id: newsletterId
 		}});
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(200).send(`Updated newsletter: ${name} - ${description} in ${newsletterId}`)
+			res.status(200).send(`Updated newsletter: ${content}`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);

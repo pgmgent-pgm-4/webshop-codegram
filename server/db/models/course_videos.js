@@ -4,6 +4,7 @@ export default (sequelize) => {
 	class CourseVideos extends Model {
 		static associate(models) {
 			this.belongsTo(models.Course);
+			this.hasMany(models.Video);
 		}
 	}
 

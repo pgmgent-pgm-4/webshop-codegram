@@ -52,8 +52,6 @@ const createUser = async (req, res, next) => {
 			password: user.password,
 			role: user.role,
 			last_login: user.last_login,
-/* 			createdAt: now,
-			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.User.create(userToCreate);

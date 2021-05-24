@@ -46,13 +46,11 @@ const createVideo = async (req, res, next) => {
 		// Add id and date strings
 		const videoToCreate = {
 			id: uuidv4(),
-			course_id: video.course_id,
+			CourseId: video.CourseId,
 			url: video.url,
 			name: video.name,
 			paused_at: video.paused_at,
 			duration: video.duration,
-/* 			createdAt: now,
-			updatedAt: now, */
 		};
 		// Send response
 		const response = await database.Video.create(videoToCreate);
@@ -73,9 +71,9 @@ const updateVideo = async (req, res, next) => {
 	try {
 		// Get the video data from the request body
 		const { videoId } = req.params;
-		const { course_id, url, name, paused_at, duration } = req.body;
+		const { CourseId, url, name, paused_at, duration } = req.body;
 
-		const response = await database.Video.update({ course_id, url, name, paused_at, duration }, { where: {
+		const response = await database.Video.update({ CourseId, url, name, paused_at, duration }, { where: {
 			id: videoId
 		}});
 		if (response && response.message) {
