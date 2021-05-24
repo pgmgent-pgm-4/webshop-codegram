@@ -5,11 +5,12 @@
   "main": "app.js",
   "scripts": {
     "babel": "./node_modules/.bin/babel src -d dist",
-    "dev": "cross-env NODE_ENV=development HOSTNAME=localhost PORT=8080 nodemon --exec babel-node -e js,html,nj server/app.js --watch *",
+    "dev": "concurrently \"cross-env NODE_ENV=development HOSTNAME=localhost PORT=8080 nodemon --exec babel-node -e js,html,nj server/app.js --watch *\" \"npm run watch-css\"",
     "lint": "cross-env NODE_ENV=lint eslint . --ext .js --fix",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
+    "build-css": "node-sass --include-path scss client/assets/_sass/main.scss client/assets/css/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "seeder": "cross-env NODE_ENV=development HOSTNAME=localhost PORT=8080 babel-node server/db/seeders",
-    "sass": "sass --no-source-map client/assets/_sass/main.scss client/assets/css/main.css",
     "sequelize": "sequelize $*"
   },
   "jest": {
@@ -35,6 +36,7 @@
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+    "concurrently": "^6.2.0",
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
@@ -64,6 +66,7 @@
     "eslint-plugin-import": "^2.22.1",
     "faker": "^5.5.3",
     "jest": "^26.6.3",
+    "node-sass": "^6.0.0",
     "nodemon": "^2.0.7",
     "sequelize-cli": "^6.2.0",
     "supertest": "^6.1.3"
