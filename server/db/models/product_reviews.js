@@ -3,7 +3,8 @@ import { Model, DataTypes } from 'sequelize';
 export default (sequelize) => {
 	class ProductReviews extends Model {
 		static associate(models) {
-			this.belongsTo(models.User);
+			this.belongsTo(models.Profile);
+			this.belongsTo(models.Course);
 		}
 	}
 

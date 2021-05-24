@@ -2,13 +2,17 @@
 Import packages
 */
 import faker from 'faker';
-import { v4  as uuidv4 } from 'uuid';
+import {
+  v4 as uuidv4
+} from 'uuid';
 
 /*
 Import custom packages
 */
 import database from '../index.js';
-import { hashPassword } from '../../utils/helper';
+import {
+  hashPassword
+} from '../../utils/helper';
 
 
 // Initialize database connection
@@ -18,6 +22,52 @@ database.connect();
 let generatedUsers = [];
 let generatedProfiles = [];
 let generatedCategories = [];
+let generatedCourses = [];
+let existingCategories = [];
+let userIds = [];
+let profileIds = [];
+let completedOrders = [];
+
+const getCategories = async () => {
+  try {
+    const cats = await database.Category.findAll({raw: true});
+    existingCategories = cats;
+    getUserIds();
+  } catch (err) {
+    console.error(err);
+  }
+};
+const getUserIds = async () => {
+  try {
+    const users = await database.User.findAll();
+    userIds = users.map(user => user.id);
+    generateCourses();
+  } catch(err) {
+    console.error(err);
+  }
+};
+const getProfileIds = async () => {
+  try {
+    const profiles = await database.Profile.findAll();
+    profileIds = profiles.map(profile => profile.id);
+    seedOrders();
+  } catch(err) {
+    console.error(err)
+  }
+}
+const getCompletedOrders = async () => {
+  try {
+    const orders = await database.Order.findAll({
+      where: {
+        order_completed: 1
+      }
+    });
+    completedOrders = orders;
+    seedPayments();
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 /**
  * Generate users
@@ -27,7 +77,7 @@ let generatedCategories = [];
 const generateUsers = (amount = 50) => {
   let users = [];
   for (let i = 0; i < amount; i++) {
-    let random = Math.floor(Math.random()*2);
+    let random = Math.floor(Math.random() * 2);
     const user = {
       id: uuidv4(),
       username: faker.internet.userName(),
@@ -67,8 +117,7 @@ const generateProfiles = () => {
  */
 const generateCategories = () => {
   const companyName = 'Codegram';
-  const categories = [
-    {
+  const categories = [{
       id: uuidv4(),
       name: "Python",
       description: `Python instructors on ${companyName} specialize in everything from software development to data analysis, and are known for their effective, friendly instruction for students of all levels.`,
@@ -123,6 +172,36 @@ const generateCategories = () => {
 }
 
 /**
+ * Generate courses
+ */
+const generateCourses = (amount = 100) => {
+  const getRandomIndex = (length) => Math.floor(Math.random() * length);
+  const levels = ['Beginner', 'Intermediate', 'Advanced', 'Expert', 'Professional'];
+  const currentYear = new Date().getFullYear();
+  if (userIds.length > 0 && existingCategories.length > 0) {
+    let courses = [];
+    for (let category of existingCategories) {
+      for (let i = 0; i < levels.length; i++) {
+        const course = {
+          id: uuidv4(),
+          unlocked: true,
+          name: `${levels[i]} ${category.name} ${currentYear-1}`,
+          description: `${levels[i]} ${category.name} ${currentYear-1} ${faker.lorem.sentence()}`,
+          price: faker.finance.amount(),
+          tags: JSON.stringify([`${category.name}`, `${levels[i]}`, currentYear-1, faker.lorem.word()]),
+          UserId: userIds[getRandomIndex(userIds.length)],
+          difficulty_level: levels[i],
+          certificate: !!getRandomIndex(2),
+          CategoryId: category.id,
+        }
+        courses.push(course);
+      }
+    }
+    seedCourses(courses);
+  }
+}
+
+/**
  * Seed the users into the database
  * Uses: {array} generatedUsers
  * Calls seedProfiles after seeding
@@ -174,7 +253,101 @@ const seedCategories = async () => {
 }
 
 /**
- * Call seed Users
+ * Seed the courses into the database
+ * Uses: {function} getCategories()
+ *       {function} getUserIds()
  */
-// seedUsers();
+const seedCourses = async (courses) => {
+  try {
+    for (let course of courses) {
+      generatedCourses = await database.Course.create(course);
+    }
+    console.table(courses);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+/**
+ * Seed newsletters into database
+ */
+const seedNewsletters = async (amount = 20) => {
+  try {
+    let newsletters = [];
+    for (let i = 0; i < amount; i++) {
+      const newsletter = {
+        id: uuidv4(),
+        UserId: userIds[20],
+        content: faker.lorem.paragraphs()
+      }
+      await database.Newsletter.create(newsletter);
+      newsletters.push(newsletter);
+    }
+    console.table(newsletters);
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+/**
+ * Seed orders into database
+ */
+const seedOrders = async (amount = 88) => {
+  try {
+    const getRandomIndex = (length) => Math.floor(Math.random() * length);
+    let orders = [];
+    for (let i = 0; i < amount; i++) {
+      const order = {
+        id: uuidv4(),
+        order_completed: !!getRandomIndex(2),
+        ProfileId: profileIds[getRandomIndex(profileIds.length)],
+        total: faker.finance.amount(20, 2000)
+      }
+      await database.Order.create(order);
+      orders.push(order);
+    }
+    console.table(orders);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+/**
+ * Seed payments into database
+ */
+const seedPayments = async () => {
+  try {
+    let payments = [];
+    for (let order of completedOrders) {
+      const payment = {
+        id: uuidv4(),
+        total: order.total,
+        OrderId: order.id,
+        ProfileId: order.ProfileId
+      };
+      await database.Payment.create(payment);
+      payments.push(payment);
+    }
+    console.table(payments);
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+const seedReviews = async () => {
+  try {
+    let reviews = [];
+
+  } catch (err) {
+    console.error(err)
+  }
+}
+/**
+ * Call seeder methods
+ */
+seedUsers();
 seedCategories();
+getCategories();
+seedNewsletters();
+getProfileIds();
+getCompletedOrders();

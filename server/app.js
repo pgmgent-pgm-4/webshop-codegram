@@ -50,9 +50,7 @@ app.use(bodyParser.json());
 API Routes
 */
 app.use('/api', cors(), apiRoutes);
-app.get('/', (req, res) => {
-	res.send('Hello world. The app has not crashed at this time.')
-})
+app.use(express.static('client'));
 
 /*
 Start the server

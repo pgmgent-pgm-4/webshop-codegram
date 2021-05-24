@@ -6,7 +6,6 @@ export default (sequelize) => {
       this.hasOne(models.Profile);
 			this.hasMany(models.Course);
       this.hasOne(models.Newsletter);
-      this.hasMany(models.ProductReviews);
 		}
 	}
 

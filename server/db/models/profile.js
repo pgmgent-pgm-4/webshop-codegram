@@ -7,6 +7,7 @@ export default (sequelize) => {
 			this.hasMany(models.Order);
 			this.hasMany(models.Payment);
 			this.hasOne(models.Subscription);
+			this.hasMany(models.ProductReviews);
 		}
 	}
 

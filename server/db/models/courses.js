@@ -6,9 +6,9 @@ export default (sequelize) => {
 			this.belongsToMany(models.User, {
 				through: 'UserCourse',
 			});
-      this.belongsTo(models.Category, {
-        through: 'CourseHasCategory'
-      });
+      this.belongsToMany(models.Order, {
+        through: 'OrderCourses',
+      })
       this.hasMany(models.CourseVideos);
       this.hasMany(models.Video);
 		}
