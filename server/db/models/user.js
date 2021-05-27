@@ -4,8 +4,11 @@ export default (sequelize) => {
 	class User extends Model {
 		static associate(models) {
       this.hasOne(models.Profile);
-			this.hasMany(models.Course);
+			// this.hasMany(models.Course);
       this.hasOne(models.Newsletter);
+      this.belongsToMany(models.Course, {
+        through: 'User_Courses'
+      })
 		}
 	}
 

@@ -4,12 +4,12 @@ export default (sequelize) => {
 	class Course extends Model {
 		static associate(models) {
 			this.belongsToMany(models.User, {
-				through: 'UserCourse',
+				through: 'User_Courses',
 			});
       this.belongsToMany(models.Order, {
-        through: 'OrderCourses',
+        through: 'Order_Courses',
       })
-      this.hasMany(models.CourseVideos);
+      this.belongsToMany(models.Videos, { through: 'Course_Videos' });
       this.hasMany(models.Video);
 		}
 	}

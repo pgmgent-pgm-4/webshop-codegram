@@ -334,20 +334,21 @@ const seedPayments = async () => {
   }
 }
 
-const seedReviews = async () => {
+/* const seedReviews = async () => {
   try {
     let reviews = [];
+    const 
 
   } catch (err) {
     console.error(err)
   }
-}
+} */
 /**
  * Call seeder methods
  */
-seedUsers();
+/* seedUsers();
 seedCategories();
 getCategories();
 seedNewsletters();
-getProfileIds();
-getCompletedOrders();
+getProfileIds(); */
+getCompletedOrders(); 

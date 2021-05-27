@@ -5,7 +5,10 @@ export default (sequelize) => {
 		static associate(models) {
 			this.belongsTo(models.Profile);
 			this.hasMany(models.Promotion);
-			this.hasOne(models.Payment)
+			this.hasOne(models.Payment);
+			this.belongsToMany(models.Course, {
+				through: 'Order_Courses'
+			})
 		}
 	}
 
