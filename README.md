@@ -8,6 +8,7 @@
 - Changed scripts: 
   - `npm run dev`: Only runs the server & database again.
   - `npm run build-css`: Run this in a separate terminal tab/window to convert SCSS into CSS. Input files from: `/server/public/_sass/main.scss` and exported to: `/server/public/css/main.css`.
+- TO DO: Let me know if any of this works for you.
   
 ### Update server/app.js
 - Added publicRoutes to be rendered at `/`, using `/server/routes/index.js` to define the publicRoutes.
@@ -23,6 +24,7 @@
 ### Move client/assets/ to server/public/
 - Contains the _sass, css and images folder
 - Gets served on [https://localhost/static/images/icons/favicon.ico] for instance from server location `server/public/images/icons/favicon.ico`.
+- TO DO: Let me know if any of this works for you.
 
 ### Create server/routes/index.js
 - Contains all the public routes and callback functions for the public routes. For now that means: 
@@ -38,9 +40,9 @@
 - Not exported as default, so can be reached through importing the file and calling the function: `import * as publicController from '../controllers/publicController.js'` - Call with: `publicController.getHome`.
 
 ### Updated server/db/seeders/index.js
-- Thanks to Philippe the first association table (the ones without an actual model) has gotten a seed. Hooray!
+- Thanks to Philippe the first association table (the ones without an actual model) has gotten a seed. Hooray! (line 356-361)
 - TO DO: everything else.
 
 ### Pending delete depending on your views
 - `client/`
-  - Reasoning: Client has been moved to server side rendering. May have become redundant.
+  - Reasoning: Client has been moved to server side rendering. May have become redundant. We should discuss this.
