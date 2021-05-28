@@ -9,7 +9,7 @@ export default (sequelize) => {
       this.belongsToMany(models.Order, {
         through: 'Order_Courses',
       })
-      this.belongsToMany(models.Videos, { through: 'Course_Videos' });
+      this.belongsToMany(models.Video, { through: 'Course_Videos' });
       this.hasMany(models.Video);
 		}
 	}

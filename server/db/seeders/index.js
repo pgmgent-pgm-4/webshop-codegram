@@ -346,9 +346,16 @@ const seedPayments = async () => {
 /**
  * Call seeder methods
  */
-/* seedUsers();
-seedCategories();
-getCategories();
-seedNewsletters();
-getProfileIds(); */
-getCompletedOrders(); 
+// seedUsers();
+// seedCategories();
+// getCategories();
+// seedNewsletters();
+// getProfileIds();
+// getCompletedOrders(); 
+
+(async () => {
+  const user = await database.User.findByPk('7ef8ce32-b0ef-4d08-a47a-2501b61929f3');
+  const course = await database.Course.findByPk('815cac99-c165-4596-92ce-7c1f533f2c62');
+
+  user.addCourse(course, { through: { selfGranted: false } })
+})();
