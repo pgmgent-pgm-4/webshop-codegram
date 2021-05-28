@@ -11,6 +11,7 @@ Custom modules
 */
 import { EnvironmentVariables } from './db/config/index.js';
 import apiRoutes from './api/routes';
+import publicRoutes from './routes';
 
 /*
 Database
@@ -50,7 +51,8 @@ app.use(bodyParser.json());
 API Routes
 */
 app.use('/api', cors(), apiRoutes);
-app.use(express.static('client'));
+app.use('/', publicRoutes);
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 /*
 Start the server
