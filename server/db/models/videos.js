@@ -14,7 +14,7 @@ export default (sequelize) => {
     },
     url: DataTypes.STRING,
     name: DataTypes.STRING,
-    paused_at: DataTypes.INTEGER,
+		thumbnail_url: DataTypes.STRING,
     duration: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,

@@ -4,7 +4,7 @@ export default (sequelize) => {
 	class Subscription extends Model {
 		static associate(models) {
 			this.belongsToMany(models.Profile, {
-				through: 'ProfileSubscription',
+				through: 'Profile_Subscription',
 			});
 			this.hasMany(models.Promotion);
 		}

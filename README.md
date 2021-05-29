@@ -2,6 +2,24 @@
 **Team: CodeGram**
 
 ---
+
+## Latest changes (29/05/2021) by Charlotte
+
+### Create seeders for all remaining tables
+- Modified `db/seeders/index.js`: the ugly spaghetti seeder monster
+- All tables have some data
+- There are many dragons in the code, it has no right to work and looks ugly as hell...  But for now it'll do
+- TODO: Slay the dragons, DRY up the code, turn the code into a piece of beauty
+
+### Modified some models
+- Removed `models/course_videos` since it has been replaced by an association table
+- Removed `migrations/20210520115017-course_videos.mjs` since else the database keeps creating the redundant table (see above)
+- Modified `models/newsletter.js`: changed `through: 'UserNewsletter'` to `through: 'Newsletter_Users'`
+- Modified `models/promotions.js`: changed `through: 'PromotionOrder'` to `through: 'Promotion_Order'` AND changed `through: 'SubscriptionOrder'` to `through: 'Promotion_Subscription'`
+- Modified `models/subscriptions.js`: changed `through: 'ProfileSubscription'` to `through: 'Profile_Subscription'`
+- Modified `models/videos.js`: changed `paused_at: DataTypes.INTEGER` to `thumbnail_url: DataTypes.STRING`
+
+---
 ## Latest changes (28/05/2021) by Charlotte
 ### Update package.json 
 - Changed node modules. Run `npm install` again to ensure you have all modules installed.

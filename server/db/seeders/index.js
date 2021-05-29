@@ -5,6 +5,7 @@ import faker from 'faker';
 import {
   v4 as uuidv4
 } from 'uuid';
+import Sequelize from 'sequelize'
 
 /*
 Import custom packages
@@ -313,49 +314,207 @@ const seedOrders = async (amount = 88) => {
 }
 
 /**
- * Seed payments into database
- */
-const seedPayments = async () => {
-  try {
-    let payments = [];
-    for (let order of completedOrders) {
-      const payment = {
-        id: uuidv4(),
-        total: order.total,
-        OrderId: order.id,
-        ProfileId: order.ProfileId
-      };
-      await database.Payment.create(payment);
-      payments.push(payment);
-    }
-    console.table(payments);
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/* const seedReviews = async () => {
-  try {
-    let reviews = [];
-    const 
-
-  } catch (err) {
-    console.error(err)
-  }
-} */
-/**
  * Call seeder methods
  */
-// seedUsers();
-// seedCategories();
-// getCategories();
-// seedNewsletters();
-// getProfileIds();
-// getCompletedOrders(); 
+/* seedUsers();
+seedCategories();
+getCategories(); */
+/* seedNewsletters();
+getProfileIds();
+getCompletedOrders();  */
 
-(async () => {
-  const user = await database.User.findByPk('7ef8ce32-b0ef-4d08-a47a-2501b61929f3');
-  const course = await database.Course.findByPk('815cac99-c165-4596-92ce-7c1f533f2c62');
+/* Seed User_Course */
+/* (async () => {
+  const getRandomIndex = (length) => Math.floor(Math.random() * length);
+  const users = await database.User.findAll({raw:true}, {where: {
+    email_verified: true}});
+    console.log(users)
+  const courses = await database.Course.findAll({raw:true});
+  for (let i = 0; i < getRandomIndex(users.length); i++) {
+    const userId = users[i].id;
+    const user = await database.User.findByPk(userId);
+    for (let j = 0; j < getRandomIndex(15); j++) {
+      const course = await database.Course.findByPk(courses[j].id);
+      user.addCourse(course, { through: { selfGranted : false } });
+    }
+  }
+})();  */
 
-  user.addCourse(course, { through: { selfGranted: false } })
-})();
+/** Seed Subscriptions */
+/* (async () => {
+  const getRandomIndex = (length) => Math.floor(Math.random() * length);
+  const profiles = await database.Profile.findAll({raw:true});
+  const profileIds = profiles.map(profile => profile.id);
+  let subscriptions = [];
+  for (let i = 0; i < 25; i++) {
+    const id = profileIds[getRandomIndex(profileIds.length)];
+    const subscription = {
+      id: uuidv4(),
+      start_date: faker.date.recent(),
+      end_date: faker.date.future(),
+      price: faker.commerce.price(49, 999),
+      subscription_type: getRandomIndex(3),
+      ProfileId: id,
+    }
+    const profile = await database.Profile.findByPk(id);
+    const newSubscription = await database.Subscription.create(subscription);
+    newSubscription.addProfile(profile, { through: { selfGranted: false}})
+    subscriptions.push(subscription);
+  }
+  console.table(subscriptions);
+})(); */
+
+/** Seed Order_Courses */
+/* (async () => {
+  const orders = await database.Order.findAll({raw: true});
+  const courses = await database.Course.findAll({raw: true});
+  const getRandomIndex = (max) => Math.floor(Math.random() * max);
+  for (let i = 0; i < orders.length; i++) {
+    const orderId = orders[i].id;
+    const order = await database.Order.findByPk(orderId);
+    let courseIds = [];
+    for (let j = 0; j < getRandomIndex(5); j++) {
+      courseIds.push(courses[getRandomIndex(courses.length)].id);
+    }
+    console.table(courseIds)
+    for (let courseId of courseIds) {
+      const course = await database.Course.findByPk(courseId);
+      order.addCourse(course, { through: { selfGranted: false } })
+      console.table(course);
+    }
+  }
+})() */
+const getRandomIndex = (max) => Math.floor(Math.random() * max);
+
+
+// TODO: Refactor / DRY up code
+
+/**
+ * Seed videos
+ */
+/* const seedVideos = async (amount = 400) => {
+  const thumbnails = [
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_47841037freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_58746987freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_12673169048freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_97433508047freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_92769330046freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_4355885045freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_44788363044freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_45074996043freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_5545946042freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_77003976freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_33784289freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_51228672freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_580291freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_71978372freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_91119713freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_99828278freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_26972375freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_78551377freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_43659769freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_94050260freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_98381253freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_63252370freejpg850.jpg',
+    'https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_77633546freejpg850.jpg'
+  ]
+  let videos = [];
+  const courses = await database.Course.findAll({raw: true});
+  for (let i = 0; i < amount; i++) {
+    const video = {
+      id: uuidv4(),
+      url: faker.internet.url(),
+      name: faker.lorem.words(4),
+      thumbnail_url: thumbnails[getRandomIndex(thumbnails.length)],
+      duration: `0${getRandomIndex(5)}:${getRandomIndex(6)}${getRandomIndex(9)}:${getRandomIndex(6)}${getRandomIndex(9)}`,
+    }
+    const createdVideo = await database.Video.create(video);
+    const courseId = courses[getRandomIndex(courses.length)].id;
+    const course = await database.Course.findByPk(courseId);
+    course.addVideo(createdVideo, { through: { selfGranted: false } });
+    videos.push(video);
+  }
+  console.table(videos);
+}
+seedVideos(); */
+
+/* const seedPayments = async () => {
+  const orders = await database.Order.findAll({raw: true}, {where: {order_completed: 1}});
+  let payments = [];
+  for (let order of orders) {
+    const payment = {
+      id: uuidv4(),
+      total: order.total,
+      OrderId: order.id,
+      ProfileId: order.ProfileId
+    }
+    await database.Payment.create(payment);
+    payments.push(payment);
+  }
+  console.table(payments);
+};
+seedPayments(); */
+
+/* const seedProductReviews = async () => {
+  const courses = await database.Course.findAll({raw: true}, {where: {description: 'dolor'} });
+  const profiles = await database.Profile.findAll({raw: true});
+  let reviews = [];
+  for (let course of courses) {
+    const review = {
+      id: uuidv4(),
+      stars: 3,
+      review: '',
+      ProfileId: profiles[getRandomIndex(profiles.length)].id,
+      CourseId: course.id,
+    }
+    await database.ProductReviews.create(review);
+    reviews.push(review);
+  }
+  console.table(reviews);
+}
+seedProductReviews(); */
+
+// TODO: Promotions --> Promotion.addOrder Promotion.addSubscription
+
+// WARNING: Here be dragons! This code has no right to work. But it kind of does. No idea why.
+// TODO: Slay the dragons
+
+/* const seedPromotions = async () => {
+  const Op = Sequelize.Op;
+  const orders = await database.Order.findAll({raw:true}, {where: {total: { [Op.lte]: 1500}}})
+  let promotions = [];
+  for (let i = 0; i < orders.length; i++) {
+    const orderPromotion = {
+      id: uuidv4(),
+      price_modifier: .9,
+      OrderId: orders[i].id,
+      SubscriptionId: null,
+    }
+    promotions.push(orderPromotion);
+    const newPromotion = await database.Promotion.create(orderPromotion);
+    const orderToAdd = await database.Order.findByPk(orders[i].id);
+    newPromotion.addOrder(orderToAdd, {through: {selfGranted: false}});
+  }
+/*   const subscriptions = await database.Subscription.findAll({raw: true});
+  let subOrders = [];
+  for (let subscription of subscriptions) {
+    const order = await database.Order.findOne({where: {ProfileId: subscription.ProfileId}});
+    subOrders.push(order.id);
+  }
+  for (let j = 0; j < subOrders.length; j++) {
+    const orderSubscription = {
+      id: uuidv4(),
+      price_modifier: .8,
+      OrderId: subOrders[j],
+      SubscriptionId: subscriptions[j].id
+    }
+    promotions.push(orderSubscription);
+    const newPromotion = await database.Promotion.create(orderSubscription);
+    const orderToAdd = await database.Order.findByPk(subOrders[j].id);
+    const subscriptionToAdd = await database.Subscription.findByPk(subscriptions[j].id);
+    newPromotion.addSubscription(subscriptionToAdd, {through: {selfGranted: false}})
+    newPromotion.addOrder(orderToAdd, {through: {selfGranted: false}})
+  } */
+  /*console.table(promotions);
+}
+seedPromotions(); */

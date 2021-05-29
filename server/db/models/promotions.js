@@ -4,10 +4,10 @@ export default (sequelize) => {
 	class Promotion extends Model {
 		static associate(models) {
 			this.belongsToMany(models.Order, {
-				through: 'PromotionOrder',
+				through: 'Promotion_Order',
 			});
 			this.belongsToMany(models.Subscription, {
-				through: 'SubscriptionOrder',
+				through: 'Promotion_Subscription',
 			});
 		}
 	}

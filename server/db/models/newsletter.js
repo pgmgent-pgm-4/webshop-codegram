@@ -4,7 +4,7 @@ export default (sequelize) => {
 	class Newsletter extends Model {
 		static associate(models) {
 			this.belongsToMany(models.User, {
-				through: 'UserNewsletter',
+				through: 'Newsletter_Users',
 			});
 		}
 	}

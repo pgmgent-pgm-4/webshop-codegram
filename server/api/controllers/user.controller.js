@@ -23,10 +23,10 @@ const getUserById = async (req, res, next) => {
 		// Get userId parameter
 		const { userId } = req.params;
 		// Get specific post from database
-		const user = await database.User.findAll({
+		const user = await database.User.findOne({
 			where: {
 				id: userId,
-			},
+			}
 		});
 		// Send response
 		res.status(200).json(user);
