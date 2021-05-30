@@ -8,3 +8,7 @@ Examples of Middleware include:
     - Messaging
     - Authentication
     - API management
+
+[Swagger](./swagger.middleware.js)
+Swagger is used to document all requests from the webshop
+to find the documentation go to [localhost:8080/api/docs](localhost:8080/api/docs)

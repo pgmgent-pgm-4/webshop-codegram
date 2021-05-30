@@ -5,6 +5,7 @@ import nunjucks from 'nunjucks';
 import bodyParser from 'body-parser';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './api/middleware';
 
 /*
 Custom modules
@@ -43,10 +44,6 @@ bodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-/**
- * Swagger - JSDoc set-up
- */
-
 /*
 API Routes
 */
@@ -54,6 +51,10 @@ app.use('/api', cors(), apiRoutes);
 app.use('/', publicRoutes);
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+/**
+ * Swagger - JSDoc set-up
+ */
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 /*
 Start the server
 Listen to incoming requests
