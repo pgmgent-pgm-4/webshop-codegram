@@ -53,20 +53,20 @@ router.get('/categories', categoryController.getCategories);
  * /api/categories/{categoryId}:
  *   get:
  *     operationId: getCategoriesById
- *     summary: Retrieve a list of categories by their id
- *     description: Retrieve a list of categories by id.
+ *     summary: Retrieve a category by id
+ *     description: Retrieve category by id.
  *     tags: [Categories]
  *     parameters:
  *       - in: path
  *         name: categoryId
  *         required: true
- *         description: Numeric ID of the category to get
  *     responses:
  *       200:
  *         description: A category by ID.
  *         content:
  *           application/json:
- *             type: object
+ *             schema:
+ *               $ref: '#/components/schemas/Category'
  */      
 
 router.get('/categories/:categoryId', categoryController.getCategoryById);
@@ -83,13 +83,13 @@ router.get('/categories/:categoryId', categoryController.getCategoryById);
  *       - in: path
  *         name: categoryName
  *         required: true
- *         description: Name of the category to get
  *     responses:
  *       200:
  *         description: A category by Name.
  *         content:
  *           application/json:
- *             type: object
+ *             schema:
+ *               $ref: '#/components/schemas/Category'
  */ 
 
 router.get('/categories/name/:categoryName', categoryController.getCategoryByName);
@@ -150,7 +150,6 @@ router.delete('/categories/name/:categoryName', categoryController.deleteCategor
 
 // Courses
 
-
 /**
  * @swagger
  * /api/courses:
@@ -169,6 +168,28 @@ router.delete('/categories/name/:categoryName', categoryController.deleteCategor
  */
 
 router.get('/courses', courseController.getCourses);
+
+/**
+ * @swagger
+ * /api/courses/{courseId}:
+ *   get:
+ *     operationId: getCoursesById
+ *     summary: Retrieve a course by id
+ *     description: Retrieve a course by id.
+ *     tags: [Courses]
+ *     parameters:
+ *       - in: path
+ *         name: courseId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A course by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Course'
+ */ 
+
 router.get('/courses/:courseId', courseController.getCourseById);
 
 /**
@@ -224,6 +245,28 @@ router.delete('/courses/:courseId', courseController.deleteCourse);
  */
 
 router.get('/newsletters', newsletterController.getNewsletters);
+
+/**
+ * @swagger
+ * /api/newsletters/{newsletterId}:
+ *   get:
+ *     operationId: getNewslettersById
+ *     summary: Retrieve a newsletter by id
+ *     description: Retrieve a newsletter by id.
+ *     tags: [Newsletters]
+ *     parameters:
+ *       - in: path
+ *         name: newsletterId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A newsletter by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Newsletter'
+ */
+
 router.get('/newsletters/:newsletterId', newsletterController.getNewsletterById);
 
 /**
@@ -279,6 +322,28 @@ router.delete('/newsletters/:newsletterId', newsletterController.deleteNewslette
  */
 
 router.get('/orders', orderController.getOrders);
+
+/**
+ * @swagger
+ * /api/orders/{orderId}:
+ *   get:
+ *     operationId: getOrdersById
+ *     summary: Retrieve an order by id
+ *     description: Retrieve an order by id.
+ *     tags: [Orders]
+ *     parameters:
+ *       - in: path
+ *         name: orderId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: An order by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Order'
+ */
+
 router.get('/orders/:orderId', orderController.getOrderById);
 
 /**
@@ -335,6 +400,29 @@ router.delete('/orders/:orderId', orderController.deleteOrder);
  */
 
 router.get('/payments', paymentController.getPayments);
+
+
+/**
+ * @swagger
+ * /api/payments/{paymentId}:
+ *   get:
+ *     operationId: getPaymentsById
+ *     summary: Retrieve a payment by id
+ *     description: Retrieve a payment by id.
+ *     tags: [Payments]
+ *     parameters:
+ *       - in: path
+ *         name: paymentId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A payment by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Payment'
+ */
+
 router.get('/payments/:paymentId', paymentController.getPaymentById);
 
 /**
@@ -390,6 +478,28 @@ router.delete('/payments/:paymentId', paymentController.deletePayment);
  */
 
 router.get('/profiles', profileController.getProfiles);
+
+/**
+ * @swagger
+ * /api/profiles/{profileId}:
+ *   get:
+ *     operationId: getProfilesById
+ *     summary: Retrieve a profile by id
+ *     description: Retrieve a profile by id.
+ *     tags: [Profiles]
+ *     parameters:
+ *       - in: path
+ *         name: profileId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A profile by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Profile'
+ */
+
 router.get('/profiles/:profileId', profileController.getProfileById);
 
 /**
@@ -445,6 +555,28 @@ router.delete('/profiles/:profileId', profileController.deleteProfile);
  */
 
 router.get('/promotions', promotionController.getPromotions);
+
+/**
+ * @swagger
+ * /api/promotions/{promotionId}:
+ *   get:
+ *     operationId: getPromotionById
+ *     summary: Retrieve a promotion by id
+ *     description: Retrieve a promotion by id.
+ *     tags: [Promotions]
+ *     parameters:
+ *       - in: path
+ *         name: promotionId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A promotion by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Promotion'
+ */
+
 router.get('/promotions/:promotionId', promotionController.getPromotionById);
 
 /**
@@ -500,6 +632,28 @@ router.delete('/promotions/:promotionId', promotionController.deletePromotion);
  */
 
 router.get('/subscriptions', subscriptionController.getSubscriptions);
+
+/**
+ * @swagger
+ * /api/subscriptions/{subscriptionId}:
+ *   get:
+ *     operationId: getSubscriptionById
+ *     summary: Retrieve a subscription by id
+ *     description: Retrieve a subscription by id.
+ *     tags: [Subscriptions]
+ *     parameters:
+ *       - in: path
+ *         name: subscriptionId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A subscription by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Subscription'
+ */
+
 router.get('/subscriptions/:subscriptionId', subscriptionController.getSubscriptionById);
 
 /**
@@ -555,23 +709,51 @@ router.delete('/subscriptions/:subscriptionId', subscriptionController.deleteSub
  */
 
 router.get('/users', userController.getUsers);
+
 /**
  * @swagger
  * /api/users/{userId}:
  *   get:
- *     operationId: getUsers
- *     summary: Retrieve a list of users
- *     description: Retrieve a list of users. Can be used to populate a list of users when prototyping or testing an API.*
+ *     operationId: getUserById
+ *     summary: Retrieve a user by id
+ *     description: Retrieve a user by id.
  *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
  *     responses:
  *       200:
- *         description: A list of users.
+ *         description: A user by ID.
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  */
+
 router.get('/users/:userId', userController.getUserById);
+
+/**
+ * @swagger
+ * /api/users/name/{userName}:
+ *   get:
+ *     operationId: getUserByName
+ *     summary: Retrieve a user by name
+ *     description: Retrieve a user by name.
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: userName
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A user by name.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+
 router.get('/users/name/:username', userController.getUserByUsername);
 
 router.post('/users', userController.createUser);
@@ -619,6 +801,28 @@ router.delete('/users/:userId', userController.deleteUser);
  */
 
 router.get('/videos', videoController.getVideos);
+
+/**
+ * @swagger
+ * /api/videos/{videoId}:
+ *   get:
+ *     operationId: getVideoById
+ *     summary: Retrieve a video by id
+ *     description: Retrieve a video by id.
+ *     tags: [Videos]
+ *     parameters:
+ *       - in: path
+ *         name: videoId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A video by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Video'
+ */
+
 router.get('/videos/:videoId', videoController.getVideoById);
 
 /**
