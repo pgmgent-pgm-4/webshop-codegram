@@ -9,7 +9,7 @@ export default (sequelize) => {
 			this.hasOne(models.Subscription);
 			this.hasMany(models.ProductReviews);
 		}
-	}
+	} 
 
 	Profile.init({
     id: {

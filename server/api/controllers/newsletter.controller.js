@@ -7,7 +7,7 @@ Get all newsletters
 const getNewsletters = async (req, res, next) => {
 	try {
 		// Get newsletters from database
-		const newsletters = await database.NewsLetter.findAll();
+		const newsletters = await database.Newsletter.findAll();
 		// Send response
 		res.status(200).json(newsletters);
 	} catch (error) {
@@ -23,7 +23,7 @@ const getNewsletterById = async (req, res, next) => {
 		// Get newsletterId parameter
 		const { newsletterId } = req.params;
 		// Get specific post from database
-		const newsletter = await database.NewsLetter.findAll({
+		const newsletter = await database.Newsletter.findAll({
 			where: {
 				id: newsletterId,
 			},
@@ -70,7 +70,7 @@ const updateNewsletter = async (req, res, next) => {
 		const { newsletterId } = req.params;
 		const { content } = req.body;
 
-		const response = await database.NewsLetter.update({ content }, { where: {
+		const response = await database.Newsletter.update({ content }, { where: {
 			id: newsletterId
 		}});
 		if (response && response.message) {
@@ -89,7 +89,7 @@ Delete newsletter
 const deleteNewsletter = async (req, res, next) => {
 	try {
 		const { newsletterId } = req.params;
-		const response = await database.NewsLetter.destroy({
+		const response = await database.Newsletter.destroy({
 			where: { id: newsletterId}
 		});
 		res.status(204).send(`Deleted newsletter with id ${newsletterId}!`);
