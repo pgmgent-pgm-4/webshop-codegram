@@ -3,7 +3,6 @@ import express from 'express';
 import path from 'path';
 import nunjucks from 'nunjucks';
 import bodyParser from 'body-parser';
-import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './api/middleware';
 
@@ -13,6 +12,7 @@ Custom modules
 import { EnvironmentVariables } from './db/config/index.js';
 import apiRoutes from './api/routes';
 import publicRoutes from './routes';
+import authenticate from './utils/auth.js';
 
 /*
 Database
@@ -48,6 +48,7 @@ app.use(bodyParser.json());
 API Routes
 */
 app.use('/api', cors(), apiRoutes);
+app.use('/auth', authenticate);
 app.use('/', publicRoutes);
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
@@ -62,7 +63,9 @@ Listen to incoming requests
 let server;
 if (EnvironmentVariables.NODE_ENV !== 'test') {
 	server = app.listen(EnvironmentVariables.PORT, EnvironmentVariables.HOSTNAME, (err) => {
-		if (err) {logger.error(`This is an error`); throw err;};
+		if (err) {
+			throw err;
+		};
 		if (EnvironmentVariables.NODE_ENV === 'development') {
 			logger.info(`Server is listening at http://${EnvironmentVariables.HOSTNAME}:${EnvironmentVariables.PORT}!`);
 		}
@@ -83,7 +86,7 @@ const handleGracefully = async () => {
 			process.exit(0);
 		});
 	} catch (ex) {
-		console.error(ex);
+		logger.error(`Error: ${ex.message}.`)
 	}
 };
 

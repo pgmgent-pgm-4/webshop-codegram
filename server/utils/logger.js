@@ -3,38 +3,35 @@
  */
 import winston from 'winston';
 const {
-  createLogger,
-  format,
-  transports
-} = winston;
-const {
   combine,
+  colorize,
   timestamp,
   label,
+  printf,
   prettyPrint
-} = format;
+} = winston.format;
 
+const myFormat = printf(({ level, message, label = 'log', timestamp}) => {
+  return `[${timestamp}] <${level}> ${label}: ${message}]`
+})
 
-const logger = createLogger({
-  format: format.combine(
-    label({
-      label: 'by Codegram'
-    }),
-    timestamp(),
-    format.json()),
-  transports: [new winston.transports.File({
-    filename: 'combined.log'
-  }), ]
+export const logger = winston.createLogger({
+  format: combine(
+    timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
+    myFormat,
+  ),
+  transports: [
+    new winston.transports.File({ filename: `combined.log` }),
+    new winston.transports.File({ filename: `error.log`, level: 'error' }),
+  ]
 });
 
 if (process.env.NODE_ENV !== 'production') {
   logger.add(new winston.transports.Console({
     format: combine(
-      label({
-        label: 'by Codegram'
-      }),
+      colorize(),
       timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
-      prettyPrint()
+      myFormat
     )
   }));
 }

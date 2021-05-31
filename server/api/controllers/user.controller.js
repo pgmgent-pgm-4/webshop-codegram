@@ -35,6 +35,21 @@ const getUserById = async (req, res, next) => {
 	}
 };
 
+const getUserByUsername = async (req, res, next) => {
+	try {
+		const { username } = req.params;
+		const user = await database.User.findAll({
+			where: {
+				username: username,
+			}
+		});
+		console.log(user.username)
+		res.status(200).json(user);
+	} catch (error) {
+		handleHTTPError(error, next);
+	}
+}
+
 /*
 Create a user
 */
@@ -126,6 +141,7 @@ const deleteUser = async (req, res, next) => {
 
 export {
 	getUserById,
+	getUserByUsername,
 	getUsers,
 	createUser,
 	updateUser,
