@@ -1,0 +1,49 @@
+.hero{
+    height:48rem;
+    border-radius: 0 0 30% 0;
+    background-image: url("../images/header.jpg");
+    @include cover-background;
+
+    .jumbotron{
+        padding-top:8rem;
+        position: relative;
+
+        &__top{
+            margin-bottom: 2rem;
+            a{
+                padding: 1rem 3rem;
+            }
+        }
+
+        &__list{
+            margin-top: 7rem;
+            position:absolute;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;  
+            column-gap: 2rem;
+
+            &--item{
+                border-radius: 1rem;
+                background-color: $color-gray;
+                padding:2.5rem;
+
+                display:flex;
+                flex-direction:column;
+                justify-content: center;
+                align-items:center;
+
+                color: $color-white;
+                text-align: center;
+
+                p{
+                    margin : 1rem 0 2rem;
+                    color: $color-broken-white;
+                }
+                a{
+                    width:50%;
+                    display:inline;
+                }
+            }
+        }
+    }
+}

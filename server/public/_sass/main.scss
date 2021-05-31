@@ -22,14 +22,28 @@
 @import
 'layout/footer',
 'layout/form',
-'layout/header';
+'layout/hero',
+'layout/header',
+'layout/nav',
+'layout/promo-banner',
+'layout/statisctics';
+
+
+
+
+
+
+
 
 // 5. Components
 @import
 'components/button',
 'components/card',
 'components/hero',
+'components/icon',
 'components/image';
+
+
 
 // 6. Page-specific styles
 @import 

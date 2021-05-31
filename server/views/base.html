@@ -9,18 +9,21 @@
     <title>CodeGram</title>
 </head>
 <body>
+    <div class="container">
     {% include 'partials/header.njk' %}
 
-    <main class="main">
-        <section class="left">
-            {% block left %} {% endblock %}
-        </section>
+        <main class="main">
+            <section class="left">
+                {% block left %} {% endblock %}
+            </section>
 
-        <section class="right">
-            {% block right %} {% endblock %}
-        </section>
-    </main>
+            <section class="right">
+                {% block right %} {% endblock %}
+            </section>
+        </main>
 
     {% include 'partials/footer.njk' %}
+     </div>
 </body>
 </html>
+
