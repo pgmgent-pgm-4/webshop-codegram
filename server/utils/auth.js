@@ -11,10 +11,12 @@
  /**
   * Imports local packages
   */
-
+import database from '../db'
  import logger from './logger.js'
+ database.connect();
 
 /*  import * as parseUsers from '../api/controllers/parseUsers.js';  // TODO: decide on filename and file structure for these*/
+
  
  // Initialize dotenv
  dotenv.config();
@@ -63,24 +65,24 @@
    passport.authenticate('local', (error, user, info) => {
      if (error) {
        res.status(401).send(error);
-       logger.error(`Failed to authenticate user. View the log for more details.`) // TODO: create logger
+       logger.error(`Failed to authenticate user. View the log for more details.`)
      } else if (!user) {
-       logger.error(`Failed to authenticate user. Invalid username.`) // TODO: create logger
+       logger.error(`Failed to authenticate user. Invalid username.`)
        res.status(401).send(info);
      } else {
        const token = jwt.sign(user, process.env.JWT_SECRET_KEY, {
          expiresIn: parseInt(process.env.JWT_LIFETIME),
        });
        res.status(200).json({
-         succes: true,
+         success: true,
          token: token,
          user: {
            id: user.id,
            username: user.username,
-           is_admin: user.is_admin // TODO: Fix this field to be relevant to the webshop
+           role: user.role,
          },
        });
-       logger.info( `User ${user.username} logged in successfully.`); // TODO: create logger
+       logger.info(`User ${user.username} logged in successfully.`);
      }
    })(req, res);
  });

@@ -49,11 +49,11 @@ export const isUserAuthenticated = (req, res, next) => {
   }, (error, user, info) => {
     // If there is an error or no user do not authorize
     if (error || !user) {
-      /* logger.log({       // Winston logger
+      logger.log({       // Winston logger
         level: 'error',
         message: info,
         label: 'auth'
-      }); */
+      });
       res.status(401).send(info);
     } else {
       next();

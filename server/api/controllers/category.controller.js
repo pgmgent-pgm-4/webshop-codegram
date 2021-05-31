@@ -23,7 +23,7 @@ const getCategoryById = async (req, res, next) => {
 	try {
 		// Get categoryId parameter
 		const { categoryId } = req.params;
-		// Get specific post from database
+		// Get specific category from database
 		const category = await database.Category.findAll({
 			where: {
 				id: categoryId,
@@ -43,8 +43,8 @@ const getCategoryByName = async (req, res, next) => {
 	try {
 		// Get categoryName parameter
 		const { categoryName } = req.params;
-		// Get specific post from database
-		const category = await database.Category.findAll({
+		// Get specific category from database
+		const category = await database.Category.findOne({
 			where: {
 				name: categoryName,
 			},
