@@ -116,7 +116,7 @@ router.post('/categories', categoryController.createCategory);
 
 /**
  * @swagger
- * /api/categories/{categoryName}:
+ * /api/categories/name/{categoryName}:
  *   put:
  *     summary: Edit an existing category
  *     description: Edit an existing category
@@ -129,11 +129,11 @@ router.post('/categories', categoryController.createCategory);
  *         required: true
  */
 
-router.put('/categories/:categoryName', categoryController.updateCategory);
+router.put('/categories/name/:categoryName', categoryController.updateCategory);
 
 /**
  * @swagger
- * /api/categories/{categoryName}:
+ * /api/categories/name/{categoryName}:
  *   delete:
  *     summary: Delete a category
  *     description: Delete a category
@@ -146,7 +146,7 @@ router.put('/categories/:categoryName', categoryController.updateCategory);
  *         required: true
  */
 
-router.delete('/categories/:categoryName', categoryController.deleteCategory);
+router.delete('/categories/name/:categoryName', categoryController.deleteCategory);
 
 // Courses
 
@@ -555,16 +555,24 @@ router.delete('/subscriptions/:subscriptionId', subscriptionController.deleteSub
  */
 
 router.get('/users', userController.getUsers);
-router.get('/users/:userId', userController.getUserById);
-
 /**
  * @swagger
- * /api/users:
- *   post:
- *     summary: Create a new user
- *     description: Create a new user
+ * /api/users/{userId}:
+ *   get:
+ *     operationId: getUsers
+ *     summary: Retrieve a list of users
+ *     description: Retrieve a list of users. Can be used to populate a list of users when prototyping or testing an API.*
  *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
  */
+router.get('/users/:userId', userController.getUserById);
+router.get('/users/name/:username', userController.getUserByUsername);
 
 router.post('/users', userController.createUser);
 router.put('/users/:userId', userController.updateUser);
