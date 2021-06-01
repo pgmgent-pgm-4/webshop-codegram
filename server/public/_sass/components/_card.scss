@@ -1,11 +1,23 @@
 .wrapper{
-
+    transition: all 0.2s ease;
     .card-section{
         display:grid;
         margin-top: 3rem;
         gap: 2rem;
 
         .card{
+          
+            h3{
+                a{
+                    color:$color-pink;
+                }
+                a:hover{
+                    color:$color-white;
+                    text-decoration:underline;
+                }
+            }
+
+            overflow:hidden;
             &--header{
                 @include cover-background ;
                 color: $color-broken-white;
@@ -29,7 +41,6 @@
                 .single-price{
                     @include gradient-primarybtn;
                     font-size:1.5rem;
-                    width:5rem;
                     border-radius:50%;
                     padding:1.3rem;
                     position:absolute;
@@ -43,20 +54,65 @@
                 padding:1.5rem 1rem;
 
                 &__level{
-                    width:26%;
+                   
                     align-items: baseline;
-                    display:grid;
-                    grid-template-columns: 1fr 1fr;
+                    display:flex;
 
                     svg{
-                        width:1.2rem;
+                        width:1rem;
+                        fill:$color-pink;
+                    }
+                }
+
+                &__lecture, &__duration{
+                    padding-top: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    .avatar{
+                        margin-right: 0.3rem;
+                        width:4rem;
+                    }
+                }
+                &__duration{
+                    justify-content:space-between;
+                    align-items: center;
+                    svg{
                         fill:$color-pink;
                     }
                 }
             }
+
+            &--action{
+                transform: translateY(100%);
+                div{
+                    svg{
+                        fill:$color-white;
+                    }
+
+                    display:flex;
+                    justify-content:center;
+
+                    a{
+                        width: 50%;
+                        padding: 0.5rem 0;
+                    }
+                    .add-cart{
+                        background:$color-cocktail;
+                    }
+                    .add-wish{
+                        background:$color-pink;
+                    }
+
+                }
+            }
+        }
+
+        .card:hover{
+            .card--action{
+                transform: translateY(0%);
+            }
         }
     }
-
 }
 
 

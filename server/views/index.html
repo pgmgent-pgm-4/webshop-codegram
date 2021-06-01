@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
+{% block left %} 
+{% include 'partials/hero.njk' %}
 
-{% block left %}
+{% include 'partials/promo-banner.njk' %}
+
+{% include 'partials/statistics.njk' %}
+
+{% include 'partials/cards.njk' %}
+{% endblock %}
+
+
+{# {% block left %}
     {% for category in categories %}
         <h2>{{category.name}}</h2>
     {% endfor %}
@@ -10,4 +20,4 @@
     {% for course in courses %}
         <p>{{course.name}}</p>
     {% endfor %}
-{% endblock %}
+{% endblock %} #}
