@@ -51,7 +51,7 @@ const createNewsletter = async (req, res, next) => {
 			content: newsletter.content,
 		};
 		// Send response
-		const response = await database.NewsLetter.create(newsletterToCreate);
+		const response = await database.Newsletter.create(newsletterToCreate);
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {

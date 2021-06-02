@@ -194,7 +194,6 @@ router.get('/courses', courseController.getCourses);
 router.get('/courses/:courseId', courseController.getCourseById);
 
 /**
-/**
  * @swagger
  * /api/courses:
  *   post:
@@ -288,6 +287,16 @@ router.get('/newsletters/:newsletterId', newsletterController.getNewsletterById)
  *     summary: Create a new newsletter
  *     description: Create a new newsletter
  *     tags: [Newsletters]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Newsletter'
+ *     responses:
+ *       201:
+ *         description: Newsletter Created
  */
 
 router.post('/newsletters', newsletterController.createNewsletter);
@@ -365,8 +374,17 @@ router.get('/orders/:orderId', orderController.getOrderById);
  *     summary: Create a new order
  *     description: Create a new order
  *     tags: [Orders]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Order'
+ *     responses:
+ *       201:
+ *         description: Order Created
  */
-
 
 router.post('/orders', orderController.createOrder);
 
@@ -444,6 +462,16 @@ router.get('/payments/:paymentId', paymentController.getPaymentById);
  *     summary: Create a new payment method
  *     description: Create a new payment method
  *     tags: [Payments]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Payment'
+ *     responses:
+ *       201:
+ *         description: Payment Created
  */
 
 router.post('/payments', paymentController.createPayment);
@@ -521,6 +549,16 @@ router.get('/profiles/:profileId', profileController.getProfileById);
  *     summary: Create a new user profile
  *     description: Create a new user profile
  *     tags: [Profiles]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Profile'
+ *     responses:
+ *       201:
+ *         description: Profile Created
  */
 
 router.post('/profiles', profileController.createProfile);
@@ -598,6 +636,16 @@ router.get('/promotions/:promotionId', promotionController.getPromotionById);
  *     summary: Create a new promotion
  *     description: Create a new promotion
  *     tags: [Promotions]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Promotion'
+ *     responses:
+ *       201:
+ *         description: Promotion Created
  */
 
 router.post('/promotions', promotionController.createPromotion);
@@ -675,6 +723,16 @@ router.get('/subscriptions/:subscriptionId', subscriptionController.getSubscript
  *     summary: Create a new subscription
  *     description: Create a new subscription
  *     tags: [Subscriptions]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Subscription'
+ *     responses:
+ *       201:
+ *         description: Subscription Created
  */
 
 router.post('/subscriptions', subscriptionController.createSubscription);
@@ -768,6 +826,26 @@ router.get('/users/:userId', userController.getUserById);
 
 router.get('/users/name/:username', userController.getUserByUsername);
 
+/**
+ * @swagger
+ * /api/users:
+ *   post:
+ *     summary: Create a new user
+ *     description: Create a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: User Created
+ */
+
+
 router.post('/users', userController.createUser);
 router.put('/users/:userId', userController.updateUser);
 
@@ -844,6 +922,16 @@ router.get('/videos/:videoId', videoController.getVideoById);
  *     summary: Create a new video
  *     description: Create a new video
  *     tags: [Videos]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Video'
+ *     responses:
+ *       201:
+ *         description: Video Created
  */
 
 router.post('/videos', videoController.createVideo);
@@ -971,7 +1059,7 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *              description: The cost of the subscription
  *              example: 278.00
  *            subscription_type:
- *              type: number
+ *              type: string
  *              description: The type of subscription the user is getting
  *              example: 3          
  */
@@ -1013,7 +1101,7 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *             role:
  *               type: string
  *               description: This is either an Admin or a User 
- *               example: Admin   
+ *               example: admin   
  *             last_login:
  *               type: string
  *               format: date
@@ -1049,11 +1137,11 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *            subscription:
  *              type: string
  *              description: The type of subscription that's tied to the profile
- *              example: False
+ *              example: Monthly
  *            recent_activity:
- *              type: object
+ *              type: string
  *              description: The recent activity of a user, still trying to work out what should go here
- *              example: {Course: CSS, Video: 2}
+ *              example: "{Course: CSS, Video: 2}"
  */
 
 /**
@@ -1107,7 +1195,7 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *               description: The url of the video's thumbnail
  *               example: thisisanimage.jpg
  *             duration:
- *               type: integer
+ *               type: string
  *               description: The duration of the video in seconds
  *               example: 65849
  */
@@ -1144,9 +1232,9 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *               description: The price of the course
  *               example: 278.00
  *             tags:
- *               type: array
+ *               type: string
  *               description: The tags associated with a course
- *               example: [Python, Intermediate ,2020, maiores]
+ *               example: "[Python, Intermediate ,2020, maiores]"
  *             duration:
  *               type: integer
  *               description: The duration of the course in seconds
