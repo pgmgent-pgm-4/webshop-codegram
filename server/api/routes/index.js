@@ -101,15 +101,16 @@ router.get('/categories/name/:categoryName', categoryController.getCategoryByNam
  *     summary: Create a new category
  *     description: Create a new category
  *     tags: [Categories]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Category'
  *     responses:
  *       201:
- *         requestBody:
- *           description: Write down a new category in the req body
- *           required: true
- *           content:
- *             application/json:
- *               schema:
- *                 $ref: '#/components/schemas/Category'
+ *         description: Category Created
  */
 
 router.post('/categories', categoryController.createCategory);
@@ -193,12 +194,23 @@ router.get('/courses', courseController.getCourses);
 router.get('/courses/:courseId', courseController.getCourseById);
 
 /**
+/**
  * @swagger
  * /api/courses:
  *   post:
  *     summary: Create a new course
  *     description: Create a new course
  *     tags: [Courses]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Course'
+ *     responses:
+ *       201:
+ *         description: Course Created
  */
 
 router.post('/courses', courseController.createCourse);
@@ -861,78 +873,72 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
 /**
  * @swagger
  * components:  
- *  schemas:
- *    Category:  
- *      type: object
- *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The category ID.
- *                example: 90900i0iiik1
- *              name:
- *                type: string
- *                description: The categories name.
- *                example: CSS
- *              description:
- *                type: string
- *                description: The description of the category
- *                example: CSS stands for Cascading Style Sheets
+ *   schemas:
+ *     Category:  
+ *       type: object
+ *       properties:
+ *         category: 
+ *           type: object
+ *           properties:  
+ *             id:
+ *               type: integer
+ *               format: uuid
+ *               description: The category ID.
+ *               example: 90900i0iiik1
+ *             name:
+ *               type: string
+ *               description: The categories name.
+ *               example: CSS
+ *             description:
+ *               type: string
+ *               description: The description of the category
+ *               example: CSS stands for Cascading Style Sheets
  */
 
 /**
  * @swagger
  * components:  
- *  schemas:
- *    Order:  
- *      type: object
- *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The Order ID.
- *                example: 90900i0iiik1
- *              order_completed:
- *                type: boolean
- *                description: True or false depending on completed or not
- *                example: True
- *              total:
- *                type: number
- *                description: The total amount for the order
- *                example: 278.00
+ *   schemas:
+ *     Order:  
+ *       type: object
+ *       properties:
+ *         order: 
+ *           type: object
+ *           properties:  
+ *             id:
+ *               type: integer
+ *               format: uuid
+ *               description: The Order ID.
+ *               example: 90900i0iiik1
+ *             order_completed:
+ *               type: boolean
+ *               description: True or false depending on completed or not
+ *               example: True
+ *             total:
+ *               type: number
+ *               description: The total amount for the order
+ *               example: 278.00
  */
 
 /**
  * @swagger
  * components:  
- *  schemas:
- *    Payment:  
- *      type: object
- *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The Payment ID.
- *                example: 90900i0iiik1
- *              total:
- *                type: number
- *                description: The total amount for the order
- *                example: 278.00
+ *   schemas:
+ *     Payment:  
+ *       type: object
+ *       properties:
+ *         payment: 
+ *           type: object
+ *           properties:  
+ *             id:
+ *               type: integer
+ *               format: uuid
+ *               description: The Payment ID.
+ *               example: 90900i0iiik1
+ *             total:
+ *               type: number
+ *               description: The total amount for the order
+ *               example: 278.00
  */
 
 /**
@@ -942,256 +948,246 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *    Subscription:  
  *      type: object
  *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The Subscription ID.
- *                example: 90900i0iiik1
- *              start_date:
- *                type: string
- *                format: date
- *                description: Date of when the subscription started
- *                example: 31-05-2021
- *              end_date:
- *                type: string
- *                format: date
- *                description: Date of when the subscription ends
- *                example: 31-06-2021
- *              price:
- *                type: number
- *                description: The cost of the subscription
- *                example: 278.00
- *              subscription_type:
- *                type: number
- *                description: The type of subscription the user is getting
- *                example: 3          
+ *        subscription: 
+ *          type: object
+ *          properties:  
+ *            id:
+ *              type: integer
+ *              format: uuid
+ *              description: The Subscription ID.
+ *              example: 90900i0iiik1
+ *            start_date:
+ *              type: string
+ *              format: date
+ *              description: Date of when the subscription started
+ *              example: 31-05-2021
+ *            end_date:
+ *              type: string
+ *              format: date
+ *              description: Date of when the subscription ends
+ *              example: 31-06-2021
+ *            price:
+ *              type: number
+ *              description: The cost of the subscription
+ *              example: 278.00
+ *            subscription_type:
+ *              type: number
+ *              description: The type of subscription the user is getting
+ *              example: 3          
  */
 
 /**
  * @swagger
  * components:  
- *  schemas:
- *    User:  
- *      type: object
- *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The User ID.
- *                example: 90900i0iiik1
- *              username:
- *                type: string
- *                format: username
- *                description: The unique username of a user
- *                example: Ariel_the_little_mermaid
- *              email:
- *                type: string
- *                format: email
- *                description: The email-address of a user
- *                example: example@email.com
- *              email_verified:
- *                type: boolean
- *                description: False or True depending on whether the user has verified their account through email
- *                example: False
- *              password:
- *                type: string
- *                format: password
- *                description: The password of the user
- *                example: IloveReact123!
- *              role:
- *                type: string
- *                description: This is either an Admin or a User 
- *                example: Admin   
- *              last_login:
- *                type: string
- *                format: date
- *                description: The date of the last time a user logged in
- *                example: 31-05-2021      
+ *   schemas:
+ *     User:  
+ *       type: object
+ *       properties:
+ *         user: 
+ *           type: object
+ *           properties:  
+ *             id:
+ *               type: integer
+ *               format: uuid
+ *               description: The User ID.
+ *               example: 90900i0iiik1
+ *             username:
+ *               type: string
+ *               format: username
+ *               description: The unique username of a user
+ *               example: Ariel_the_little_mermaid
+ *             email:
+ *               type: string
+ *               format: email
+ *               description: The email-address of a user
+ *               example: example@email.com
+ *             email_verified:
+ *               type: boolean
+ *               description: False or True depending on whether the user has verified their account through email
+ *               example: False
+ *             password:
+ *               type: string
+ *               format: password
+ *               description: The password of the user
+ *               example: IloveReact123!
+ *             role:
+ *               type: string
+ *               description: This is either an Admin or a User 
+ *               example: Admin   
+ *             last_login:
+ *               type: string
+ *               format: date
+ *               description: The date of the last time a user logged in
+ *               example: 31-05-2021      
  */
 
 /**
  * @swagger
  * components:  
- *  schemas:
- *    Profile:  
+ *   schemas:
+ *     Profile:  
  *      type: object
  *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The Profile ID.
- *                example: 90900i0iiik1
- *              dob:
- *                type: string
- *                format: date
- *                description: The date of birth of a user
- *                example: 01-01-2001
- *              img_url:
- *                type: string
- *                format: image
- *                description: The image of a user
- *                example: thisisanimage.jpg
- *              subscription:
- *                type: string
- *                description: The type of subscription that's tied to the profile
- *                example: False
- *              recent_activity:
- *                type: object
- *                description: The recent activity of a user, still trying to work out what should go here
- *                example: {Course: CSS, Video: 2}
+ *        profile: 
+ *          type: object
+ *          properties:  
+ *            id:
+ *              type: integer
+ *              format: uuid
+ *              description: The Profile ID.
+ *              example: 90900i0iiik1
+ *            dob:
+ *              type: string
+ *              format: date
+ *              description: The date of birth of a user
+ *              example: 01-01-2001
+ *            img_url:
+ *              type: string
+ *              format: image
+ *              description: The image of a user
+ *              example: thisisanimage.jpg
+ *            subscription:
+ *              type: string
+ *              description: The type of subscription that's tied to the profile
+ *              example: False
+ *            recent_activity:
+ *              type: object
+ *              description: The recent activity of a user, still trying to work out what should go here
+ *              example: {Course: CSS, Video: 2}
  */
 
 /**
  * @swagger
  * components:  
- *  schemas:
- *    Promotion:  
- *      type: object
- *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The Promotion ID.
- *                example: 90900i0iiik1
- *              price_modifier:
- *                type: number
- *                description: amount that the price will be multiplied with, to reflect the promotion
- *                example: 0.8
+ *   schemas:
+ *     Promotion:  
+ *       type: object
+ *       properties:
+ *         promotion: 
+ *           type: object
+ *           properties:  
+ *             id:
+ *               type: integer
+ *               format: uuid
+ *               description: The Promotion ID.
+ *               example: 90900i0iiik1
+ *             price_modifier:
+ *               type: number
+ *               description: amount that the price will be multiplied with, to reflect the promotion
+ *               example: 0.8
  */
 
 /**
  * @swagger
  * components:  
- *  schemas:
- *    Video:  
- *      type: object
- *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The Profile ID.
- *                example: 90900i0iiik1
- *              url:
- *                type: string
- *                format: url
- *                description: Url leading to a YouTube video
- *                example: wwww.youtube/CSS.com
- *              name:
- *                type: string
- *                description: The title of the video
- *                example: CSS - A Course For Beginners
- *              thumbnail_url:
- *                type: string
- *                format: url
- *                description: The url of the video's thumbnail
- *                example: thisisanimage.jpg
- *              duration:
- *                type: integer
- *                description: The duration of the video in seconds
- *                example: 65849
+ *   schemas:
+ *     Video:  
+ *       type: object
+ *       properties:
+ *         video: 
+ *           type: object
+ *           properties:  
+ *             id:
+ *               type: integer
+ *               format: uuid
+ *               description: The Profile ID.
+ *               example: 90900i0iiik1
+ *             url:
+ *               type: string
+ *               format: url
+ *               description: Url leading to a YouTube video
+ *               example: wwww.youtube/CSS.com
+ *             name:
+ *               type: string
+ *               description: The title of the video
+ *               example: CSS - A Course For Beginners
+ *             thumbnail_url:
+ *               type: string
+ *               format: url
+ *               description: The url of the video's thumbnail
+ *               example: thisisanimage.jpg
+ *             duration:
+ *               type: integer
+ *               description: The duration of the video in seconds
+ *               example: 65849
  */
 
 /**
  * @swagger
  * components:  
- *  schemas:
- *    Course:  
- *      type: object
- *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The Profile ID.
- *                example: 90900i0iiik1
- *              unlocked:
- *                type: boolean
- *                description: False or True depending on whether User unlocked the course
- *                example: True
- *              name:
- *                type: string
- *                description: The title of the Course
- *                example: CSS
- *              description:
- *                type: string
- *                description: The description of what the course is about
- *                example: This Course is about CSS ...
- *              price:
- *                type: number
- *                description: The price of the course
- *                example: 278.00
- *              tags:
- *                type: array
- *                description: The tags associated with a course
- *                example: [css, begginer, certificate]
- *              duration:
- *                type: integer
- *                description: The duration of the course in seconds
- *                example: 65849858934943
- *              difficulty_level:
- *                type: string
- *                description: The difficulty level of the course
- *                example: Beginner
- *              certificate:
- *                type: boolean
- *                description: True or false depending on whether the course comes with a certificate
- *                example: False
- *              language:
- *                type: string
- *                description: The language that the course will be taught in
- *                example: CSS
+ *   schemas:
+ *     Course:  
+ *       type: object
+ *       properties:
+ *         course: 
+ *           type: object
+ *           properties:  
+ *             id:
+ *               type: integer
+ *               format: uuid
+ *               description: The Profile ID.
+ *               example: 90900i0iiik1
+ *             unlocked:
+ *               type: boolean
+ *               description: False or True depending on whether User unlocked the course
+ *               example: True
+ *             name:
+ *               type: string
+ *               description: The title of the Course
+ *               example: CSS
+ *             description:
+ *               type: string
+ *               description: The description of what the course is about
+ *               example: This Course is about CSS ...
+ *             price:
+ *               type: number
+ *               description: The price of the course
+ *               example: 278.00
+ *             tags:
+ *               type: array
+ *               description: The tags associated with a course
+ *               example: [Python, Intermediate ,2020, maiores]
+ *             duration:
+ *               type: integer
+ *               description: The duration of the course in seconds
+ *               example: 65849858934943
+ *             difficulty_level:
+ *               type: string
+ *               description: The difficulty level of the course
+ *               example: Beginner
+ *             certificate:
+ *               type: boolean
+ *               description: True or false depending on whether the course comes with a certificate
+ *               example: False
+ *             language:
+ *               type: string
+ *               description: The language that the course will be taught in
+ *               example: CSS
+ *             CategoryId:
+ *               type: string
+ *               description: the id of the corresponding category
+ *               example: f8ee895d-ce9b-4c82-a9e4-1b1c173c3a9d
  */
 
 /**
  * @swagger
  * components:  
- *  schemas:
- *    Newsletter:  
- *      type: object
- *      properties:
- *        data:
- *          type: array
- *          items:
- *            type: object
- *            properties:
- *              id:
- *                type: integer
- *                format: uuid
- *                description: The Profile ID.
- *                example: 90900i0iiik1
- *              content:
- *                type: string
- *                description: The content of the Newsletter
- *                example: This week a lot of new exciting developments have happened on Codegram....
+ *   schemas:
+ *     Newsletter:  
+ *       type: object
+ *       properties:
+ *         newsletter: 
+ *           type: object
+ *           properties:  
+ *             id:
+ *               type: integer
+ *               format: uuid
+ *               description: The Profile ID.
+ *               example: 90900i0iiik1
+ *             content:
+ *               type: string
+ *               description: The content of the Newsletter
+ *               example: This week a lot of new exciting developments have happened on Codegram....
  */
 
 /**
@@ -1214,7 +1210,7 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *   - name: Videos
  *     description: Renders the videolink 
  *   - name: Courses
- *     description: Name of vailable courses
+ *     description: Name of available courses
  *   - name: Newsletters
  *     description: Permission to send out newsletters
  */
