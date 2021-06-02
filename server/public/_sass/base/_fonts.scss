@@ -1,0 +1,24 @@
+h1{
+    font-size: $text-xxl;
+    font-weight: $large; 
+    width: 50%;
+    color:$color-white;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+ }
+
+  h2{
+      font-size: 2rem
+  }
+
+ p.subHeading{
+   font-size: 1.3rem;
+   color:$color-broken-white ;
+   margin-bottom: 3rem;
+   width: 70%;
+
+ }
+
+ p.supHeading{
+    color: $color-cocktail;
+}

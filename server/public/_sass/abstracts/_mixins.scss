@@ -1,0 +1,57 @@
+@mixin center-margin {
+    margin: 0 auto
+}
+
+@mixin cover-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+@mixin padding{
+    padding: 1rem;
+}
+
+@mixin gradient-primarybtn { 
+    background: linear-gradient(to top, #db1b74,#ef4a3a);
+}
+
+@mixin gradient-bg { 
+    background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+    color: $color-white;
+    h2{
+        color:$color-white; 
+        margin: 0.5rem 0 1rem; 
+    }
+    p{
+        color:$color-broken-white ;
+    }
+}
+
+@mixin dark-bg{
+    background: $color-ebony;
+    color: $color-white;
+
+    h2{
+        color:$color-white; 
+        margin: 0.5rem 0 1rem; 
+    }
+    h3,h4{
+        color: $color-white;;
+    }
+    p:not(.supHeading){
+        color:$color-broken-white ;
+    }
+}
+
+@mixin light-bg{
+    background: $color-white;
+    h2{
+        color:$color-ebony; 
+        margin: 0.5rem 0 1rem; 
+    }
+    p:not(.supHeading){
+        color:$color-gray;
+    }
+}

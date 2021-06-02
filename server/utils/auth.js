@@ -82,6 +82,7 @@ app.post('/login', (req, res) => {
           role: user.role,
         },
       });
+      writeToCache('token', token);
       logger.info(`User ${user.username} logged in successfully.`);
     }
   })(req, res);
@@ -102,7 +103,15 @@ const isValidPassword = async (user, password) => {
  * Define endpoint for logout
  */
 // TODO: Create endpoint and logic for logout
-
+app.get('/logout', (req, res) => {
+  try {
+    writeToCache('token', null);
+    logger.info(`Success! Logged out.`);
+    res.status(200).send(`Success! Logged out.`);
+  } catch (error) {
+    logger.error(`Failed at logout. Error: ${error.message}.`); 
+  }
+})
 
 // Exports
 export default app;
