@@ -1,5 +1,6 @@
 import { handleHTTPError } from '../../utils';
 import database from '../../db';
+import { v4 as uuidv4 } from 'uuid';
 
 /*
 Get all newsletters
@@ -50,7 +51,7 @@ const createNewsletter = async (req, res, next) => {
 			content: newsletter.content,
 		};
 		// Send response
-		const response = await database.NewsLetter.create(newsletterToCreate);
+		const response = await database.Newsletter.create(newsletterToCreate);
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
@@ -76,7 +77,7 @@ const updateNewsletter = async (req, res, next) => {
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(200).send(`Updated newsletter: ${content}`)
+			res.status(200).send(`Updated newsletter: ${newsletterId}`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);

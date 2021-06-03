@@ -50,7 +50,21 @@ const getCategories = async (req, res, next) => {
   }
 }
 
+// const getLogin, getSignup, getCourses, getCourse, getVideo, getNews, getUser, getCart, getPayment, getTermsAndConditions, getPrivacyPolicy, getContact;
+
 export {
   getHome,
   getCategories,
+/*   getLogin,
+  getSignup,
+  getCourses,
+  getCourse,
+  getVideo,
+  getNews,
+  getUser,
+  getCart,
+  getPayment,
+  getTermsAndConditions,
+  getPrivacyPolicy,
+  getContact, */
 };

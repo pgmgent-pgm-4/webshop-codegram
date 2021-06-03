@@ -7,8 +7,8 @@ import { databaseConfig, EnvironmentVariables } from './config';
 const basename = path.basename(__filename);
 const sequelize = new Sequelize({
 	...databaseConfig[EnvironmentVariables.NODE_ENV],
-	/* logging: EnvironmentVariables.NODE_ENV === 'development' ? console.log : false, */
-	logging: false,
+	logging: EnvironmentVariables.NODE_ENV === 'development' ? console.log : false,
+/* 	logging: false, */
 });
 const database = {};
 

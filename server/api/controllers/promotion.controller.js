@@ -1,5 +1,6 @@
 import { handleHTTPError } from '../../utils';
 import database from '../../db';
+import { v4 as uuidv4 } from 'uuid';
 
 /*
 Get all promotions
@@ -77,7 +78,7 @@ const updatePromotion = async (req, res, next) => {
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(200).send(`Updated promotion: ${id} | ${req.body}!`)
+			res.status(200).send(`Updated promotion: ${promotionId}!`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);

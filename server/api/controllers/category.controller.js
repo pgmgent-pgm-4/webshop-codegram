@@ -88,16 +88,17 @@ Update category
 const updateCategory = async (req, res, next) => {
 	try {
 		// Get the category data from the request body
-		const { categoryName } = req.params;
+		const { categoryId } = req.params;
 		const { name, description } = req.body;
+		console.log(categoryId);
 
 		const response = await database.Category.update({ name, description }, { where: {
-			name: categoryName
+			id: categoryId
 		}});
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(200).send(`Updated category: ${name} - ${description}!`)
+			res.status(200).send(`Updated category: ${categoryId}!`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);
@@ -109,11 +110,11 @@ Delete category
 */
 const deleteCategory = async (req, res, next) => {
 	try {
-		const { categoryName } = req.params;
+		const { categoryId } = req.params;
 		const response = await database.Category.destroy({
-			where: { name: categoryName}
+			where: { id: categoryId}
 		});
-		res.status(204).send(`Deleted category ${categoryName}!`);
+		res.status(204).send(`Deleted category ${categoryId}!`);
 	} catch (err) {
 		handleHTTPError(err, next);
 	}
