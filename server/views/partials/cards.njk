@@ -8,7 +8,7 @@
         
         <ul class="card-section">
             {# {% for course in courses | slice(3) %} #}
-             {% for course in courses %}
+             {% for course in courses | slice(3) %}
                 <li>
                     <div class="card">
                         <div class="card--header"> 
@@ -18,7 +18,7 @@
                                 <span class="promo-percOff" href="#">-30%</span>
                             </div>
                             <div class="card-header__price  ">
-                                <p class="single-price">{{course.price}}€</p> 
+                                <p class="single-price">{{course.price}} €</p> 
                             </div>
                         </div>
                         <div class="card--info">
@@ -59,6 +59,8 @@
                 </li>
             {% endfor %}
         </ul>
-        <a class="btn primary-btn" href="#">View More</a>
+        <div class="btn-center-item">
+            <a class="btn primary-btn" href="/categories" title="Categories" >View More</a>
+        </div>
     </article>
 </div>

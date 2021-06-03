@@ -1,0 +1,17 @@
+.price-banner{
+    margin: 11rem 0;
+    h2{
+        color: $color-white;
+        padding: 1rem 0;
+    }
+    .promo-banner__left--text{
+        color: $color-broken-white ;
+    }
+
+    &__top{
+        background-image: url(../images/price-banner.jpg);
+        @include cover-background;
+
+    }
+    &__bottom{}
+}

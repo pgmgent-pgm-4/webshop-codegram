@@ -450,6 +450,19 @@ p.supHeading {
         width: 2.1rem;
         fill: #F5F5F5; }
 
+.price-banner {
+  margin: 11rem 0; }
+  .price-banner h2 {
+    color: #ffffff;
+    padding: 1rem 0; }
+  .price-banner .promo-banner__left--text {
+    color: #F5F5F5; }
+  .price-banner__top {
+    background-image: url(../images/price-banner.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; }
+
 .promo-banner {
   margin-top: 15rem;
   display: grid;
@@ -542,6 +555,10 @@ p.supHeading {
 
 .wrapper {
   transition: all 0.2s ease; }
+  .wrapper .btn-center-item {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem; }
   .wrapper .card-section {
     display: grid;
     margin-top: 3rem;

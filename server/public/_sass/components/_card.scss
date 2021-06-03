@@ -1,5 +1,12 @@
 .wrapper{
     transition: all 0.2s ease;
+
+    .btn-center-item{
+        display:flex;
+        justify-content:center;
+        margin-top: 3rem;
+    }
+
     .card-section{
         display:grid;
         margin-top: 3rem;
