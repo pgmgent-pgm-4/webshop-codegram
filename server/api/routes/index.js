@@ -130,7 +130,7 @@ router.post('/categories', categoryController.createCategory);
  *         required: true
  */
 
-router.put('/categories/name/:categoryName', categoryController.updateCategory);
+router.put('/categories/:categoryId', categoryController.updateCategory);
 
 /**
  * @swagger
@@ -147,7 +147,7 @@ router.put('/categories/name/:categoryName', categoryController.updateCategory);
  *         required: true
  */
 
-router.delete('/categories/name/:categoryName', categoryController.deleteCategory);
+router.delete('/categories/:categoryId', categoryController.deleteCategory);
 
 // Courses
 
