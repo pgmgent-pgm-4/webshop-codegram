@@ -858,7 +858,7 @@ router.put('/users/:userId', userController.updateUser);
  *     tags: [Users]
  */
 
-router.put('/users/:userId', userController.updateUserByAdmin);
+router.put('/admin/users/:userId', userController.updateUserByAdmin);
 
 /**
  * @swagger
