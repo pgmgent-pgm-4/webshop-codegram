@@ -100,7 +100,7 @@ const updateProfile = async (req, res, next) => {
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(200).send(`Updated profile: ${id} | Complete: ${req.body}!`)
+			res.status(200).send(`Updated profile: ${profileId}!`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);

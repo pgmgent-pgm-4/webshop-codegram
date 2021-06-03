@@ -78,7 +78,7 @@ const updatePayment = async (req, res, next) => {
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(200).send(`Updated payment: ${id} - ${total}!`)
+			res.status(200).send(`Updated payment: ${paymentId}!`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);

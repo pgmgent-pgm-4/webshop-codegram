@@ -78,7 +78,7 @@ const updatePromotion = async (req, res, next) => {
 		if (response && response.message) {
 			res.status(500).send(`Failed: ${response.message}`)
 		} else {
-			res.status(200).send(`Updated promotion: ${id} | ${req.body}!`)
+			res.status(200).send(`Updated promotion: ${promotionId}!`)
 		}
 	} catch (error) {
 		handleHTTPError(error, next);

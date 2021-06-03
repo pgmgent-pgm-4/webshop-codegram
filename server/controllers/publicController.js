@@ -50,12 +50,12 @@ const getCategories = async (req, res, next) => {
   }
 }
 
-const getLogin, getSignup, getCourses, getCourse, getVideo, getNews, getUser, getCart, getPayment, getTermsAndConditions, getPrivacyPolicy, getContact;
+// const getLogin, getSignup, getCourses, getCourse, getVideo, getNews, getUser, getCart, getPayment, getTermsAndConditions, getPrivacyPolicy, getContact;
 
 export {
   getHome,
   getCategories,
-  getLogin,
+/*   getLogin,
   getSignup,
   getCourses,
   getCourse,
@@ -66,5 +66,5 @@ export {
   getPayment,
   getTermsAndConditions,
   getPrivacyPolicy,
-  getContact,
+  getContact, */
 };

@@ -18,7 +18,7 @@ const router = express.Router();
  */
 router.get('/', publicController.getHome);
 router.get('/categories', publicController.getCategories);
-router.get('/login', publicController.getLogin); // login form
+/* router.get('/login', publicController.getLogin); // login form
 router.get('/signup', publicController.getSignup); // signup form
 router.get('/courses', publicController.getCourses); // courses + search + filters
 router.get('/course/:courseId', publicController.getCourse); // single course
@@ -29,6 +29,6 @@ router.get('/users/:userId/cart', publicController.getCart);
 router.get('/users/:userId/payment', publicController.getPayment);
 router.get('/legal/terms', publicController.getTermsAndConditions);
 router.get('/legal/privacy', publicController.getPrivacyPolicy);
-router.get('/contact', publicController.getContact);
+router.get('/contact', publicController.getContact); */
 
 export default router;
