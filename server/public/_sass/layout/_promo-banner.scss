@@ -3,7 +3,7 @@
     display:grid;
     grid-template-columns: 1fr 1fr;
 
-    padding-bottom: 4rem;
+    padding-bottom: 6rem;
 
     &__left{
         @include gradient-bg;
@@ -42,7 +42,7 @@
                     padding:0.5rem;
                     width:5rem;
                     border-radius:50%;
-                    border:1px solid $color-broken-white;
+                    border:1px solid $color-gray-light;
                 }
             }
 

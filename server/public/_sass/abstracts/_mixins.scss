@@ -35,7 +35,7 @@
 
     h2{
         color:$color-white; 
-        margin: 0.5rem 0 1rem; 
+        margin: 0.2rem 0 0.5rem; 
     }
     h3,h4{
         color: $color-white;;
@@ -49,9 +49,29 @@
     background: $color-white;
     h2{
         color:$color-ebony; 
-        margin: 0.5rem 0 1rem; 
+        margin: 0.2rem 0 0.5rem; 
     }
     p:not(.supHeading){
         color:$color-gray;
+    }
+}
+
+@mixin fancy-blockquote ($colour, $fontsize) {
+
+    blockquote {
+     
+        quotes: none;
+        font-size: $fontsize;
+        margin: $margin-sm $spacing-sm;
+        padding: $spacing-md $spacing-base;
+    }
+
+    blockquote:before {
+        color: $colour;
+        content: "\201c";
+        font-size: $text-xxl;
+        line-height: 1rem;
+        margin-right: $spacing-sm;
+        vertical-align: -0.4rem;
     }
 }

@@ -15,7 +15,10 @@
 }
 
 .secondary-btn{
-
+    background: rgb(157, 1, 172);
+}
+.secondary-btn:hover{
+    @include gradient-primarybtn;
 }
 
 .tertiary-btn{
