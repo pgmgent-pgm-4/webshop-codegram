@@ -1,0 +1,37 @@
+.price-banner{
+    margin: 8rem 0;
+    @include dark-bg;
+    &__inner{
+        h2{
+            color: $color-gray-lighter;
+            // padding: 0.5rem 0;
+        }
+        p.promo-banner__left--text{
+            color: $color-gray-lightest ;
+    
+        }
+        display:grid;
+        padding-top: 3rem;
+        grid-template-columns: 1fr 1fr;
+
+        &--top{
+            background-image: url(../images/price-banner.jpg);
+            @include cover-background;
+
+        }
+        &--bottom{
+            padding:5rem;
+            background-color: $color-white;
+            .left-align-text{
+            
+                text-align:left;
+            }
+            .price-banner-btn{
+                padding-top: 4rem;
+                a{
+                    margin-right: 0.5rem;;
+                }
+            }
+        }
+    }
+}

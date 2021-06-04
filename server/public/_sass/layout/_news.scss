@@ -1,0 +1,42 @@
+.news{
+    margin-top:8rem;
+    @include dark-bg; 
+    h3{
+        padding-bottom: 1rem;
+        color: $color-white ;
+    }
+
+    .card-section{
+        padding-bottom: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        .card{
+            .card--blog__header{
+                @include cover-background;
+                background-image: url("../images/header.jpg");
+                div{
+                    padding: 5rem 0;
+                }
+            }
+            .post-category{
+                color: $color-gray-lightest ;
+                padding-bottom: 0.5em;
+                
+            }
+            .card-info{
+                p{
+                    color: $color-gray-light;
+                    margin-bottom: -1rem;
+                }
+            }
+            .card--blag__info--duration{
+                display: flex;
+                align-items:center;
+                .score{
+                    padding-top: 1.5rem;
+                    color: $color-gray-lightest ;
+                }
+            }
+        }
+    }
+}
