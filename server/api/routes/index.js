@@ -107,7 +107,7 @@ router.get('/categories/name/:categoryName', categoryController.getCategoryByNam
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Category'
+ *             $ref: '#/components/schemas/CategoryFull'
  *     responses:
  *       201:
  *         description: Category Created
@@ -117,34 +117,42 @@ router.post('/categories', categoryController.createCategory);
 
 /**
  * @swagger
- * /api/categories/name/{categoryName}:
+ * /api/categories/{categoryId}:
  *   put:
  *     summary: Edit an existing category
  *     description: Edit an existing category
  *     tags: [Categories]
  *     parameters:
  *       - in: path
- *         name: categoryName
- *         schema:
- *           type: integer
+ *         name: categoryId
  *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Category'
+ *     responses:
+ *       200:
+ *         description: Category Updated
  */
 
 router.put('/categories/:categoryId', categoryController.updateCategory);
 
 /**
  * @swagger
- * /api/categories/name/{categoryName}:
+ * /api/categories/{categoryId}:
  *   delete:
  *     summary: Delete a category
  *     description: Delete a category
  *     tags: [Categories]
  *     parameters:
  *       - in: path
- *         name: categoryName
- *         schema:
- *           type: integer
- *         required: true
+ *         name: categoryId
+ *     responses:
+ *       204:
+ *         description: Category Deleted
  */
 
 router.delete('/categories/:categoryId', categoryController.deleteCategory);
@@ -206,7 +214,7 @@ router.get('/courses/:courseId', courseController.getCourseById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Course'
+ *             $ref: '#/components/schemas/CourseFull'
  *     responses:
  *       201:
  *         description: Course Created
@@ -221,6 +229,20 @@ router.post('/courses', courseController.createCourse);
  *     summary: Change an existing course
  *     description: Change an existing course
  *     tags: [Courses]
+ *     parameters:
+ *       - in: path
+ *         name: courseId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Course'
+ *     responses:
+ *       200:
+ *         description: Course Updated
  */
 
 router.put('/courses/:courseId', courseController.updateCourse);
@@ -232,6 +254,12 @@ router.put('/courses/:courseId', courseController.updateCourse);
  *     summary: Delete a course
  *     description: Delete a course
  *     tags: [Courses]
+ *     parameters:
+ *       - in: path
+ *         name: courseId
+ *     responses:
+ *       204:
+ *         description: Course Deleted
  */
 
 router.delete('/courses/:courseId', courseController.deleteCourse);
@@ -293,7 +321,7 @@ router.get('/newsletters/:newsletterId', newsletterController.getNewsletterById)
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Newsletter'
+ *             $ref: '#/components/schemas/NewsletterFull'
  *     responses:
  *       201:
  *         description: Newsletter Created
@@ -308,6 +336,20 @@ router.post('/newsletters', newsletterController.createNewsletter);
  *     summary: Change an existing newsletter
  *     description: Change an existing newsletter
  *     tags: [Newsletters]
+ *     parameters:
+ *       - in: path
+ *         name: newsletterId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Newsletter'
+ *     responses:
+ *       200:
+ *         description: Newsletter Updated
  */
 
 router.put('/newsletters/:newsletterId', newsletterController.updateNewsletter);
@@ -319,6 +361,12 @@ router.put('/newsletters/:newsletterId', newsletterController.updateNewsletter);
  *     summary: Delete a newsletter
  *     description: Delete a newsletter
  *     tags: [Newsletters]
+ *     parameters:
+ *       - in: path
+ *         name: newsletterId
+ *     responses:
+ *       204:
+ *         description: Newsletter Deleted
  */
 
 router.delete('/newsletters/:newsletterId', newsletterController.deleteNewsletter);
@@ -380,7 +428,7 @@ router.get('/orders/:orderId', orderController.getOrderById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Order'
+ *             $ref: '#/components/schemas/OrderFull'
  *     responses:
  *       201:
  *         description: Order Created
@@ -395,6 +443,20 @@ router.post('/orders', orderController.createOrder);
  *     summary: Change an existing order
  *     description: Change an existing order
  *     tags: [Orders]
+ *     parameters:
+ *       - in: path
+ *         name: orderId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Order'
+ *     responses:
+ *       200:
+ *         description: Order Updated
  */
 
 router.put('/orders/:orderId', orderController.updateOrder);
@@ -406,6 +468,12 @@ router.put('/orders/:orderId', orderController.updateOrder);
  *     summary: Delete a order
  *     description: Delete a order
  *     tags: [Orders]
+ *     parameters:
+ *       - in: path
+ *         name: orderId
+ *     responses:
+ *       204:
+ *         description: Order Deleted
  */
 
 router.delete('/orders/:orderId', orderController.deleteOrder);
@@ -468,7 +536,7 @@ router.get('/payments/:paymentId', paymentController.getPaymentById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Payment'
+ *             $ref: '#/components/schemas/PaymentFull'
  *     responses:
  *       201:
  *         description: Payment Created
@@ -483,6 +551,20 @@ router.post('/payments', paymentController.createPayment);
  *     summary: Change an existing payment method
  *     description: Change an existing method
  *     tags: [Payments]
+ *     parameters:
+ *       - in: path
+ *         name: paymentId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Payment'
+ *     responses:
+ *       200:
+ *         description: Payment Updated
  */
 
 router.put('/payments/:paymentId', paymentController.updatePayment);
@@ -494,6 +576,12 @@ router.put('/payments/:paymentId', paymentController.updatePayment);
  *     summary: Delete a payment method
  *     description: Delete a payment method
  *     tags: [Payments]
+ *     parameters:
+ *       - in: path
+ *         name: paymentId
+ *     responses:
+ *       204:
+ *         description: Payment Deleted
  */
 
 router.delete('/payments/:paymentId', paymentController.deletePayment);
@@ -555,7 +643,7 @@ router.get('/profiles/:profileId', profileController.getProfileById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Profile'
+ *             $ref: '#/components/schemas/ProfileFull'
  *     responses:
  *       201:
  *         description: Profile Created
@@ -570,6 +658,20 @@ router.post('/profiles', profileController.createProfile);
  *     summary: Change an existing user profile
  *     description: Change an existing user profile
  *     tags: [Profiles]
+ *     parameters:
+ *       - in: path
+ *         name: profileId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Profile'
+ *     responses:
+ *       200:
+ *         description: Profile Updated
  */
 
 router.put('/profiles/:profileId', profileController.updateProfile);
@@ -581,6 +683,12 @@ router.put('/profiles/:profileId', profileController.updateProfile);
  *     summary: Delete a user profile
  *     description: Delete a user profile
  *     tags: [Profiles]
+ *     parameters:
+ *       - in: path
+ *         name: profileId
+ *     responses:
+ *       204:
+ *         description: Profile Deleted
  */
 
 router.delete('/profiles/:profileId', profileController.deleteProfile);
@@ -642,7 +750,7 @@ router.get('/promotions/:promotionId', promotionController.getPromotionById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Promotion'
+ *             $ref: '#/components/schemas/PromotionFull'
  *     responses:
  *       201:
  *         description: Promotion Created
@@ -657,6 +765,20 @@ router.post('/promotions', promotionController.createPromotion);
  *     summary: Change an existing promotion
  *     description: Change an existing promotion
  *     tags: [Promotions]
+ *     parameters:
+ *       - in: path
+ *         name: promotionId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Promotion'
+ *     responses:
+ *       200:
+ *         description: Promotion Updated
  */
 
 router.put('/promotions/:promotionId', promotionController.updatePromotion);
@@ -668,6 +790,12 @@ router.put('/promotions/:promotionId', promotionController.updatePromotion);
  *     summary: Delete a promotion
  *     description: Delete a promotion
  *     tags: [Promotions]
+ *     parameters:
+ *       - in: path
+ *         name: promotionId
+ *     responses:
+ *       204:
+ *         description: Promotion Deleted
  */
 
 router.delete('/promotions/:promotionId', promotionController.deletePromotion);
@@ -729,7 +857,7 @@ router.get('/subscriptions/:subscriptionId', subscriptionController.getSubscript
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Subscription'
+ *             $ref: '#/components/schemas/SubscriptionFull'
  *     responses:
  *       201:
  *         description: Subscription Created
@@ -744,6 +872,20 @@ router.post('/subscriptions', subscriptionController.createSubscription);
  *     summary: Change an existing subscription
  *     description: Change an existing subscription
  *     tags: [Subscriptions]
+ *     parameters:
+ *       - in: path
+ *         name: subscriptionId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Subscription'
+ *     responses:
+ *       200:
+ *         description: Subscription Updated
  */
 
 router.put('/subscriptions/:subscriptionId', subscriptionController.updateSubscription);
@@ -755,6 +897,12 @@ router.put('/subscriptions/:subscriptionId', subscriptionController.updateSubscr
  *     summary: Delete a subscription
  *     description: Delete a subscription
  *     tags: [Subscriptions]
+ *     parameters:
+ *       - in: path
+ *         name: subcriptionId
+ *     responses:
+ *       204:
+ *         description: Subscription Deleted
  */
 
 router.delete('/subscriptions/:subscriptionId', subscriptionController.deleteSubscription);
@@ -839,7 +987,7 @@ router.get('/users/name/:username', userController.getUserByUsername);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             $ref: '#/components/schemas/UserFull'
  *     responses:
  *       201:
  *         description: User Created
@@ -856,6 +1004,20 @@ router.put('/users/:userId', userController.updateUser);
  *     summary: Change an existing user
  *     description: Change an existing user
  *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: User Updated
  */
 
 router.put('/users/:userId', userController.updateUserByAdmin);
@@ -867,6 +1029,12 @@ router.put('/users/:userId', userController.updateUserByAdmin);
  *     summary: Delete a user
  *     description: Delete a user
  *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *     responses:
+ *       204:
+ *         description: USer Deleted
  */
 
 router.delete('/users/:userId', userController.deleteUser);
@@ -928,7 +1096,7 @@ router.get('/videos/:videoId', videoController.getVideoById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Video'
+ *             $ref: '#/components/schemas/VideoFull'
  *     responses:
  *       201:
  *         description: Video Created
@@ -943,6 +1111,20 @@ router.post('/videos', videoController.createVideo);
  *     summary: Change an existing video
  *     description: Change an existing video
  *     tags: [Videos]
+ *     parameters:
+ *       - in: path
+ *         name: videoId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Video'
+ *     responses:
+ *       200:
+ *         description: Video Updated
  */
 
 router.put('/videos/:videoId', videoController.updateVideo);
@@ -954,6 +1136,12 @@ router.put('/videos/:videoId', videoController.updateVideo);
  *     summary: Delete a video
  *     description: Delete a video
  *     tags: [Videos]
+ *     parameters:
+ *       - in: path
+ *         name: videoId
+ *     responses:
+ *       204:
+ *         description: Video Deleted
  */
 
 router.delete('/videos/:videoId', videoController.deleteVideo);
@@ -962,320 +1150,340 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  * @swagger
  * components:  
  *   schemas:
- *     Category:  
+ *     CategoryFull:  
  *       type: object
  *       properties:
  *         category: 
- *           type: object
- *           properties:  
- *             id:
- *               type: integer
- *               format: uuid
- *               description: The category ID.
- *               example: 90900i0iiik1
- *             name:
- *               type: string
- *               description: The categories name.
- *               example: CSS
- *             description:
- *               type: string
- *               description: The description of the category
- *               example: CSS stands for Cascading Style Sheets
- */
-
-/**
- * @swagger
- * components:  
- *   schemas:
- *     Order:  
+ *           $ref: '#/components/schemas/Category'
+ *     Category:  
  *       type: object
  *       properties:
- *         order: 
- *           type: object
- *           properties:  
- *             id:
- *               type: integer
- *               format: uuid
- *               description: The Order ID.
- *               example: 90900i0iiik1
- *             order_completed:
- *               type: boolean
- *               description: True or false depending on completed or not
- *               example: True
- *             total:
- *               type: number
- *               description: The total amount for the order
- *               example: 278.00
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The category ID.
+ *           example: 90900i0iiik1
+ *         name:
+ *           type: string
+ *           description: The categories name.
+ *           example: CSS
+ *         description:
+ *           type: string
+ *           description: The description of the category
+ *           example: CSS stands for Cascading Style Sheets
  */
 
 /**
  * @swagger
  * components:  
  *   schemas:
+ *     OrderFull:  
+ *       type: object
+ *       properties:
+ *         order:
+ *           $ref: '#/components/schemas/Order' 
+ *     Order:
+ *       type: object
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Order ID.
+ *           example: 90900i0iiik1
+ *         order_completed:
+ *           type: boolean
+ *           description: True or false depending on completed or not
+ *           example: True
+ *         total:
+ *            type: number
+ *            description: The total amount for the order
+ *            example: 278.00
+ */
+
+/**
+ * @swagger
+ * components:  
+ *   schemas:
+ *     PaymentFull:  
+ *       type: object
+ *       properties:
+ *         payment:
+ *           $ref: '#/components/schemas/Payment'
  *     Payment:  
  *       type: object
- *       properties:
- *         payment: 
- *           type: object
- *           properties:  
- *             id:
- *               type: integer
- *               format: uuid
- *               description: The Payment ID.
- *               example: 90900i0iiik1
- *             total:
- *               type: number
- *               description: The total amount for the order
- *               example: 278.00
- */
-
-/**
- * @swagger
- * components:  
- *  schemas:
- *    Subscription:  
- *      type: object
- *      properties:
- *        subscription: 
- *          type: object
- *          properties:  
- *            id:
- *              type: integer
- *              format: uuid
- *              description: The Subscription ID.
- *              example: 90900i0iiik1
- *            start_date:
- *              type: string
- *              format: date
- *              description: Date of when the subscription started
- *              example: 31-05-2021
- *            end_date:
- *              type: string
- *              format: date
- *              description: Date of when the subscription ends
- *              example: 31-06-2021
- *            price:
- *              type: number
- *              description: The cost of the subscription
- *              example: 278.00
- *            subscription_type:
- *              type: string
- *              description: The type of subscription the user is getting
- *              example: 3          
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Payment ID.
+ *           example: 90900i0iiik1
+ *         total:
+ *           type: number
+ *           description: The total amount for the order
+ *           example: 278.00
  */
 
 /**
  * @swagger
  * components:  
  *   schemas:
+ *     SubscriptionFull:  
+ *       type: object
+ *       properties:
+ *         subscription:
+ *           $ref: '#/components/schemas/Subscription' 
+ *     Subscription: 
+ *       type: object
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Subscription ID.
+ *           example: 90900i0iiik1
+ *         start_date:
+ *           type: string
+ *           format: date
+ *           description: Date of when the subscription started
+ *           example: 31-05-2021
+ *         end_date:
+ *           type: string
+ *           format: date
+ *           description: Date of when the subscription ends
+ *           example: 31-06-2021
+ *         price:
+ *           type: number
+ *           description: The cost of the subscription
+ *           example: 278.00
+ *         subscription_type:
+ *           type: string
+ *           description: The type of subscription the user is getting
+ *           example: 3          
+ */
+
+/**
+ * @swagger
+ * components:  
+ *   schemas:
+ *     UserFull:  
+ *       type: object
+ *       properties:
+ *         user:
+ *           $ref: '#/components/schemas/User'
  *     User:  
  *       type: object
- *       properties:
- *         user: 
- *           type: object
- *           properties:  
- *             id:
- *               type: integer
- *               format: uuid
- *               description: The User ID.
- *               example: 90900i0iiik1
- *             username:
- *               type: string
- *               format: username
- *               description: The unique username of a user
- *               example: Ariel_the_little_mermaid
- *             email:
- *               type: string
- *               format: email
- *               description: The email-address of a user
- *               example: example@email.com
- *             email_verified:
- *               type: boolean
- *               description: False or True depending on whether the user has verified their account through email
- *               example: False
- *             password:
- *               type: string
- *               format: password
- *               description: The password of the user
- *               example: IloveReact123!
- *             role:
- *               type: string
- *               description: This is either an Admin or a User 
- *               example: admin   
- *             last_login:
- *               type: string
- *               format: date
- *               description: The date of the last time a user logged in
- *               example: 31-05-2021      
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The User ID.
+ *           example: 90900i0iiik1
+ *         username:
+ *           type: string
+ *           format: username
+ *           description: The unique username of a user
+ *           example: Ariel_the_little_mermaid
+ *         email:
+ *           type: string
+ *           format: email
+ *           description: The email-address of a user
+ *           example: example@email.com
+ *         email_verified:
+ *           type: boolean
+ *           description: False or True depending on whether the user has verified their account through email
+ *           example: False
+ *         password:
+ *           type: string
+ *           format: password
+ *           description: The password of the user
+ *           example: IloveReact123!
+ *         role:
+ *           type: string
+ *           description: This is either an Admin or a User 
+ *           example: admin   
+ *         last_login:
+ *           type: string
+ *           format: date
+ *           description: The date of the last time a user logged in
+ *           example: 31-05-2021      
  */
 
 /**
  * @swagger
  * components:  
  *   schemas:
- *     Profile:  
- *      type: object
- *      properties:
- *        profile: 
- *          type: object
- *          properties:  
- *            id:
- *              type: integer
- *              format: uuid
- *              description: The Profile ID.
- *              example: 90900i0iiik1
- *            dob:
- *              type: string
- *              format: date
- *              description: The date of birth of a user
- *              example: 01-01-2001
- *            img_url:
- *              type: string
- *              format: image
- *              description: The image of a user
- *              example: thisisanimage.jpg
- *            subscription:
- *              type: string
- *              description: The type of subscription that's tied to the profile
- *              example: Monthly
- *            recent_activity:
- *              type: string
- *              description: The recent activity of a user, still trying to work out what should go here
- *              example: "{Course: CSS, Video: 2}"
- */
-
-/**
- * @swagger
- * components:  
- *   schemas:
- *     Promotion:  
+ *     ProfileFull:  
  *       type: object
  *       properties:
- *         promotion: 
- *           type: object
- *           properties:  
- *             id:
- *               type: integer
- *               format: uuid
- *               description: The Promotion ID.
- *               example: 90900i0iiik1
- *             price_modifier:
- *               type: number
- *               description: amount that the price will be multiplied with, to reflect the promotion
- *               example: 0.8
+ *         profile:
+ *           $ref: '#/components/schemas/Profile'
+ *     Profile: 
+ *       type: object
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Profile ID.
+ *           example: 90900i0iiik1
+ *         dob:
+ *           type: string
+ *           format: date
+ *           description: The date of birth of a user
+ *           example: 01-01-2001
+ *         img_url:
+ *           type: string
+ *           format: image
+ *           description: The image of a user
+ *           example: thisisanimage.jpg
+ *         subscription:
+ *           type: string
+ *           description: The type of subscription that's tied to the profile
+ *           example: Monthly
+ *         recent_activity:
+ *           type: string
+ *           description: The recent activity of a user, still trying to work out what should go here
+ *           example: "{Course: CSS, Video: 2}"
  */
 
 /**
  * @swagger
  * components:  
  *   schemas:
- *     Video:  
+ *     PromotionFull:  
+ *       type: object
+ *       properties:
+ *         promotion:
+ *           $ref: '#/components/schemas/Promotion'
+ *     Promotion:   
+ *       type: object
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Promotion ID.
+ *           example: 90900i0iiik1
+ *         price_modifier:
+ *           type: number
+ *           description: amount that the price will be multiplied with, to reflect the promotion
+ *           example: 0.8
+ */
+
+/**
+ * @swagger
+ * components:  
+ *   schemas:
+ *     VideoFull:  
  *       type: object
  *       properties:
  *         video: 
- *           type: object
- *           properties:  
- *             id:
- *               type: integer
- *               format: uuid
- *               description: The Profile ID.
- *               example: 90900i0iiik1
- *             url:
- *               type: string
- *               format: url
- *               description: Url leading to a YouTube video
- *               example: wwww.youtube/CSS.com
- *             name:
- *               type: string
- *               description: The title of the video
- *               example: CSS - A Course For Beginners
- *             thumbnail_url:
- *               type: string
- *               format: url
- *               description: The url of the video's thumbnail
- *               example: thisisanimage.jpg
- *             duration:
- *               type: string
- *               description: The duration of the video in seconds
- *               example: 65849
+ *           $ref: '#/components/schemas/Video'
+ *     Video:
+ *       type: object
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Profile ID.
+ *           example: 90900i0iiik1
+ *         url:
+ *           type: string
+ *           format: url
+ *           description: Url leading to a YouTube video
+ *           example: wwww.youtube/CSS.com
+ *         name:
+ *           type: string
+ *           description: The title of the video
+ *           example: CSS - A Course For Beginners
+ *         thumbnail_url:
+ *           type: string
+ *           format: url
+ *           description: The url of the video's thumbnail
+ *           example: thisisanimage.jpg
+ *         duration:
+ *           type: string
+ *           description: The duration of the video in seconds
+ *           example: 65849
  */
 
 /**
  * @swagger
  * components:  
  *   schemas:
- *     Course:  
+ *     CourseFull:  
  *       type: object
  *       properties:
- *         course: 
- *           type: object
- *           properties:  
- *             id:
- *               type: integer
- *               format: uuid
- *               description: The Profile ID.
- *               example: 90900i0iiik1
- *             unlocked:
- *               type: boolean
- *               description: False or True depending on whether User unlocked the course
- *               example: True
- *             name:
- *               type: string
- *               description: The title of the Course
- *               example: CSS
- *             description:
- *               type: string
- *               description: The description of what the course is about
- *               example: This Course is about CSS ...
- *             price:
- *               type: number
- *               description: The price of the course
- *               example: 278.00
- *             tags:
- *               type: string
- *               description: The tags associated with a course
- *               example: "[Python, Intermediate ,2020, maiores]"
- *             duration:
- *               type: integer
- *               description: The duration of the course in seconds
- *               example: 65849858934943
- *             difficulty_level:
- *               type: string
- *               description: The difficulty level of the course
- *               example: Beginner
- *             certificate:
- *               type: boolean
- *               description: True or false depending on whether the course comes with a certificate
- *               example: False
- *             language:
- *               type: string
- *               description: The language that the course will be taught in
- *               example: CSS
- *             CategoryId:
- *               type: string
- *               description: the id of the corresponding category
- *               example: f8ee895d-ce9b-4c82-a9e4-1b1c173c3a9d
+ *         course:
+ *           $ref: '#/components/schemas/Course'
+ *     Course: 
+ *       type: object
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Profile ID.
+ *           example: 90900i0iiik1
+ *         unlocked:
+ *           type: boolean
+ *           description: False or True depending on whether User unlocked the course
+ *           example: True
+ *         name:
+ *           type: string
+ *           description: The title of the Course
+ *           example: CSS
+ *         description:
+ *           type: string
+ *           description: The description of what the course is about
+ *           example: This Course is about CSS ...
+ *         price:
+ *           type: number
+ *           description: The price of the course
+ *           example: 278.00
+ *         tags:
+ *           type: string
+ *           description: The tags associated with a course
+ *           example: "[Python, Intermediate ,2020, maiores]"
+ *         duration:
+ *           type: integer
+ *           description: The duration of the course in seconds
+ *           example: 65849858934943
+ *         difficulty_level:
+ *           type: string
+ *           description: The difficulty level of the course
+ *           example: Beginner
+ *         certificate:
+ *           type: boolean
+ *           description: True or false depending on whether the course comes with a certificate
+ *           example: False
+ *         language:
+ *           type: string
+ *           description: The language that the course will be taught in
+ *           example: CSS
+ *         CategoryId:
+ *           type: string
+ *           description: the id of the corresponding category
+ *           example: f8ee895d-ce9b-4c82-a9e4-1b1c173c3a9d
  */
 
 /**
  * @swagger
  * components:  
  *   schemas:
- *     Newsletter:  
+ *     NewsletterFull:  
  *       type: object
  *       properties:
  *         newsletter: 
- *           type: object
- *           properties:  
- *             id:
- *               type: integer
- *               format: uuid
- *               description: The Profile ID.
- *               example: 90900i0iiik1
- *             content:
- *               type: string
- *               description: The content of the Newsletter
- *               example: This week a lot of new exciting developments have happened on Codegram....
+ *           $ref: '#/components/schemas/Newsletter'
+ *     Newsletter:
+ *       type: object
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Profile ID.
+ *           example: 90900i0iiik1
+ *         content:
+ *           type: string
+ *           description: The content of the Newsletter
+ *           example: This week a lot of new exciting developments have happened on Codegram....
  */
 
 /**
