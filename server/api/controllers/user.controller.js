@@ -1,6 +1,7 @@
 import { handleHTTPError } from '../../utils';
 import database from '../../db';
 import { v4 as uuidv4 } from 'uuid';
+import { hashPassword } from '../../utils/helper.js';
 
 /*
 Get all users
@@ -59,22 +60,23 @@ const createUser = async (req, res, next) => {
 		// Get the user data from the request body
 		const { user } = req.body;
 		const now = new Date();
+		const passwordHash = hashPassword(user.password);
 		// Add id and date strings
 		const userToCreate = {
 			id: uuidv4(),
 			username: user.username,
 			email: user.email,
 			email_verified: user.email_verified,
-			password: user.password,
+			password: passwordHash,
 			role: user.role,
 			last_login: user.last_login,
 		};
 		// Send response
 		const response = await database.User.create(userToCreate);
 		if (response && response.message) {
-			res.status(500).send(`Failed: ${response.message}`)
+			res.send(`Failed: ${response.message}`)
 		} else {
-			res.status(201).send(`Created user: ${JSON.stringify(user)}`)
+			res.json(user);
 		}
 	} catch (error) {
 		handleHTTPError(error, next);

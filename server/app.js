@@ -45,9 +45,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 /*
+Cors options
+*/
+const corsOptions = {
+	origin: 'localhost:8080',
+	optionSuccessStatus: 200
+}
+/*
 API Routes
 */
-app.use('/api', cors(), apiRoutes);
+app.use('/api', cors(corsOptions), apiRoutes);
 app.use('/auth', authenticate);
 app.use('/', publicRoutes);
 app.use('/static', express.static(path.join(__dirname, 'public')));
