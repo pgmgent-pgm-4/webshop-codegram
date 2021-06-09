@@ -1,12 +1,27 @@
+/**
+ * The main app
+ */
 const app = {
+
+    /**
+     * Initialize the app
+     */
     init() {
       this.cacheElements();
       this.registerListeners();
     },
+    
+    /**
+     * Cache the DOM elements
+     */
     cacheElements() {
       this.$loginForm = document.querySelector('.login-form');
       this.$logoutButton = document.querySelector('.btn-logout');
     },
+
+    /**
+     * Register listeners
+     */
     registerListeners() {
       if (!!this.$loginForm) {
         console.log('Login form found');
@@ -29,8 +44,15 @@ const app = {
         })
       }
     },
+
+    /**
+     * Attempts to login a user with username and password
+     * @param {string} username 
+     * @param {string} password 
+     */
     async tryLogin(username, password) {
       try {
+        // Define body
         const body = {
           username,
           password,
@@ -49,7 +71,11 @@ const app = {
           body: JSON.stringify(body),
         });
         const data = await response.json();
+
+        // Write the jwt to the local storage
         if (!!data) this.writeToCache('jwt', data);
+
+        // Show a success message to the user after login
         const paragraph = document.createElement('p');
         const message = document.createTextNode(`Welcome back ${username}!`)
         paragraph.appendChild(message);
@@ -58,7 +84,14 @@ const app = {
         console.error(error);
       }
     },
+
+    /**
+     * Write token to local storage 
+     * @param {string} key 
+     * @param {object} data 
+     */
     writeToCache(key, data) {
+      // Check if jwt key exists in local storage
       const mem = this.readFromCache(key);
       if (!(!!mem)) {
         window.localStorage.setItem(key, JSON.stringify(data));
@@ -67,8 +100,16 @@ const app = {
         console.log('Jwt found in local storage');
       }
     },
+
+    /**
+     * Get token from local storage
+     * @param {string} key | 'jwt'
+     * @returns {object} token
+     */
     readFromCache(key) {
       return JSON.parse(window.localStorage.getItem(key)) || null;
     }
   }
+
+  // Function calls
   app.init();

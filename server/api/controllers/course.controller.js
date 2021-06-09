@@ -1,6 +1,7 @@
 import { handleHTTPError } from '../../utils';
 import database from '../../db';
 import { v4 as uuidv4 } from 'uuid';
+import { Model, DataTypes } from 'sequelize';
 
 /*
 Get all courses
@@ -24,13 +25,19 @@ const getCourseById = async (req, res, next) => {
 		// Get courseId parameter
 		const { courseId } = req.params;
 		// Get specific post from database
-		const course = await database.Course.findAll({
+		const course = await database.Course.findOne({
 			where: {
 				id: courseId,
-			},
-		});
+			}
+		}, { raw: true });
+		const videos = await course.getVideos({raw: true});
 		// Send response
-		res.status(200).json(course);
+		// console.log(courseVideos)
+		const response = { 
+			...course.dataValues,
+			videos
+		}
+		res.json(response);
 	} catch (error) {
 		handleHTTPError(error, next);
 	}

@@ -17,6 +17,7 @@ import * as subscriptionController from '../controllers/subscription.controller'
 import * as userController from '../controllers/user.controller';
 import * as videoController from '../controllers/video.controller';
 
+import { isUserAuthenticated } from '../middleware/auth.js';
 /**
  * Create a router
  */
@@ -199,7 +200,7 @@ router.get('/courses', courseController.getCourses);
  *               $ref: '#/components/schemas/Course'
  */ 
 
-router.get('/courses/:courseId', courseController.getCourseById);
+router.get('/courses/:courseId', isUserAuthenticated, courseController.getCourseById);
 
 /**
  * @swagger

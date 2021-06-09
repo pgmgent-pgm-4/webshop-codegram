@@ -72,16 +72,26 @@ const getSignup = async (req, res, next) => {
   }
 }
 
-// const getLogin, getSignup, getCourses, getCourse, getVideo, getNews, getUser, getCart, getPayment, getTermsAndConditions, getPrivacyPolicy, getContact;
+/**
+ * Get a single Course
+ */
+const getCourse = async (req, res, next) => {
+  try {
+    // const { courseId } = req.params;
+    res.render('course');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
 
 export {
   getHome,
   getCategories,
   getLogin,
   getSignup,
-/*  getCourses,
+/*  getCourses, */
   getCourse,
-  getVideo,
+  /*getVideo,
   getNews,
   getUser,
   getCart,
