@@ -1,13 +1,40 @@
 {% extends 'base.html' %}
 
 {% block left %}
-    {% for category in categories %}
+    {# {% for category in categories %}
     <h2>{{category.name}}</h2>
-    {% endfor %}
+    {% endfor %} #}
+
+    <div class="wrapper main-card category-page">
+        <article class="category-page__filter">
+
+        </article>
+        <article class="card-main">
+            <div class="category-page__selector">
+            <p>Courses</p>
+            <form action="">
+                
+            </form>
+            </div>
+            <ul class="card-section section-categories">
+                {% for course in courses %}
+                    {% include 'partials/cards.njk' %}
+                {% endfor %}
+            </ul>
+            <div class="btn-center-item">
+                <a class="btn primary-btn" href="/categories" title="Categories" >View More</a>
+            </div>
+
+        </article>
+    </div>
 {% endblock %}
 
-{% block right %}
+{# {% block right %}
     {% for course in courses %}
-    <p>{{course.name}}</p>
+        <p>{{course.name}}</p>
     {% endfor %}
+{% endblock %} #}
+
+{% block scripts %}
+
 {% endblock %}

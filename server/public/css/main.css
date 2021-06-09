@@ -542,7 +542,7 @@ p.supHeading {
         color: #707070; }
 
 .price-banner {
-  margin: 8rem 0;
+  margin: 4rem 0 8rem;
   background: #0a121e;
   color: #ffffff; }
   .price-banner h2 {
@@ -660,7 +660,7 @@ p.supHeading {
   .testimonials p:not(.supHeading) {
     color: #F5F5F5; }
   .testimonials__list {
-    margin-top: 4rem;
+    margin-top: 3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem; }
@@ -724,77 +724,9 @@ p.supHeading {
     margin-top: 1rem; }
   .wrapper .card-section {
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     margin-top: 3rem;
     gap: 2rem; }
-    .wrapper .card-section .card {
-      overflow: hidden; }
-      .wrapper .card-section .card h3 a {
-        color: #ed2266; }
-      .wrapper .card-section .card h3 a:hover {
-        color: #ffffff;
-        text-decoration: underline; }
-      .wrapper .card-section .card--header {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        color: #F5F5F5;
-        position: relative; }
-        .wrapper .card-section .card--header__promo {
-          font-size: 1.2rem; }
-          .wrapper .card-section .card--header__promo .promo-new {
-            background-color: #6D70FF;
-            padding: 0.2rem;
-            margin-right: 0.2rem;
-            border-radius: 0.2rem; }
-          .wrapper .card-section .card--header__promo .promo-percOff {
-            background-color: #f8a23b;
-            padding: 0.2rem;
-            border-radius: 0.2rem; }
-        .wrapper .card-section .card--header .single-price {
-          background: linear-gradient(to top, #db1b74, #ef4a3a);
-          font-size: 1.5rem;
-          border-radius: 50%;
-          padding: 1.3rem;
-          position: absolute;
-          right: 1.5rem;
-          bottom: -2rem; }
-      .wrapper .card-section .card--info {
-        background-color: #262e3a;
-        padding: 1.5rem 1rem; }
-        .wrapper .card-section .card--info__level {
-          align-items: baseline;
-          display: flex; }
-          .wrapper .card-section .card--info__level svg {
-            width: 1rem;
-            fill: #ed2266; }
-        .wrapper .card-section .card--info__lecture, .wrapper .card-section .card--info__duration {
-          padding-top: 1.5rem;
-          display: flex;
-          align-items: center; }
-          .wrapper .card-section .card--info__lecture .avatar, .wrapper .card-section .card--info__duration .avatar {
-            margin-right: 0.3rem;
-            width: 4rem; }
-        .wrapper .card-section .card--info__duration {
-          justify-content: space-between;
-          align-items: center; }
-          .wrapper .card-section .card--info__duration svg {
-            fill: #ed2266; }
-      .wrapper .card-section .card--action {
-        transform: translateY(100%); }
-        .wrapper .card-section .card--action div {
-          display: flex;
-          justify-content: center; }
-          .wrapper .card-section .card--action div svg {
-            fill: #ffffff; }
-          .wrapper .card-section .card--action div a {
-            width: 50%;
-            padding: 0.5rem 0; }
-          .wrapper .card-section .card--action div .add-cart {
-            background: #EF4A3A; }
-          .wrapper .card-section .card--action div .add-wish {
-            background: #ed2266; }
-    .wrapper .card-section .card:hover .card--action {
-      transform: translateY(0%); }
 
 .card-main {
   margin-top: 10rem;
@@ -807,11 +739,82 @@ p.supHeading {
     color: #ffffff; }
   .card-main p:not(.supHeading) {
     color: #F5F5F5; }
-  .card-main .card-section {
-    grid-template-columns: 1fr 1fr 1fr; }
-    .card-main .card-section .card--header {
-      height: 15rem;
-      background-image: url("../images/header.jpg"); }
+  .card-main .card-section .card--header {
+    height: 15rem;
+    background-image: url("../images/header.jpg"); }
+  .card-main ul.section-categories {
+    grid-template-columns: 1fr 1fr; }
+
+.card {
+  overflow: hidden; }
+  .card h3 a {
+    color: #ed2266; }
+  .card h3 a:hover {
+    color: #ffffff;
+    text-decoration: underline; }
+  .card--header {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #F5F5F5;
+    position: relative; }
+    .card--header__promo {
+      font-size: 1.2rem; }
+      .card--header__promo .promo-new {
+        background-color: #6D70FF;
+        padding: 0.2rem;
+        margin-right: 0.2rem;
+        border-radius: 0.2rem; }
+      .card--header__promo .promo-percOff {
+        background-color: #f8a23b;
+        padding: 0.2rem;
+        border-radius: 0.2rem; }
+    .card--header .single-price {
+      background: linear-gradient(to top, #db1b74, #ef4a3a);
+      font-size: 1.5rem;
+      border-radius: 50%;
+      padding: 1.3rem;
+      position: absolute;
+      right: 1.5rem;
+      bottom: -2rem; }
+  .card--info {
+    background-color: #262e3a;
+    padding: 1.5rem 1rem; }
+    .card--info__level {
+      align-items: baseline;
+      display: flex; }
+      .card--info__level svg {
+        width: 1rem;
+        fill: #ed2266; }
+    .card--info__lecture, .card--info__duration {
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center; }
+      .card--info__lecture .avatar, .card--info__duration .avatar {
+        margin-right: 0.3rem;
+        width: 4rem; }
+    .card--info__duration {
+      justify-content: space-between;
+      align-items: center; }
+      .card--info__duration svg {
+        fill: #ed2266; }
+  .card--action {
+    transform: translateY(100%); }
+    .card--action div {
+      display: flex;
+      justify-content: center; }
+      .card--action div svg {
+        fill: #ffffff; }
+      .card--action div a {
+        width: 50%;
+        padding: 0.5rem 0; }
+      .card--action div .add-cart {
+        background: #EF4A3A; }
+      .card--action div .add-wish {
+        background: #ed2266; }
+
+.card:hover .card--action {
+  transform: translateY(0%); }
 
 svg.heart {
   fill: #F5F5F5;
