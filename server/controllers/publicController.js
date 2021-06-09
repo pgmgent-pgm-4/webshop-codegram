@@ -3,7 +3,7 @@ Import custom packages
 */
 // import dataService from '../services/dataService';
 import database from '../db'
-import { /* HTTPError, */handleHTTPError } from '../utils';
+import { /* HTTPError, */convertArrayToPagedObject, handleHTTPError } from '../utils';
 
 database.connect();
 /*
@@ -50,16 +50,48 @@ const getCategories = async (req, res, next) => {
   }
 }
 
-// const getLogin, getSignup, getCourses, getCourse, getVideo, getNews, getUser, getCart, getPayment, getTermsAndConditions, getPrivacyPolicy, getContact;
+/**
+ * Get Login Render
+ */
+const getLogin = async (req, res, next) => {
+  try {
+    res.render('login');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get Signup Render
+ */
+const getSignup = async (req, res, next) => {
+  try {
+    res.render('signup');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get a single Course
+ */
+const getCourse = async (req, res, next) => {
+  try {
+    // const { courseId } = req.params;
+    res.render('course');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
 
 export {
   getHome,
   getCategories,
-/*   getLogin,
+  getLogin,
   getSignup,
-  getCourses,
+/*  getCourses, */
   getCourse,
-  getVideo,
+  /*getVideo,
   getNews,
   getUser,
   getCart,

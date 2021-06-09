@@ -73,7 +73,7 @@ app.post('/login', (req, res) => {
       const token = jwt.sign(user, process.env.JWT_SECRET_KEY, {
         expiresIn: parseInt(process.env.JWT_LIFETIME),
       });
-      res.status(200).json({
+      res.json({
         success: true,
         token: token,
         user: {
@@ -82,7 +82,6 @@ app.post('/login', (req, res) => {
           role: user.role,
         },
       });
-      writeToCache('token', token);
       logger.info(`User ${user.username} logged in successfully.`);
     }
   })(req, res);
@@ -107,7 +106,7 @@ app.get('/logout', (req, res) => {
   try {
     writeToCache('token', null);
     logger.info(`Success! Logged out.`);
-    res.status(200).send(`Success! Logged out.`);
+    res.send(`Success! Logged out.`);
   } catch (error) {
     logger.error(`Failed at logout. Error: ${error.message}.`); 
   }

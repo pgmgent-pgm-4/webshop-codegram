@@ -6,6 +6,7 @@
 import passport from 'passport';
 import passportJWT from 'passport-jwt';
 import dotenv from 'dotenv';
+import logger from '../../utils/logger';
 
 
 // Initialize dotenv

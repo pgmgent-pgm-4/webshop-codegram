@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block left %}
+<form class="signup-form" name="signup-form" action="">
+    <label for="email">Email</label>
+    <input type="email" name="email" required />
+
+    <label for="email-repeat">Repeat your email</label>
+    <input type="email" name="repeat-email" required />
+
+    <label for="username">Username</label>
+    <input type="text" name="username" required />
+
+    <label for="password">Password</label>
+    <input type="password" name="password" autocomplete required />
+
+    <label for="password-repeat">Repeat your password</label>
+    <input type="password" name="password-repeat" autocomplete required />
+
+    <input type="submit" value="Submit"/>
+</form>
+<p>Don't have an account? <a href="/signup">Sign up now</a>!</p>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/signup.js"></script>
+{% endblock %}
