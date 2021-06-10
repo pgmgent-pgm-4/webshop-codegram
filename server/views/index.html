@@ -18,7 +18,7 @@
         
         <ul class="card-section">
             {# {% for course in courses | slice(3) %} #}
-             {% for course in courses | slice(6) %}
+             {% for course in courses  %}
                 {% include 'partials/cards.njk' %}
              {% endfor %}
         </ul>

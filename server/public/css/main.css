@@ -820,6 +820,71 @@ svg.heart {
   fill: #F5F5F5;
   width: 2rem; }
 
+.category-page {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 2rem; }
+  .category-page .category-page__filter h4 {
+    margin-bottom: 1.5rem;
+    color: #ffffff; }
+  .category-page .card-main-categories {
+    margin-top: 0rem; }
+  .category-page .filter-form {
+    color: #F5F5F5;
+    font-size: 1rem; }
+    .category-page .filter-form h5 {
+      color: #ffffff;
+      background-color: #262e3a;
+      padding: 0.5rem;
+      margin-bottom: 1rem; }
+    .category-page .filter-form .range {
+      padding: 2rem 0;
+      color: #F5F5F5; }
+      .category-page .filter-form .range input[type=range] {
+        width: 100%;
+        height: 5rem;
+        padding: 0.5re;
+        border-radius: 10px;
+        background-color: #eee;
+        border: 2px solid #ccc; }
+    .category-page .filter-form .category-tags {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly; }
+      .category-page .filter-form .category-tags li {
+        background-color: #ed2266;
+        padding: 0.5rem 0.5rem; }
+  .category-page .category-page__selector {
+    display: flex;
+    justify-content: space-between; }
+
+.paginaton-wrapper {
+  display: flex;
+  justify-content: center; }
+  .paginaton-wrapper ul {
+    border-radius: 2.5rem; }
+    .paginaton-wrapper ul li {
+      display: inline-block; }
+      .paginaton-wrapper ul li a {
+        display: block;
+        width: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        background-color: #fff;
+        text-align: center;
+        text-decoration: none;
+        color: #252525;
+        border-radius: 0.25rem;
+        margin: 0.31rem;
+        box-shadow: inset 0 0.31rem 0.62rem rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.5);
+        transition: all .3s ease; }
+      .paginaton-wrapper ul li a:hover,
+      .paginaton-wrapper ul li a.active {
+        color: #fff;
+        background-color: #ed2266; }
+
 * {
   margin: 0;
   padding: 0;
