@@ -542,7 +542,7 @@ p.supHeading {
         color: #707070; }
 
 .price-banner {
-  margin: 4rem 0 8rem;
+  margin: 4rem 0 1rem;
   background: #0a121e;
   color: #ffffff; }
   .price-banner h2 {
@@ -650,6 +650,7 @@ p.supHeading {
     border-right: 1px solid rgba(204, 204, 204, 0.452); }
 
 .testimonials {
+  margin-top: 8rem;
   background: #0a121e;
   color: #ffffff; }
   .testimonials h2 {
