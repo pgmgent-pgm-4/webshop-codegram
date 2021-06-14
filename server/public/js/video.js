@@ -2,18 +2,16 @@
  * Fetch and Show the results for a single course
  * Uses window location to get the course ID
  * Uses local storage to get the jwt token if present
- * Fetches the course and course video's from the database through the API
- * Renders the course and course video's
- * or a message
+ * Fetches the course video
  */
-const course = {
+ const video = {
   
   /**
    * Initialize app
    */
   init() {
-    this.courseId = '';
-    this.course = {};
+    this.videoId = '';
+    this.video = {};
     this.cacheElements();
     this.registerListeners();
     this.getCourseId();
@@ -25,7 +23,7 @@ const course = {
    * Cache DOM elements
    */
   cacheElements() {
-    this.$courseContainer = document.querySelector('.course__container');
+    this.$videoContainer = document.querySelector('.video__container');
   },
   
   /**
@@ -36,13 +34,13 @@ const course = {
   },
 
   /**
-   * Get the current course ID from window location
+   * Get the current video ID from window location
    * and save it in a variable
    */
   getCourseId() {
     const locationStr = (window.location).toString();
-    const [ , courseId] = locationStr.split('/course/');
-    this.courseId = courseId;
+    const [ , videoId] = locationStr.split('/video/');
+    this.videoId = videoId;
   },
 
   /**
@@ -54,14 +52,14 @@ const course = {
   },
 
   /**
-   * Fetch the correct course from the database
-   * use the course ID from the window location
+   * Fetch the correct video from the database
+   * use the video ID from the window location
    * use the auth token and set the header to include the token
    * for authentication
    */
   async fetchCourse() {
     try {
-      const response = await fetch(`http://localhost:8080/api/courses/${this.courseId}`, {
+      const response = await fetch(`http://localhost:8080/api/videos/${this.videoId}`, {
         method: 'GET',
         mode: 'cors',
         credentials: 'same-origin',
@@ -81,39 +79,18 @@ const course = {
     }
   },
   /**
-   * Render the view for the course
-   * @param {object} course 
+   * Render the view for the video
+   * @param {object} video 
    */
-  renderCourseHTML(course) {
-    let tags = JSON.parse(course.tags).join(', ');
+  renderCourseHTML(video) {
+    let tags = JSON.parse(video.tags).join(', ');
     const output = `
-      <h1 class="course__name">${course.name}</h1>
-      <p class="course__desc">${course.description}</p>
-      <p>Tags: ${tags}</p>
-      ${this.renderVideos(course)}
+      <a href="/video/${video.id}" title="Watch ${video.name}">
+        <h3 class="video__name">${video.name}</h3>
+        <img class="video__thumbnail" src=${video.thumbnail_url} alt=${video.name} />
+      </a>
     `
-    console.log(output)
-    this.$courseContainer.innerHTML = output;
-  },
-
-  /**
-   * Render the view for the course video's
-   * @param {object} course 
-   * @returns {string} video HTML string
-   */
-  renderVideos(course) {
-    let output = '<div class="course_videos">';
-    for (let video of course.videos) {
-      output += `
-      <div class="card card__video">
-        <a href="/video/${video.id}" title="Watch ${video.name}">
-          <h3 class="video__name">${video.name}</h3>
-          <img class="video__thumbnail" src=${video.thumbnail_url} alt=${video.name} />
-        </a>
-      </div>`
-    }
-    output += '</div>'
-    return output;
+    this.$videoContainer.innerHTML = output;
   },
 
   /**
@@ -125,4 +102,4 @@ const course = {
   },
 }
 
-course.init();
+video.init();
