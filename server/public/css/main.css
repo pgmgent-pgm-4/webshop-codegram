@@ -700,7 +700,9 @@ p.supHeading {
   color: #F5F5F5; }
 
 .primary-btn {
-  background: linear-gradient(to top, #db1b74, #ef4a3a); }
+  background: linear-gradient(to top, #db1b74, #ef4a3a);
+  color: #ffffff;
+  font-size: 1.2rem; }
 
 .primary-btn:hover {
   background: #9d01ac; }
@@ -709,7 +711,9 @@ p.supHeading {
   background: #9d01ac; }
 
 .secondary-btn:hover {
-  background: linear-gradient(to top, #db1b74, #ef4a3a); }
+  background: linear-gradient(to top, #db1b74, #ef4a3a);
+  color: #ffffff;
+  font-size: 1.2rem; }
 
 .tertiary-btn {
   background-color: #0a121e; }
@@ -772,6 +776,8 @@ p.supHeading {
         border-radius: 0.2rem; }
     .card--header .single-price {
       background: linear-gradient(to top, #db1b74, #ef4a3a);
+      color: #ffffff;
+      font-size: 1.2rem;
       font-size: 1.5rem;
       border-radius: 50%;
       padding: 1.3rem;
@@ -886,6 +892,46 @@ svg.heart {
         color: #fff;
         background-color: #ed2266; }
 
+.half-wrapper {
+  width: 50%;
+  margin: 0 auto; }
+  .half-wrapper h2 {
+    margin-bottom: 2rem; }
+  .half-wrapper .form {
+    margin-top: 8rem; }
+    .half-wrapper .form .login-form__user, .half-wrapper .form .login-form__password, .half-wrapper .form .login-form__submit {
+      display: flex;
+      flex-direction: column; }
+      .half-wrapper .form .login-form__user *, .half-wrapper .form .login-form__password *, .half-wrapper .form .login-form__submit * {
+        flex-basis: 100%;
+        color: #ffffff; }
+      .half-wrapper .form .login-form__user label, .half-wrapper .form .login-form__password label, .half-wrapper .form .login-form__submit label {
+        padding: 1rem 0 0.3rem;
+        font-size: 1.2rem; }
+      .half-wrapper .form .login-form__user input, .half-wrapper .form .login-form__password input, .half-wrapper .form .login-form__submit input {
+        margin-bottom: 2rem;
+        padding: 0.8rem;
+        outline: none;
+        border: none;
+        border-radius: 0.2rem;
+        color: #0a121e; }
+    .half-wrapper .form .login-form__submit {
+      padding: 0.8rem 2rem;
+      text-align: center;
+      border-radius: 0.2rem;
+      outline: none;
+      border: none;
+      background: linear-gradient(to top, #db1b74, #ef4a3a);
+      color: #ffffff;
+      font-size: 1.2rem;
+      transition: all .2s ease-in-out; }
+    .half-wrapper .form .login-form__submit:hover {
+      background-color: #db1b74; }
+    .half-wrapper .form span.singUp {
+      color: #f5f5f5b6; }
+      .half-wrapper .form span.singUp p {
+        margin-top: 1rem; }
+
 * {
   margin: 0;
   padding: 0;
@@ -923,6 +969,9 @@ a {
 
 img {
   width: 100%; }
+
+h2.titleDarkBg {
+  color: #ffffff; }
 
 h1 {
   font-family: Arial, Helvetica, sans-serif; }
