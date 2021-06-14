@@ -1,7 +1,6 @@
 /*
 Import custom packages
 */
-// import dataService from '../services/dataService';
 import database from '../db'
 import { /* HTTPError, */convertArrayToPagedObject, handleHTTPError } from '../utils';
 
@@ -30,7 +29,6 @@ const getHome = async (req, res, next) => {
 const getCategories = async (req, res, next) => {
   try {
     const { category } = req.query;
-    console.log(category)
     // Get categories from database
     const allCategories = await database.Category.findAll({raw: true});
     const allCourses = await database.Course.findAll({raw: true});
@@ -40,7 +38,6 @@ const getCategories = async (req, res, next) => {
       courses = allCourses.filter(course => course.CategoryId === category);
       categories = allCategories.filter(cat => cat.id === category);
     }
-    console.log(courses)
     res.render('categories', {
       categories,
       courses,
@@ -77,8 +74,99 @@ const getSignup = async (req, res, next) => {
  */
 const getCourse = async (req, res, next) => {
   try {
-    // const { courseId } = req.params;
     res.render('course');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get all courses
+ */
+const getCourses = async (req, res, next) => {
+  try {
+    const allCourses = await database.Course.findAll({raw: true});
+    let courses = allCourses;
+    res.render('courses', {
+      courses
+    })
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get a single video
+ */
+const getVideo = async (req, res, next) => {
+  try {
+    res.render('video');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get news
+ */
+const getNews = async (req, res, next) => {
+  try {
+    res.render('news');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get user
+ */
+const getUser = async (req, res, next) => {
+  try {
+    res.render('user');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get cart
+ */
+const getCart = async (req, res, next) => {
+  try {
+    res.render('cart');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get payment
+ */
+ const getPayment = async (req, res, next) => {
+  try {
+    res.render('payment');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get terms and conditions
+ */
+ const getTermsAndConditions = async (req, res, next) => {
+  try {
+    res.render('terms_and_conditions');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
+ * Get privacy policy
+ */
+ const getPrivacyPolicy = async (req, res, next) => {
+  try {
+    res.render('privacy_policy');
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -89,14 +177,13 @@ export {
   getCategories,
   getLogin,
   getSignup,
-/*  getCourses, */
+  getCourses,
   getCourse,
-  /*getVideo,
+  getVideo,
   getNews,
   getUser,
   getCart,
   getPayment,
   getTermsAndConditions,
   getPrivacyPolicy,
-  getContact, */
 };

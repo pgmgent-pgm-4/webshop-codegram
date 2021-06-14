@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block left %} 
+<section class="user">
+    <div class="user__container">
+        {{user.id}}
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/user.js"></script>
+{% endblock %}
