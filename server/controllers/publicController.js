@@ -122,26 +122,7 @@ const getNews = async (req, res, next) => {
  */
 const getUser = async (req, res, next) => {
   try {
-    const { username } = req.params;
-		const user = await database.User.findOne({
-			where: {
-				username: username,
-			}
-		}, {raw: true});
-		const profile = await database.Profile.findOne({
-			where: {
-				UserId: user.id,
-			}
-		}, {raw: true});
-		const courses = await user.getCourses({raw:true});
-		const fullUser = {
-			...user.dataValues,
-			profile,
-			courses
-		}
-    res.render('user', {
-      fullUser
-    });
+    res.render('user');
   } catch (error) {
     handleHTTPError(error, next);
   }
