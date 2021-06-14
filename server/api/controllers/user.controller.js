@@ -53,8 +53,8 @@ const getUserByUsername = async (req, res, next) => {
 		const courses = await user.getCourses({raw:true});
 		const response = {
 			...user.dataValues,
-			profile,
-			courses
+			...profile.dataValues,
+			courses,
 		}
 		res.json(response);
 	} catch (error) {

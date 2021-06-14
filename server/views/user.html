@@ -2,11 +2,19 @@
 {% block left %} 
 <section class="user">
     <div class="user__container">
-        {{user.id}}
+        Username: 
+        {{fullUser.username}}
+        Profile:
+        {{fullUser.profile.dob}}
+        <img src="{{fullUser.profile.img_url}}" alt="{{fullUser.username}}"/>
+        Courses:
+        {% for course in fullUser.courses %}
+            {{course.name}}
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
 
 {% block scripts %}
-<script src="/static/js/user.js"></script>
+<!-- <script src="/static/js/user.js"></script> -->
 {% endblock %}

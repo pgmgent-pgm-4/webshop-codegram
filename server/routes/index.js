@@ -25,9 +25,9 @@ router.get('/courses', publicController.getCourses); // courses + search + filte
 router.get('/course/:courseId', publicController.getCourse); // single course
 router.get('/course/:courseId/:videoId', publicController.getVideo); // single video in a course
 router.get('/news', publicController.getNews); // news
-router.get('/users/:userId', publicController.getUser); // user + instructor
-router.get('/users/:userId/cart', publicController.getCart); 
-router.get('/users/:userId/payment', publicController.getPayment);
+router.get('/users/:username', publicController.getUser); // user + instructor
+router.get('/users/:profileId/cart', publicController.getCart); 
+router.get('/users/:profileId/payment', publicController.getPayment);
 router.get('/legal/terms', publicController.getTermsAndConditions);
 router.get('/legal/privacy', publicController.getPrivacyPolicy);
 
