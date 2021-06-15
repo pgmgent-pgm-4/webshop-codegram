@@ -83,14 +83,8 @@ const getSignup = async (req, res, next) => {
 
 const getCourses = async (req, res, next) => {
   try {
-    const {
-      category,
-      min,
-      max,
-      tag,
-      level,
-      s
-    } = req.query;
+    const categories = await database.Category.findAll({raw: true})
+    const { category, min, max, tag, level, s} = req.query;
     const courses = await database.Course.findAll({
       where: {
         CategoryId: (category === undefined ? {
@@ -126,6 +120,7 @@ const getCourses = async (req, res, next) => {
     });
     res.render('course', {
       courses,
+      categories
     })
   } catch (error) {
     handleHTTPError(error, next);

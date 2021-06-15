@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 
 {% block left %}
-    {% for course in courses %}
-    <h2>{{course.name}}</h2>
-    {% endfor %}
-
     <div class="wrapper ">
         <section class="course-page">
             <article class="course-page__filter">
@@ -13,65 +9,41 @@
                 {# still have to fix the input area #}
                         <div>
                             <h5>Category</h5>
-                            <input type="radio" id="age1" name="age" value="30"  checked="checked">
-                            <label for="age1">0 - 30</label><br>
-                            <input type="radio" id="age2" name="age" value="60">
-                            <label for="age2">31 - 60</label><br>  
-                            <input type="radio" id="age3" name="age" value="100">
-                            <label for="age3">61 - 100</label><br><br>
-                        </div>
+                            {% for category in categories %}
+                            <input type="radio" id="cat{{loop.index}}" name="category" value={{category.id}}>
+                            <label for="cat{{loop.index}}">{{category.name}}</label><br>
+                            {% endfor %}
+                        </form>
                         <div>
-                            <h5>Subject</h5>
-                            <input type="radio" id="html" name="subject" value="30" checked="checked">
-                            <label for="html">0 - 30</label><br>
-                            <input type="radio" id="age2" name="subject" value="60">
-                            <label for="age2">31 - 60</label><br>  
-                            <input type="radio" id="age3" name="subject" value="100">
-                            <label for="age3">61 - 100</label><br><br>
-                        </div>
-                        <div>
-                            <h5>Subject</h5>
-                            <input type="radio" id="html" name="" value="30" checked="checked">
-                            <label for="html">0 - 30</label><br>
-                            <input type="radio" id="age2" name="" value="60">
-                            <label for="age2">31 - 60</label><br>  
-                            <input type="radio" id="age3" name="" value="100">
-                            <label for="age3">61 - 100</label><br><br>
-                        </div>
-                        <div>
-                            <h5>Price</h5>
-                            <input type="radio" id="html" name="" value="30" checked="checked">
-                            <label for="html">0 - 30</label><br>
-                            <input type="radio" id="age2" name="" value="60">
-                            <label for="age2">31 - 60</label><br>  
-                            <input type="radio" id="age3" name="" value="100">
-                            <label for="age3">61 - 100</label><br><br>
+                            <h5>Level</h5>
+                            <input type="radio" id="lev1" name="level" value="Beginner">
+                            <label for="lev1">Beginner</label><br>
+                            <input type="radio" id="lev2" name="level" value="Intermediate">
+                            <label for="lev2">Intermediate</label><br>  
+                            <input type="radio" id="lev3" name="level" value="Advanced">
+                            <label for="lev3">Advanced</label><br><br>
+                            <input type="radio" id="lev4" name="level" value="Expert">
+                            <label for="lev5">Expert</label><br><br>
+                            <input type="radio" id="lev5" name="level" value="Professional">
+                            <label for="lev5">Professional</label><br><br>
                         </div>
                         <div class="range">
-                            <h5>Duration</h5>
-                            <input type="range" list="price">
-                                <datalist id="price">
-                                    <option value="20" label="20€">2hr</option>
-                                    <option value="50"></option>
-                                    <option value="20"></option>
-                                    <option value="30"></option>
-                                    <option value="40"></option>
-                                    <option value="60"></option>
-                                    <option value="70"></option>
-                                    <option value="80"></option>
-                                    <option value="90"></option>
-                                    <option value="100" label="1000">7ur</option>
-                                </datalist>
+                            <h5>Price</h5>
+                            <label for="price">20</label>
+                            <input type="range" id="price" name="price" min="20" max="1000">
+                                </datalist> -->
+                            <label for="price">1000</label>
                         </div>
                         <div>
                             <h5>Tags</h5>
                             <ul class="category-tags">
-                                <li>tag1</li>
-                                <li>tag2</li>
-                                <li>tag3</li>
-                                <li>tag4</li>
+                                <button id="tagBtn" name="tag" type="button" data-tag="Beginner"><li>Beginner</li></button>
+                                <button id="tagBtn" name="tag" type="button" data-tag="Python"><li>Python</li></button>
+                                <button id="tagBtn" name="tag" type="button" data-tag="React"><li>React</li></button>
+                                <button id="tagBtn" name="tag" type="button" data-tag="Advanced"><li>Advanced</li></button>
                             </ul>
                         </div>
+                        <input id="frmButton" type="submit" value="Submit">
                     </form>
             </article>
             <article class="card-main  card-main-categories ">
@@ -86,7 +58,7 @@
                         <option value="price-descending">Price descending</option>
                         <option value="price-ascending ">Price Ascending</option>
                     </select>
-                </form>
+                </div>
                 </div>
                 <ul class="card-section section-categories">
                     {% for course in courses %}
@@ -116,5 +88,5 @@
 {% endblock %} #}
 
 {% block scripts %}
-
+<script src="/static/js/course.js"></script>
 {% endblock %}
