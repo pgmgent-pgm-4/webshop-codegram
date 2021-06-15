@@ -124,12 +124,17 @@ const getCourses = async (req, res, next) => {
           ((s === "prd") ? ['price', 'DESC'] : (s === "pra") ? ['price', 'ASC'] : (s === "nd") ? ['createdAt', 'DESC'] : (s === "na") ? ['createdAt', 'ASC'] : (s === "dud") ? ['duration', 'DESC'] : (s === "dua") ? ['duration', 'ASC'] : ['name', 'ASC']),
       ]
     });
-    res.status(200).json(courses);
+    res.render('course', {
+      courses,
+    })
   } catch (error) {
     handleHTTPError(error, next);
   }
 }
 
+/**
+ * Get a single video
+ */
 const getCourse = async (req, res, next) => {
   try {
     const {

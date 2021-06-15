@@ -16,8 +16,10 @@ import * as promotionController from '../controllers/promotion.controller';
 import * as subscriptionController from '../controllers/subscription.controller';
 import * as userController from '../controllers/user.controller';
 import * as videoController from '../controllers/video.controller';
+import * as newsController from '../controllers/news.controller';
 
 import { isUserAuthenticated } from '../middleware/auth.js';
+import news from '../../db/models/news';
 /**
  * Create a router
  */
@@ -371,6 +373,113 @@ router.put('/newsletters/:newsletterId', newsletterController.updateNewsletter);
  */
 
 router.delete('/newsletters/:newsletterId', newsletterController.deleteNewsletter);
+
+// News
+
+/**
+ * @swagger
+ * /api/news:
+ *   get:
+ *     operationId: getNews
+ *     summary: Retrieve a list of News
+ *     description: Retrieve a list of News. Can be used to populate a list of orders when prototyping or testing an API.*
+ *     tags: [News]
+ *     responses:
+ *       200:
+ *         description: A list of news.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/News'
+ */
+
+ router.get('/news', newsController.getNews);
+
+ /**
+ * @swagger
+ * /api/news/{newsId}:
+ *   get:
+ *     operationId: getNewsById
+ *     summary: Retrieve a news article by id
+ *     description: Retrieve a news article by id.
+ *     tags: [News]
+ *     parameters:
+ *       - in: path
+ *         name: newsId
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: A news article by ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/News'
+ */
+
+router.get('/news/:newsId', newsController.getNewsById);
+
+ /**
+ * @swagger
+ * /api/news:
+ *   post:
+ *     summary: Create a new news article
+ *     description: Create a new news article
+ *     tags: [News]
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/NewsFull'
+ *     responses:
+ *       201:
+ *         description: News article Created
+ */
+
+router.post('/news', newsController.createNews);
+
+/**
+ * @swagger
+ * /api/news/{newsId}:
+ *   put:
+ *     summary: Change an existing news article
+ *     description: Change an existing news article
+ *     tags: [News]
+ *     parameters:
+ *       - in: path
+ *         name: newsId
+ *         required: true
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/News'
+ *     responses:
+ *       200:
+ *         description: Newsarticle Updated
+ */
+
+ router.put('/news/:newsId', newsController.updateNews);
+
+ /**
+ * @swagger
+ * /api/news/{newsId}:
+ *   delete:
+ *     summary: Delete a news article
+ *     description: Delete a news article
+ *     tags: [News]
+ *     parameters:
+ *       - in: path
+ *         name: newsId
+ *     responses:
+ *       204:
+ *         description: News article Deleted
+ */
+
+router.delete('/news/:newsId', newsController.deleteNews);
 
 // Orders
 
@@ -1487,6 +1596,59 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *           example: This week a lot of new exciting developments have happened on Codegram....
  */
 
+ /**
+ * @swagger
+ * components:  
+ *   schemas:
+ *     NewsFull:  
+ *       type: object
+ *       properties:
+ *         news: 
+ *           $ref: '#/components/schemas/News'
+ *     News:
+ *       type: object
+ *       properties:  
+ *         id:
+ *           type: integer
+ *           format: uuid
+ *           description: The Profile ID.
+ *           example: 90900i0iiik1
+ *         content:
+ *           type: string
+ *           description: The content of the News Article
+ *           example: This week a lot of new exciting developments have happened on Codegram....
+ *         title:
+ *           type: string
+ *           description: The title of the News Article
+ *           example: This is the title of this news article
+ *         author_firstname:
+ *           type: string
+ *           description: The author of the News Article's first name
+ *           example: Jacob
+ *         author_lastname:
+ *           type: string
+ *           description: The author of the News Article's last name
+ *           example: Anderson
+ *         subtitle: 
+ *           type: string
+ *           description: The subtitle of the News Article
+ *           example: I'm such a good read
+ *         summary: 
+ *           type: string
+ *           description: The summary of the News Article
+ *           example: Last week this happened ...
+ *         tags:
+ *           type: string
+ *           description: The tags of the News Article
+ *           example: "[tagone, tagtwo, tagthree]"
+ *         thumbnail: 
+ *           type: string
+ *           format: image
+ *           description: The thumbnail of the News Article
+ *           example: "image.jpg"
+ *         
+ */
+
 /**
  * @swagger
  * tags:
@@ -1510,6 +1672,8 @@ router.delete('/videos/:videoId', videoController.deleteVideo);
  *     description: Name of available courses
  *   - name: Newsletters
  *     description: Permission to send out newsletters
+ *   - name: News
+ *     description: News of the website
  */
 
 /**
