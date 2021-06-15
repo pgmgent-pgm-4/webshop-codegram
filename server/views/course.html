@@ -1,15 +1,4 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
-{% block left %} 
-<section class="course">
-    <div class="course__container">
-        {% for course in courses %}
-            {{course.name}}
-        {% endfor %}
-
-        {{course.id}}
-        <p>{{course.title}}</p>
-=======
 
 {% block left %}
     {% for course in courses %}
@@ -116,7 +105,6 @@
             </article>
         </section>
           {% include 'partials/price-banner.njk' %}
->>>>>>> cc004cb781d652980b5e58125da99255b0f43f48
     </div>
   
 {% endblock %}
@@ -128,15 +116,5 @@
 {% endblock %} #}
 
 {% block scripts %}
-<<<<<<< HEAD
-    <script src="/static/js/course.js"></script>
-{% endblock %}
-
-{#         
-        {% for course in courses  %}
-            {% include 'partials/cards.njk' %}
-        {% endfor %} #}
-=======
 
 {% endblock %}
->>>>>>> cc004cb781d652980b5e58125da99255b0f43f48
