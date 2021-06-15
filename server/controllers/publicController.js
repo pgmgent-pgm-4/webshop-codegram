@@ -23,7 +23,11 @@ const getHome = async (req, res, next) => {
     let courses = await database.Course.findAll({
       raw: true
     });
+    let news = await database.News.findAll({
+      raw: true
+    })
     courses.length = 6;
+    news.length = 3;
     // Send response
     res.render('index', {
       categories,
@@ -159,7 +163,9 @@ const getVideo = async (req, res, next) => {
 const getNews = async (req, res, next) => {
   try {
     const news = await database.News.findAll({raw: true})
-    res.status(200).json(news);
+    res.render('news', {
+      news
+    });
   } catch (error) {
     handleHTTPError(error, next);
   }
