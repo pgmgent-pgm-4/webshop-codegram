@@ -129,7 +129,7 @@ const getCourses = async (req, res, next) => {
 }
 
 /**
- * Get a single video
+ * Get a single course
  */
 const getCourse = async (req, res, next) => {
   try {

@@ -84,7 +84,6 @@
    * @param {object} course 
    */
   renderCourseHTML(course) {
-    console.log(course.tags)
     let tags = (course.tags)
       .replaceAll('"', '')
       .replaceAll('[', '')
@@ -94,8 +93,8 @@
     // console.log(tagsStr)
     const output = `
       <h1 class="course__name titleDarkBg">${course.name}</h1>
-      <p class="course__desc supHeading">${course.description}</p>
-      <p class="post-category">Tags: ${tags}</p>
+      <p class="course__desc subHeading">${course.description}</p>
+      <p class="supHeading">Tags: ${tags}</p>
       ${this.renderVideos(course)}
     `
     this.$courseContainer.innerHTML = output;

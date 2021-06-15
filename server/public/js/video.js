@@ -39,7 +39,8 @@
    */
   getCourseId() {
     const locationStr = (window.location).toString();
-    const [ , videoId] = locationStr.split('/video/');
+    const [ , ids] = locationStr.split('/course/');
+    const [, videoId] = ids.split('/')
     this.videoId = videoId;
   },
 
@@ -70,8 +71,8 @@
         redirect: 'follow',
       });
       const data = await response.json();
-      console.log(data)
-      this.renderCourseHTML(data);
+      const [ video ] = data;
+      this.renderCourseHTML(video);
     } catch (error) {
       console.log("caught error", error)
       // console.error(error.message);
@@ -83,14 +84,26 @@
    * @param {object} video 
    */
   renderCourseHTML(video) {
-    let tags = JSON.parse(video.tags).join(', ');
+    const capitalize = ([first,...rest]) => first.toUpperCase() + rest.join('').toLowerCase()
     const output = `
-      <a href="/video/${video.id}" title="Watch ${video.name}">
-        <h3 class="video__name">${video.name}</h3>
-        <img class="video__thumbnail" src=${video.thumbnail_url} alt=${video.name} />
-      </a>
+    <section class="hero">
+    <div class="jumbotron__top">
+      <h1>${capitalize(video.name)}</h1>
+    </div>
+    <div class="playButton">
+      <svg class="svg--logo">${this.getSvg}</svg>
+    </div>
+    </section>
     `
     this.$videoContainer.innerHTML = output;
+    const videoHero = document.querySelector('.video__container .hero');
+    videoHero.style.backgroundImage = `url(${video.thumbnail_url})`
+    const videoTitle = document.querySelector('.jumbotron__top h1')
+    videoTitle.style = `text-shadow: 3px 0px 15px rgba(0,0,0,0.3); padding: 2rem;`
+    const playButton = document.querySelector('.playButton');
+    playButton.style = `display: flex; justify-content: center; align-items:center; position: relative`
+    const playSvg = document.querySelector('.playButton svg');
+    playSvg.style = `position: absolute; left: 50%; top: 50%; transform: translateX(-25%); translateY(25%); cursor: pointer`
   },
 
   /**
@@ -100,6 +113,52 @@
   renderNotAllowedHTML() {
     return `<p>Uh oh! You do not have access.</p>`
   },
+  getSvg() {
+    return `<?xml version="1.0" encoding="iso-8859-1"?>
+    <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+       width="140.221px" height="150.221px" viewBox="0 0 410.221 408.221" style="enable-background:new 0 0 408.221 408.221;"
+       xml:space="preserve" fill="#db1b74">
+    <g>
+      <g>
+        <path d="M204.11,0C91.388,0,0,91.388,0,204.111c0,112.725,91.388,204.11,204.11,204.11c112.729,0,204.11-91.385,204.11-204.11
+          C408.221,91.388,316.839,0,204.11,0z M286.547,229.971l-126.368,72.471c-17.003,9.75-30.781,1.763-30.781-17.834V140.012
+          c0-19.602,13.777-27.575,30.781-17.827l126.368,72.466C303.551,204.403,303.551,220.217,286.547,229.971z"/>
+      </g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    </svg>`
+  }
 }
 
 video.init();
