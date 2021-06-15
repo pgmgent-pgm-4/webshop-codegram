@@ -89,6 +89,15 @@ const getCourses = async (req, res, next) => {
   }
 }
 
+const getCourse = async (req, res, next) => {
+  try {
+    const { courseId } = req.params;
+    res.render('course');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
 /**
  * Get a single video
  */
@@ -171,6 +180,7 @@ export {
   getCategories,
   getLogin,
   getSignup,
+  getCourse,
   getCourses,
   getVideo,
   getNews,
