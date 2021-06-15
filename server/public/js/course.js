@@ -26,6 +26,9 @@ const course = {
    */
   cacheElements() {
     this.$courseContainer = document.querySelector('.course__container');
+    this.$courseParams = document.querySelectorAll('input[type="radio"]');
+    this.$coursePrice = document.querySelector('input[type="range"]');
+    this.$courseTags = document.querySelectorAll('#tagBtn');
   },
   
   /**
@@ -33,6 +36,21 @@ const course = {
    */
   registerListeners() {
     // Not sure any listeners will be needed
+    this.$courseParams.forEach(cat => cat.addEventListener('change', (ev) => {
+      const val = ev.target.value;
+      const param = ev.target.name;
+      this.alterParams(param, val);
+    }));
+    this.$coursePrice.addEventListener('change', (ev) => {
+      const val = ev.currentTarget.value;
+      val <= 500 ? this.alterParams('min', val) : this.alterParams('max', val);
+    })
+    this.$courseTags.forEach(tag => tag.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const val = ev.target.dataset.tag || ev.target.parentNode.dataset.tag || ev.target.parentNode.parentNode.dataset.tag;
+      const param = ev.target.name || ev.target.parentNode.name|| ev.target.parentNode.parentNode.name;
+      this.alterParams(param, val);
+    }));
   },
 
   /**
@@ -123,6 +141,14 @@ const course = {
   renderNotAllowedHTML() {
     return `<p>Uh oh! You do not have access.</p>`
   },
+
+  alterParams(param, val) {
+      const search = window.location.search;
+      const params = new URLSearchParams(search);
+      const keys = params.getAll('tag');
+      if (val!== null) {
+      param === "tag" && params.has('tag')? keys.indexOf(val) < 0 ? params.append('tag', val): "" : params.set(param, val); window.history.replaceState({}, '', `${location.pathname}?${params}`)}
+  }
 }
 
 course.init();
