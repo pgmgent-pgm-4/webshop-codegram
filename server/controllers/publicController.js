@@ -119,7 +119,7 @@ const getCourses = async (req, res, next) => {
           ((s === "prd") ? ['price', 'DESC'] : (s === "pra") ? ['price', 'ASC'] : (s === "nd") ? ['createdAt', 'DESC'] : (s === "na") ? ['createdAt', 'ASC'] : (s === "dud") ? ['duration', 'DESC'] : (s === "dua") ? ['duration', 'ASC'] : ['name', 'ASC']),
       ]
     });
-    res.render('course', {
+    res.render('courses', {
       courses,
       categories
     })
