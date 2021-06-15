@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block left %}
-    {# {% for category in categories %}
+    {% for category in categories %}
     <h2>{{category.name}}</h2>
-    {% endfor %} #}
+    {% endfor %}
 
     <div class="wrapper ">
         <section class="category-page">
@@ -12,7 +12,7 @@
                 <form class ="filter-form" action="">
                 {# still have to fix the input area #}
                         <div>
-                            <h5>Catergory</h5>
+                            <h5>Category</h5>
                             <input type="radio" id="age1" name="age" value="30"  checked="checked">
                             <label for="age1">0 - 30</label><br>
                             <input type="radio" id="age2" name="age" value="60">
