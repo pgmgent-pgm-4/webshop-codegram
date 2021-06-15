@@ -16,7 +16,6 @@ export default (sequelize) => {
 	title: DataTypes.TEXT,
     subtitle: DataTypes.TEXT,
     summary: DataTypes.TEXT,
-    content: DataTypes.TEXT,
     thumbnail: DataTypes.TEXT,
     tags: DataTypes.TEXT,
     createdAt: DataTypes.DATE,
