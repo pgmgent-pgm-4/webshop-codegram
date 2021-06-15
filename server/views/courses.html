@@ -49,16 +49,18 @@
             <article class="card-main  card-main-categories ">
                 <div class="category-page__selector">
                 <p>Courses</p>
-                <form>
-                    <label for="pet-select"></label>
-                    <select name="sorting" id="sort-select">
+                <form class ="sort-form" action="">
+                    <label for="sort-select"></label>
+                    <select name="sort" id="sort-select">
                         <option value="">Sort</option>
-                        <option value="popularity">Popular</option>
-                        <option value="highest-rated">highest-rated</option>
-                        <option value="price-descending">Price descending</option>
-                        <option value="price-ascending ">Price Ascending</option>
+                        <option value="na">Newest</option>
+                        <option value="nd">Oldest</option>
+                        <option value="prd">Price descending</option>
+                        <option value="pra">Price Ascending</option>
+                        <option value="dud">Long</option>
+                        <option value="dua">Short</option>
                     </select>
-                </div>
+                    <!-- <input id="SortButton" type="submit" value="Submit"> -->
                 </div>
                 <ul class="card-section section-categories">
                     {% for course in courses %}
@@ -66,7 +68,6 @@
                     {% endfor %}
                 </ul>
                 <div class="paginaton-wrapper">
-          
                     <ul class="pagination">
                         <li><a class="active" href="#0">1</a></li>
                         <li><a href="#0">2</a></li>
