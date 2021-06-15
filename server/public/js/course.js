@@ -72,7 +72,6 @@
         redirect: 'follow',
       });
       const data = await response.json();
-      console.log(data)
       this.renderCourseHTML(data);
     } catch (error) {
       console.log("caught error", error)
@@ -85,17 +84,19 @@
    * @param {object} course 
    */
   renderCourseHTML(course) {
-    let tags = []
-    if (!!course.tags) {
-      tags = course.tags.split(',')
-    }
+    let tags = (course.tags)
+      .replaceAll('"', '')
+      .replaceAll('[', '')
+      .replaceAll(']', '')
+      .split(',')
+    
+    // console.log(tagsStr)
     const output = `
-      <h1 class="course__name">${course.name}</h1>
-      <p class="course__desc">${course.description}</p>
-      <p>Tags: ${tags}</p>
+      <h1 class="course__name titleDarkBg">${course.name}</h1>
+      <p class="course__desc subHeading">${course.description}</p>
+      <p class="supHeading">Tags: ${tags}</p>
       ${this.renderVideos(course)}
     `
-    console.log(output)
     this.$courseContainer.innerHTML = output;
   },
 
@@ -105,17 +106,29 @@
    * @returns {string} video HTML string
    */
   renderVideos(course) {
-    let output = '<div class="course_videos">';
+    let output = '<div class="course_videos"><ul class="card-section">';
     for (let video of course.videos) {
+      console.log(video.name)
+      const capitalize = ([first,...rest]) => first.toUpperCase() + rest.join('').toLowerCase()
       output += `
-      <div class="card card__video">
-        <a href="/course/${course.id}/${video.id}" title="Watch ${video.name}">
-          <h3 class="video__name">${video.name}</h3>
-          <img class="video__thumbnail" src=${video.thumbnail_url} alt=${video.name} />
-        </a>
-      </div>`
+      
+        <li>
+          <div class="card card--blog card__video">
+            <div class="card--header card-blog__header">
+              <img class="video__thumbnail" src=${video.thumbnail_url} alt=${video.name} />
+            </div>
+            <div class="card--info card--blog__info">
+              <div class="card-info">
+                
+                <h3 class="video__name"><a href="/course/${course.id}/${video.id}" title="Watch ${video.name}">${capitalize(video.name)}</a></h3>
+              </div>
+            </div>
+            </a>
+          </div>
+        </li>
+      `
     }
-    output += '</div>'
+    output += '</ul></div>'
     return output;
   },
 
@@ -124,7 +137,10 @@
    * @returns {string} message
    */
   renderNotAllowedHTML() {
-    return `<p>Uh oh! You do not have access.</p>`
+    this.$courseContainer.innerHTML = `
+    <p class="subHeading">Uh oh! You do not have access.</p>
+    <a class="btn primary-btn" href="/login">Log in</a>
+    `
   },
 }
 
