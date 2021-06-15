@@ -78,22 +78,22 @@ const getProfileIds = async () => {
  */
 
 const generateNews = (amount = 50) => {
-  let news = [];
+  let newsList = [];
   for (let i = 0; i < amount; i++) {
     const news = {
       id: uuidv4(),
       author_firstname: faker.name.firstName(),
       author_lastname: faker.name.lastName(),
-      title: faker.lorem.sentence(nb_words=10),
-      subtitle: faker.lorem.sentence(nb_words=40),
-      summary: faker.lorem.text(max_nb_chars=160),
-      content: faker.lorem.text(max_nb_chars=5000),
+      title: faker.lorem.sentence(),
+      subtitle: faker.lorem.sentence(),
+      summary: faker.lorem.paragraph(),
+      content: faker.lorem.text(),
       thumbnail: faker.image.city(),
-      tags: JSON.stringify([currentYear-1, faker.lorem.word(), faker.lorem.word(), faker.lorem.word()]),
+      tags: JSON.stringify([faker.lorem.word(), faker.lorem.word(), faker.lorem.word()]),
     }
-    news.push(news);
+    newsList.push(news);
   }
-  return news;
+  return newsList;
 };
 
 const seedNews = async () => {
