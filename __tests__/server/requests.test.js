@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, expect } from '@jest/globals';
+import { beforeAll, expect } from '@jest/globals';
 import request from 'supertest';
 import { app } from '../../server/app';
 import database from '../../server/db'
@@ -650,7 +650,7 @@ describe('Public controller', () => {
   })
   test('it should resolve categories.html', async (done) => {
     await request(app)
-      .get('/categories.html')
+      .get('/categories')
       .then(response => {
         expect(response.statusCode).toBe(200);
         expect(response.type).toBe('text/html')
@@ -659,7 +659,8 @@ describe('Public controller', () => {
   })
   test('it should resolve /course.html', async (done) => {
     await request(app)
-      .get('/course.html')
+      .get('/course/ffe56aeb-754e-402d-bb07-879ebfc809bb')
+      .set('Authorization', `Bearer ${token}`)
       .then(response => {
         expect(response.statusCode).toBe(200);
         expect(response.type).toBe('text/html')
