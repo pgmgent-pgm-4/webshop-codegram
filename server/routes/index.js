@@ -7,7 +7,6 @@
   * Import custom packages
   */
  import * as publicController from '../controllers/publicController';
- import * as privateController from '../controllers/privateController';
  
  /**
   * Make a router

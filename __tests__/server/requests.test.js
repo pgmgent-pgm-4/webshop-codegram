@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, expect } from '@jest/globals';
+import { beforeAll, expect } from '@jest/globals';
 import request from 'supertest';
 import { app } from '../../server/app';
 import database from '../../server/db'
