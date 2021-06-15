@@ -9,8 +9,31 @@
 
     .card-section{
         display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
         margin-top: 3rem;
         gap: 2rem;
+    }
+
+}
+
+
+.card-main{
+    margin-top: 10rem;
+    @include dark-bg;
+
+    .card-section{
+        .card{
+            &--header{
+                height:15rem;
+                background-image: url("../images/header.jpg");
+            }
+        }
+
+    }
+    ul.section-categories {
+        grid-template-columns: 1fr 1fr;
+    }
+}
 
         .card{
           
@@ -119,22 +142,3 @@
                 transform: translateY(0%);
             }
         }
-    }
-}
-
-
-.card-main{
-    margin-top: 10rem;
-    @include dark-bg;
-
-    .card-section{
-        grid-template-columns: 1fr 1fr 1fr;
-        .card{
-            &--header{
-                height:15rem;
-                background-image: url("../images/header.jpg");
-            }
-        }
-
-    }
-}

@@ -7,7 +7,7 @@
     "babel": "./node_modules/.bin/babel src -d dist",
     "dev": "cross-env NODE_ENV=development HOSTNAME=localhost PORT=8080 nodemon --exec babel-node -e js,html,nj server/app.js --watch *",
     "lint": "cross-env NODE_ENV=lint eslint . --ext .js --fix",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
+    "test": "cross-env NODE_ENV=test jest --forceExit --coverage",
     "build-css": "node-sass --include-path scss server/public/_sass/main.scss server/public/css/main.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "seeder": "cross-env NODE_ENV=development HOSTNAME=localhost PORT=8080 babel-node server/db/seeders",

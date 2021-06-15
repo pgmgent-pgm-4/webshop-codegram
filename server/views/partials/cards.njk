@@ -1,14 +1,14 @@
-<div class="wrapper main-card">
+{# <div class="wrapper main-card">
     <article class="card-main">
         <div class="centralised-text-button ">
-            <p class="supHeading">Start your journey</p>
+            <p class="supHeading">Courses</p>
             <h2>The most amazing </h2>
             <p class="promo-banner__left--text ">Practical Hands-on Online IT Training and Certifications</p>
         </div>
         
-        <ul class="card-section">
+        <ul class="card-section"> #}
             {# {% for course in courses | slice(3) %} #}
-             {% for course in courses | slice(6) %}
+             {# {% for course in courses | slice(6) %} #}
                 <li>
                     <div class="card">
                         <div class="card--header"> 
@@ -27,7 +27,7 @@
                                 <p>{{course.difficulty_level}}</p>
                             </div>
                             <div class="card-info">
-                                <h3><a href="#" {{ course.id}} >{{course.name}}</a></h3>
+                                <h3><a href="/course/{{course.id}}" {{ course.id}} >{{course.name}}</a></h3>
                                 <div class="card--info__lecture">
                                     <img class="lecture-avatar avatar" src="./static/images/avatar.png" alt=""/>
                                     <p>John Smith</p>
@@ -57,10 +57,10 @@
                         </div>
                     </div>
                 </li>
-            {% endfor %}
+            {# {% endfor %}
         </ul>
         <div class="btn-center-item">
             <a class="btn primary-btn" href="/categories" title="Categories" >View More</a>
         </div>
     </article>
-</div>
+</div> #}

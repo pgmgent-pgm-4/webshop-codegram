@@ -20,7 +20,9 @@ Database
 import logger from './utils/logger.js';
 import database from './db';
 
-database.connect();
+(async () => {
+	database.connect();
+})
 
 /*
 Create Express app
@@ -45,9 +47,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 /*
+Cors options
+*/
+const corsOptions = {
+	origin: 'localhost:8080',
+	optionSuccessStatus: 200
+}
+/*
 API Routes
 */
-app.use('/api', cors(), apiRoutes);
+app.use('/api', cors(corsOptions), apiRoutes);
 app.use('/auth', authenticate);
 app.use('/', publicRoutes);
 app.use('/static', express.static(path.join(__dirname, 'public')));
@@ -99,3 +108,9 @@ process.on('SIGINT', () => {
 process.on('SIGTERM', () => {
 	handleGracefully();
 });
+
+export {
+	app,
+	server,
+	handleGracefully
+};
