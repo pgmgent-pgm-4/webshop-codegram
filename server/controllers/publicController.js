@@ -38,7 +38,9 @@ const getHome = async (req, res, next) => {
  */
 const getCategories = async (req, res, next) => {
   try {
-    const { category } = req.query;
+    const {
+      category
+    } = req.query;
     // Get categories from database
     const allCategories = await database.Category.findAll({
       raw: true
@@ -59,7 +61,7 @@ const getCategories = async (req, res, next) => {
 /**
  * Get Login Render
  */
- const getLogin = async (req, res, next) => {
+const getLogin = async (req, res, next) => {
   try {
     res.render('login');
   } catch (error) {
@@ -81,8 +83,47 @@ const getSignup = async (req, res, next) => {
 
 const getCourses = async (req, res, next) => {
   try {
-    const { category, min, max, tag, level } = req.query;    
-    const courses = await database.Course.findAll({where: {CategoryId: (category === undefined ? {[Op.ne]: 'undefined'} : category), difficulty_level: (level === undefined ? {[Op.ne]: 'undefined'} : level), price: (min === undefined && max === undefined) ? {[Op.ne]: 'undefined'} : (min === undefined && max !== undefined)? {[Op.lte]: max} : (min !== undefined && max === undefined)? {[Op.gte]: min} : {[Op.between]: [min, max]}, tags: (tag === undefined ) ? {[Op.ne]: 'undefined'} : (typeof tag === 'object') ? {[Op.or]: tag.map(t => {return {[Op.substring]: t}})} : {[Op.substring]: tag}}});
+    const {
+      category,
+      min,
+      max,
+      tag,
+      level,
+      s
+    } = req.query;
+    const courses = await database.Course.findAll({
+      where: {
+        CategoryId: (category === undefined ? {
+          [Op.ne]: 'undefined'
+        } : category),
+        difficulty_level: (level === undefined ? {
+          [Op.ne]: 'undefined'
+        } : level),
+        price: (min === undefined && max === undefined) ? {
+          [Op.ne]: 'undefined'
+        } : (min === undefined && max !== undefined) ? {
+          [Op.lte]: max
+        } : (min !== undefined && max === undefined) ? {
+          [Op.gte]: min
+        } : {
+          [Op.between]: [min, max]
+        },
+        tags: (tag === undefined) ? {
+          [Op.ne]: 'undefined'
+        } : (typeof tag === 'object') ? {
+          [Op.or]: tag.map(t => {
+            return {
+              [Op.substring]: t
+            }
+          })
+        } : {
+          [Op.substring]: tag
+        }
+      },
+      order: [
+          ((s === "prd") ? ['price', 'DESC'] : (s === "pra") ? ['price', 'ASC'] : (s === "nd") ? ['createdAt', 'DESC'] : (s === "na") ? ['createdAt', 'ASC'] : (s === "dud") ? ['duration', 'DESC'] : (s === "dua") ? ['duration', 'ASC'] : ['name', 'ASC']),
+      ]
+    });
     res.status(200).json(courses);
   } catch (error) {
     handleHTTPError(error, next);
@@ -91,7 +132,9 @@ const getCourses = async (req, res, next) => {
 
 const getCourse = async (req, res, next) => {
   try {
-    const { courseId } = req.params;
+    const {
+      courseId
+    } = req.params;
     res.render('course');
   } catch (error) {
     handleHTTPError(error, next);
@@ -101,7 +144,7 @@ const getCourse = async (req, res, next) => {
 /**
  * Get a single video
  */
- const getVideo = async (req, res, next) => {
+const getVideo = async (req, res, next) => {
   try {
     res.render('video');
   } catch (error) {
@@ -145,7 +188,7 @@ const getCart = async (req, res, next) => {
 /**
  * Get payment
  */
- const getPayment = async (req, res, next) => {
+const getPayment = async (req, res, next) => {
   try {
     res.render('payment');
   } catch (error) {
@@ -156,7 +199,7 @@ const getCart = async (req, res, next) => {
 /**
  * Get terms and conditions
  */
- const getTermsAndConditions = async (req, res, next) => {
+const getTermsAndConditions = async (req, res, next) => {
   try {
     res.render('terms_and_conditions');
   } catch (error) {
@@ -167,7 +210,7 @@ const getCart = async (req, res, next) => {
 /**
  * Get privacy policy
  */
- const getPrivacyPolicy = async (req, res, next) => {
+const getPrivacyPolicy = async (req, res, next) => {
   try {
     res.render('privacy_policy');
   } catch (error) {
