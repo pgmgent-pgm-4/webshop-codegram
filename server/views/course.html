@@ -2,11 +2,21 @@
 {% block left %} 
 <section class="course">
     <div class="course__container">
+        {% for course in courses %}
+            {{course.name}}
+        {% endfor %}
+
         {{course.id}}
+        <p>{{course.title}}</p>
     </div>
 </section>
 {% endblock %}
 
 {% block scripts %}
-<script src="/static/js/course.js"></script>
+    <script src="/static/js/course.js"></script>
 {% endblock %}
+
+{#         
+        {% for course in courses  %}
+            {% include 'partials/cards.njk' %}
+        {% endfor %} #}
