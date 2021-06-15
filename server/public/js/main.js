@@ -35,7 +35,6 @@ const app = {
           const [username, password] = entries;
           this.tryLogin(username, password);
           e.preventDefault();
-          window.open('/', '_parent')
         })
       }
       if (!!this.$logoutButton) {
@@ -78,6 +77,7 @@ const app = {
 
         // Show a success message to the user after login
         alert(`Welcome back ${username}!`)
+        window.open('/', '_parent')
         
       } catch (error) {
         console.error(error);
