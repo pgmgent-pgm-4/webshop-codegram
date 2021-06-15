@@ -23,6 +23,7 @@ const getHome = async (req, res, next) => {
     let courses = await database.Course.findAll({
       raw: true
     });
+    courses.length = 6;
     // Send response
     res.render('index', {
       categories,

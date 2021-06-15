@@ -22,7 +22,7 @@ import database from './db';
 
 (async () => {
 	database.connect();
-})
+})()
 
 /*
 Create Express app

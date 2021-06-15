@@ -15,9 +15,6 @@ import database from '../db'
 import logger from './logger.js'
 database.connect();
 
-/*  import * as parseUsers from '../api/controllers/parseUsers.js';  // TODO: decide on filename and file structure for these*/
-
-
 // Initialize dotenv
 dotenv.config();
 
@@ -37,7 +34,7 @@ passport.use(
         const user = await database.User.findOne({ raw: true }, { where: {username: username} }); 
         console.log(user)
         // Check if the user exists
-        if (!user || user.message) { // TODO: Fix error possibly not returning a message | Logic for error handling
+        if (!user || user.message) { 
           return done(null, false, {
             message: 'Incorrect username.'
           });
@@ -101,7 +98,6 @@ const isValidPassword = async (user, password) => {
 /**
  * Define endpoint for logout
  */
-// TODO: Create endpoint and logic for logout
 app.get('/logout', (req, res) => {
   try {
     writeToCache('token', null);
