@@ -85,7 +85,7 @@ const getSignup = async (req, res, next) => {
 const getCourses = async (req, res, next) => {
   try {
     const categories = await database.Category.findAll({raw: true})
-    const { category, min, max, tag, level, s} = req.query;
+    const { category, min, max, tag, level, sort} = req.query;
     const courses = await database.Course.findAll({
       where: {
         CategoryId: (category === undefined ? {
@@ -116,7 +116,7 @@ const getCourses = async (req, res, next) => {
         }
       },
       order: [
-          ((s === "prd") ? ['price', 'DESC'] : (s === "pra") ? ['price', 'ASC'] : (s === "nd") ? ['createdAt', 'DESC'] : (s === "na") ? ['createdAt', 'ASC'] : (s === "dud") ? ['duration', 'DESC'] : (s === "dua") ? ['duration', 'ASC'] : ['name', 'ASC']),
+          ((sort === "prd") ? ['price', 'DESC'] : (sort === "pra") ? ['price', 'ASC'] : (sort === "nd") ? ['createdAt', 'DESC'] : (sort === "na") ? ['createdAt', 'ASC'] : (sort === "dud") ? ['duration', 'DESC'] : (sort === "dua") ? ['duration', 'ASC'] : ['name', 'ASC']),
       ]
     });
     res.render('courses', {

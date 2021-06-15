@@ -23,6 +23,7 @@
       this.$courseParams = document.querySelectorAll('input[type="radio"]');
       this.$coursePrice = document.querySelector('input[type="range"]');
       this.$courseTags = document.querySelectorAll('#tagBtn');
+      this.$coursesSort = document.querySelector("#sort-select");
     },
     
     /**
@@ -45,14 +46,20 @@
         const param = ev.target.name || ev.target.parentNode.name|| ev.target.parentNode.parentNode.name;
         this.alterParams(param, val);
       }));
+      this.$coursesSort.addEventListener('change', (ev) => {
+        const val = ev.currentTarget.value;
+        const param = ev.target.name;
+        this.alterParams(param, val);        
+      })
     },
     alterParams(param, val) {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const keys = params.getAll('tag');
         if (val!== null) {
-        param === "tag" && params.has('tag')? keys.indexOf(val) < 0 ? params.append('tag', val): "" : params.set(param, val); window.history.replaceState({}, '', `${location.pathname}?${params}`)}
-    }
+        param === "tag" && params.has('tag')? keys.indexOf(val) < 0 ? params.append('tag', val): "" : params.set(param, val); window.history.replaceState({}, '', `${location.pathname}?${params}`);
+        if (param === "sort") {window.location.reload()}
+    }}
   }
   
-  course.init();
+  courses.init();
