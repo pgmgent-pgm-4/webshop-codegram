@@ -35,6 +35,7 @@ const app = {
           const [username, password] = entries;
           this.tryLogin(username, password);
           e.preventDefault();
+          window.open('/', '_parent')
         })
       }
       if (!!this.$logoutButton) {
@@ -76,10 +77,8 @@ const app = {
         if (!!data) this.writeToCache('jwt', data);
 
         // Show a success message to the user after login
-        const paragraph = document.createElement('p');
-        const message = document.createTextNode(`Welcome back ${username}!`)
-        paragraph.appendChild(message);
-        this.$loginForm.appendChild(paragraph);
+        alert(`Welcome back ${username}!`)
+        
       } catch (error) {
         console.error(error);
       }

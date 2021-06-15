@@ -14,7 +14,6 @@
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -169,3 +168,6 @@ temp/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,vscode,macos,dotenv
 .vscode/settings.json
+
+# Test db
+server/db/test.sqlite3

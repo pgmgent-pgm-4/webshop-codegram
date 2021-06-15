@@ -20,7 +20,9 @@ Database
 import logger from './utils/logger.js';
 import database from './db';
 
-database.connect();
+(async () => {
+	database.connect();
+})
 
 /*
 Create Express app
@@ -106,3 +108,9 @@ process.on('SIGINT', () => {
 process.on('SIGTERM', () => {
 	handleGracefully();
 });
+
+export {
+	app,
+	server,
+	handleGracefully
+};
