@@ -6,7 +6,7 @@
  * Renders the course and course video's
  * or a message
  */
-const course = {
+ const course = {
   
   /**
    * Initialize app
