@@ -85,7 +85,10 @@
    * @param {object} course 
    */
   renderCourseHTML(course) {
-    let tags = JSON.parse(course.tags).join(', ');
+    let tags = []
+    if (!!course.tags) {
+      tags = course.tags.split(',')
+    }
     const output = `
       <h1 class="course__name">${course.name}</h1>
       <p class="course__desc">${course.description}</p>
@@ -106,7 +109,7 @@
     for (let video of course.videos) {
       output += `
       <div class="card card__video">
-        <a href="/video/${video.id}" title="Watch ${video.name}">
+        <a href="/course/${course.id}/${video.id}" title="Watch ${video.name}">
           <h3 class="video__name">${video.name}</h3>
           <img class="video__thumbnail" src=${video.thumbnail_url} alt=${video.name} />
         </a>
