@@ -1,7 +1,7 @@
 /*
 Import packages
 */
-import faker from 'faker';
+import faker, { fake } from 'faker';
 import {
   v4 as uuidv4
 } from 'uuid';
@@ -28,8 +28,9 @@ let existingCategories = [];
 let userIds = [];
 let profileIds = [];
 let completedOrders = [];
+let generatedNews = [];
 
-const getCategories = async () => {
+/* const getCategories = async () => {
   try {
     const cats = await database.Category.findAll({raw: true});
     existingCategories = cats;
@@ -55,8 +56,8 @@ const getProfileIds = async () => {
   } catch(err) {
     console.error(err)
   }
-}
-const getCompletedOrders = async () => {
+} */
+/* const getCompletedOrders = async () => {
   try {
     const orders = await database.Order.findAll({
       where: {
@@ -68,14 +69,51 @@ const getCompletedOrders = async () => {
   } catch (err) {
     console.error(err)
   }
-}
+} */
+
+/**
+ * generate news
+ * @param {number} amount 
+ * @returns {arra} news
+ */
+
+const generateNews = (amount = 50) => {
+  let news = [];
+  for (let i = 0; i < amount; i++) {
+    const news = {
+      id: uuidv4(),
+      author_firstname: faker.name.firstName(),
+      author_lastname: faker.name.lastName(),
+      title: faker.lorem.sentence(nb_words=10),
+      subtitle: faker.lorem.sentence(nb_words=40),
+      summary: faker.lorem.text(max_nb_chars=160),
+      content: faker.lorem.text(max_nb_chars=5000),
+      thumbnail: faker.image.city(),
+      tags: JSON.stringify([currentYear-1, faker.lorem.word(), faker.lorem.word(), faker.lorem.word()]),
+    }
+    news.push(news);
+  }
+  return news;
+};
+
+const seedNews = async () => {
+  try {
+    generatedNews = generateNews();
+    generatedNews.forEach(async (news) => {
+      await database.News.create(news);
+    });
+    console.table(generatedNews);
+  } catch (err) {
+    console.error(err);
+  }
+} 
 
 /**
  * Generate users
  * @param {number} amount 
  * @returns {array} users
  */
-const generateUsers = (amount = 50) => {
+/* const generateUsers = (amount = 50) => {
   let users = [];
   for (let i = 0; i < amount; i++) {
     let random = Math.floor(Math.random() * 2);
@@ -92,12 +130,12 @@ const generateUsers = (amount = 50) => {
   }
   return users;
 };
-
+ */
 /**
  * Generate profiles
  * @returns {array} profiles
  */
-const generateProfiles = () => {
+/* const generateProfiles = () => {
   let profiles = [];
   for (let i = 0; i < generatedUsers.length; i++) {
     const profile = {
@@ -111,12 +149,12 @@ const generateProfiles = () => {
     profiles.push(profile);
   };
   return profiles;
-}
+} */
 
 /**
  * Generate categories
  */
-const generateCategories = () => {
+/* const generateCategories = () => {
   const companyName = 'Codegram';
   const categories = [{
       id: uuidv4(),
@@ -170,12 +208,12 @@ const generateCategories = () => {
     },
   ];
   return categories;
-}
+} */
 
 /**
  * Generate courses
  */
-const generateCourses = (amount = 100) => {
+/* const generateCourses = (amount = 100) => {
   const getRandomIndex = (length) => Math.floor(Math.random() * length);
   const levels = ['Beginner', 'Intermediate', 'Advanced', 'Expert', 'Professional'];
   const currentYear = new Date().getFullYear();
@@ -200,14 +238,14 @@ const generateCourses = (amount = 100) => {
     }
     seedCourses(courses);
   }
-}
+} */
 
 /**
  * Seed the users into the database
  * Uses: {array} generatedUsers
  * Calls seedProfiles after seeding
  */
-const seedUsers = async () => {
+/* const seedUsers = async () => {
   try {
     generatedUsers = generateUsers();
     generatedUsers.forEach(async (user) => {
@@ -218,14 +256,14 @@ const seedUsers = async () => {
   } catch (err) {
     console.error(err);
   }
-}
+} */
 
 
 /**
  * Seed the profiles into the database
  * Uses: {array} generatedProfiles
  */
-const seedProfiles = async () => {
+/* const seedProfiles = async () => {
   try {
     generatedProfiles = generateProfiles();
     generatedProfiles.forEach(async (profile) => {
@@ -235,13 +273,13 @@ const seedProfiles = async () => {
   } catch (err) {
     console.error(err);
   }
-}
+} */
 
 /**
  * Seed the categories into the database
  * Uses: {array} generatedCategories
  */
-const seedCategories = async () => {
+/* const seedCategories = async () => {
   try {
     generatedCategories = generateCategories();
     generatedCategories.forEach(async (category) => {
@@ -251,14 +289,14 @@ const seedCategories = async () => {
   } catch (err) {
     console.error(err);
   }
-}
+} */
 
 /**
  * Seed the courses into the database
  * Uses: {function} getCategories()
  *       {function} getUserIds()
  */
-const seedCourses = async (courses) => {
+/* const seedCourses = async (courses) => {
   try {
     for (let course of courses) {
       generatedCourses = await database.Course.create(course);
@@ -267,12 +305,12 @@ const seedCourses = async (courses) => {
   } catch (err) {
     console.error(err);
   }
-}
+} */
 
 /**
  * Seed newsletters into database
  */
-const seedNewsletters = async (amount = 20) => {
+/* const seedNewsletters = async (amount = 20) => {
   try {
     let newsletters = [];
     for (let i = 0; i < amount; i++) {
@@ -288,12 +326,12 @@ const seedNewsletters = async (amount = 20) => {
   } catch (err) {
     console.error(err)
   }
-}
+} */
 
 /**
  * Seed orders into database
  */
-const seedOrders = async (amount = 88) => {
+/* const seedOrders = async (amount = 88) => {
   try {
     const getRandomIndex = (length) => Math.floor(Math.random() * length);
     let orders = [];
@@ -311,7 +349,7 @@ const seedOrders = async (amount = 88) => {
   } catch (err) {
     console.error(err);
   }
-}
+} */
 
 /**
  * Call seeder methods
@@ -322,6 +360,7 @@ getCategories(); */
 /* seedNewsletters();
 getProfileIds();
 getCompletedOrders();  */
+seedNews();
 
 /* Seed User_Course */
 /* (async () => {

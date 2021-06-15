@@ -157,7 +157,8 @@ const getVideo = async (req, res, next) => {
  */
 const getNews = async (req, res, next) => {
   try {
-    res.render('news');
+    const news = await database.News.findAll({raw: true})
+    res.status(200).json(news);
   } catch (error) {
     handleHTTPError(error, next);
   }
