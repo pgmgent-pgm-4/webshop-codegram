@@ -44,7 +44,10 @@ const getHome = async (req, res, next) => {
  */
 const getLogin = async (req, res, next) => {
   try {
-    res.render('login');
+    let categories = await database.Category.findAll({
+      raw: true
+    });
+    res.render('login', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -55,7 +58,10 @@ const getLogin = async (req, res, next) => {
  */
 const getSignup = async (req, res, next) => {
   try {
-    res.render('signup');
+    let categories = await database.Category.findAll({
+      raw: true
+    });
+    res.render('signup', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -113,10 +119,13 @@ const getCourses = async (req, res, next) => {
  */
 const getCourse = async (req, res, next) => {
   try {
+    let categories = await database.Category.findAll({
+      raw: true
+    });
     const {
       courseId
     } = req.params;
-    res.render('course');
+    res.render('course', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -127,7 +136,10 @@ const getCourse = async (req, res, next) => {
  */
 const getVideo = async (req, res, next) => {
   try {
-    res.render('video');
+    let categories = await database.Category.findAll({
+      raw: true
+    });
+    res.render('video', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -139,8 +151,12 @@ const getVideo = async (req, res, next) => {
 const getNews = async (req, res, next) => {
   try {
     const news = await database.News.findAll({raw: true})
+    let categories = await database.Category.findAll({
+      raw: true
+    });
     res.render('news', {
-      news
+      news,
+      categories
     });
   } catch (error) {
     handleHTTPError(error, next);
@@ -152,10 +168,13 @@ const getNews = async (req, res, next) => {
  */
  const getNewsArticle = async (req, res, next) => {
   try {
+    let categories = await database.Category.findAll({
+      raw: true
+    });
     const {
       newsId
     } = req.params;
-    res.render('article');
+    res.render('article', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -166,7 +185,10 @@ const getNews = async (req, res, next) => {
  */
 const getUser = async (req, res, next) => {
   try {
-    res.render('user');
+    let categories = await database.Category.findAll({
+      raw: true
+    });
+    res.render('user', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -177,7 +199,10 @@ const getUser = async (req, res, next) => {
  */
 const getCart = async (req, res, next) => {
   try {
-    res.render('cart');
+    let categories = await database.Category.findAll({
+      raw: true
+    });
+    res.render('cart', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -188,7 +213,10 @@ const getCart = async (req, res, next) => {
  */
 const getPayment = async (req, res, next) => {
   try {
-    res.render('payment');
+    let categories = await database.Category.findAll({
+      raw: true
+    });
+    res.render('payment', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -199,7 +227,10 @@ const getPayment = async (req, res, next) => {
  */
 const getTermsAndConditions = async (req, res, next) => {
   try {
-    res.render('terms_and_conditions');
+    let categories = await database.Category.findAll({
+      raw: true
+    });
+    res.render('terms_and_conditions', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
@@ -210,7 +241,10 @@ const getTermsAndConditions = async (req, res, next) => {
  */
 const getPrivacyPolicy = async (req, res, next) => {
   try {
-    res.render('privacy_policy');
+    let categories = await database.Category.findAll({
+      raw: true
+    });
+    res.render('privacy_policy', { categories });
   } catch (error) {
     handleHTTPError(error, next);
   }
