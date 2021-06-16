@@ -17,7 +17,6 @@
   * Routes
   */
  router.get('/', publicController.getHome);
- router.get('/categories', publicController.getCategories);
  router.get('/login', publicController.getLogin); // login form
  router.get('/signup', publicController.getSignup); // signup form
  router.get('/courses', publicController.getCourses); // courses + search + filters
