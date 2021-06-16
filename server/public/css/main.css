@@ -542,6 +542,18 @@ p.supHeading {
       .news .card-section .card .card--blag__info--duration .score {
         padding-top: 1.5rem;
         color: #707070; }
+  .news .article__container {
+    width: 90vw;
+    margin: auto; }
+    .news .article__container .article__card .article__header .article__thumbnail {
+      width: 90vw;
+      height: 60vh;
+      object-fit: cover; }
+    .news .article__container .article__card .card-info div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap; }
 
 .price-banner {
   margin: 4rem 0 1rem;

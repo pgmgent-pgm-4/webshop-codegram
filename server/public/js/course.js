@@ -111,7 +111,6 @@
       console.log(video.name)
       const capitalize = ([first,...rest]) => first.toUpperCase() + rest.join('').toLowerCase()
       output += `
-      
         <li>
           <div class="card card--blog card__video">
             <div class="card--header card-blog__header">

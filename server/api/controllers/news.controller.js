@@ -24,7 +24,7 @@ const getNewsById = async (req, res, next) => {
 		// Get newsId parameter
 		const { newsId } = req.params;
 		// Get specific news from database
-		const news = await database.News.findAll({
+		const news = await database.News.findOne({
 			where: {
 				id: newsId,
 			},

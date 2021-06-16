@@ -148,6 +148,20 @@ const getNews = async (req, res, next) => {
 }
 
 /**
+ * Get a news article
+ */
+ const getNewsArticle = async (req, res, next) => {
+  try {
+    const {
+      newsId
+    } = req.params;
+    res.render('article');
+  } catch (error) {
+    handleHTTPError(error, next);
+  }
+}
+
+/**
  * Get user
  */
 const getUser = async (req, res, next) => {
@@ -204,13 +218,13 @@ const getPrivacyPolicy = async (req, res, next) => {
 
 export {
   getHome,
-  getCategories,
   getLogin,
   getSignup,
   getCourse,
   getCourses,
   getVideo,
   getNews,
+  getNewsArticle,
   getUser,
   getCart,
   getPayment,

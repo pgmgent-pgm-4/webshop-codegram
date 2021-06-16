@@ -23,6 +23,7 @@
  router.get('/course/:courseId', publicController.getCourse); // single course
  router.get('/course/:courseId/:videoId', publicController.getVideo); // single video in a course
  router.get('/news', publicController.getNews); // news
+ router.get('/news/:newsId', publicController.getNewsArticle); // news article
  router.get('/users/:username', publicController.getUser); // user + instructor
  router.get('/users/:profileId/cart', publicController.getCart); 
  router.get('/users/:profileId/payment', publicController.getPayment);
