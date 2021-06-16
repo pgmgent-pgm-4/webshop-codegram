@@ -17,7 +17,7 @@
                         <ul class="dropdown-list-items">
                             {% block left %}
                                 {% for category in categories %}
-                                    <li><a href="#">{{category.name}}</a></li> 
+                                    <li><a href="/courses?category={{category.id}}">{{category.name}}</a></li> 
                                 {% endfor %}
                             {% endblock %}  
                         </ul>

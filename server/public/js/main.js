@@ -9,6 +9,7 @@ const app = {
     init() {
       this.cacheElements();
       this.registerListeners();
+      this.checkLoginSession();
     },
     
     /**
@@ -18,6 +19,9 @@ const app = {
       this.$loginButton = document.querySelector('.navbar__right .login-btn')
       this.$loginForm = document.querySelector('.login-form');
       this.$logoutButton = document.querySelector('.btn-logout');
+      this.$dropDownBttn = document.querySelector('.dropbtn');
+      this.$dropDownList = document.querySelector('.dropdown-list');
+      this.$loginButton = document.querySelector('.login-btn');
     },
 
     /**
@@ -53,6 +57,12 @@ const app = {
           window.localStorage.removeItem('jwt');
           alert('You were logged out!');
           this.$loginButton.outerHTML = `<a class="login-btn btn primary-btn" href="/login">Log In</a>`
+        });
+      }
+      if (!!this.$dropDownBttn) {
+        this.$dropDownBttn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.$dropDownList.classList.toggle('visible')
         })
       }
     },
@@ -119,6 +129,13 @@ const app = {
      */
     readFromCache(key) {
       return JSON.parse(window.localStorage.getItem(key)) || null;
+    },
+
+    /**
+     * Check whether still logged in
+     */
+    checkLoginSession() {
+      if (localStorage.hasOwnProperty('jwt')) {this.$loginButton.classList.toggle('hide')} 
     }
   }
 

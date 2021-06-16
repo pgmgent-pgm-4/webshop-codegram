@@ -466,8 +466,8 @@ p.supHeading {
           padding: 0.8rem 1rem; }
           .navbar__left--dropdown .dropdown-list li a {
             color: #F5F5F5; }
-    .navbar__left--dropdown:hover .dropdown-list {
-      display: block; }
+      .navbar__left--dropdown .visible {
+        display: block; }
     .navbar__left--form .search-form {
       display: flex;
       align-items: center;
@@ -499,6 +499,8 @@ p.supHeading {
       color: #F5F5F5; }
     .navbar__right li {
       margin-left: 1.5rem; }
+      .navbar__right li .hide {
+        display: none; }
       .navbar__right li svg {
         width: 2.1rem;
         fill: #F5F5F5; }
