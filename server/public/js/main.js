@@ -9,7 +9,6 @@ const app = {
     init() {
       this.cacheElements();
       this.registerListeners();
-      this.checkLoginSession();
     },
     
     /**
@@ -118,13 +117,6 @@ const app = {
     readFromCache(key) {
       return JSON.parse(window.localStorage.getItem(key)) || null;
     },
-
-    /**
-     * Check whether still logged in
-     */
-    checkLoginSession() {
-      if (localStorage.hasOwnProperty('jwt')) {this.$loginButton.classList.toggle('hide')} 
-    }
   }
 
   // Function calls
