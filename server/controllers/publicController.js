@@ -204,7 +204,6 @@ const getPrivacyPolicy = async (req, res, next) => {
 
 export {
   getHome,
-  getCategories,
   getLogin,
   getSignup,
   getCourse,
