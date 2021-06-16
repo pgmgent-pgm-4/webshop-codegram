@@ -103,7 +103,8 @@
     const playButton = document.querySelector('.playButton');
     playButton.style = `display: flex; justify-content: center; align-items:center; position: relative`
     const playSvg = document.querySelector('.playButton svg');
-    playSvg.style = `position: absolute; left: 50%; top: 50%; transform: translateX(-25%); translateY(25%); cursor: pointer`
+    playSvg.style = `position: absolute; left: 50%; top: 50%; transform: translateX(-25%); translateY(25%); cursor: pointer`;
+    playSvg.addEventListener('click', () => this.showYoutubeVideo())
   },
 
   /**
@@ -111,7 +112,16 @@
    * @returns {string} message
    */
   renderNotAllowedHTML() {
-    return `<p>Uh oh! You do not have access.</p>`
+    this.$videoContainer.innerHTML = `<p class="subHeading">Uh oh! You do not have access.</p>`
+  },
+  showYoutubeVideo() {
+    this.$videoContainer.innerHTML = `
+      <div class="iframe__container">
+        <iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/PkZNo7MFNFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    `
+    const iframeContainer = document.querySelector('.iframe__container');
+    if (!!iframeContainer) iframeContainer.style = "display: flex; justify-content: center;"
   },
   getSvg() {
     return `<?xml version="1.0" encoding="iso-8859-1"?>
