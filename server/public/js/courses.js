@@ -24,6 +24,7 @@
       this.$coursePrice = document.querySelector('input[type="range"]');
       this.$courseTags = document.querySelectorAll('#tagBtn');
       this.$coursesSort = document.querySelector("#sort-select");
+      this.$submitBttn = document.querySelector('#frmButton');
     },
     
     /**
@@ -31,26 +32,30 @@
      */
     registerListeners() {
       // Not sure any listeners will be needed
-      this.$courseParams.forEach(cat => cat.addEventListener('change', (ev) => {
+      if (!!this.$courseParams) {this.$courseParams.forEach(cat => cat.addEventListener('change', (ev) => {
         const val = ev.target.value;
         const param = ev.target.name;
         this.alterParams(param, val);
-      }));
-      this.$coursePrice.addEventListener('change', (ev) => {
+      }))};
+      if (!!this.$coursePrice) {this.$coursePrice.addEventListener('change', (ev) => {
         const val = ev.currentTarget.value;
         val <= 500 ? this.alterParams('min', val) : this.alterParams('max', val);
-      })
-      this.$courseTags.forEach(tag => tag.addEventListener('click', (ev) => {
+      })}
+      if (!!this.$courseTags) {this.$courseTags.forEach(tag => tag.addEventListener('click', (ev) => {
         ev.preventDefault();
         const val = ev.target.dataset.tag || ev.target.parentNode.dataset.tag || ev.target.parentNode.parentNode.dataset.tag;
         const param = ev.target.name || ev.target.parentNode.name|| ev.target.parentNode.parentNode.name;
         this.alterParams(param, val);
-      }));
-      this.$coursesSort.addEventListener('change', (ev) => {
+      }))};
+      if (!!this.$coursesSort) {this.$coursesSort.addEventListener('change', (ev) => {
         const val = ev.currentTarget.value;
         const param = ev.target.name;
         this.alterParams(param, val);        
-      })
+      })}
+      if (!!this.$submitBttn) {this.$submitBttn.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        window.location.reload()
+      })};
     },
     alterParams(param, val) {
         const search = window.location.search;
