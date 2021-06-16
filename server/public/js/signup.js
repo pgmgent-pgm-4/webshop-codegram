@@ -2,7 +2,7 @@
  * App for user signup
  */
 
-const app = {
+const signup = {
 
   /**
    * Initialize the app
@@ -89,4 +89,4 @@ const app = {
 }
 
 // Function calls
-app.init();
+signup.init();
