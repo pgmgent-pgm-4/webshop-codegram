@@ -54,14 +54,12 @@
                     }
                 }
             }
+            .visible {
+                display: block;
+            }
 
         }
         //hover will change to a click the dropdown
-        &--dropdown:hover{
-            .dropdown-list{
-                display: block;
-            }
-        }
 
         &--form{
             .search-form{
@@ -110,6 +108,10 @@
             margin-left: 1.5rem;
             .btn{
            
+            }
+
+            .hide {
+                display: none;
             }
             svg{
                 width:2.1rem;

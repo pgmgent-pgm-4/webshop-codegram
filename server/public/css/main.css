@@ -525,8 +525,8 @@ p.supHeading {
           padding: 0.8rem 1rem; }
           .navbar__left--dropdown .dropdown-list li a {
             color: #F5F5F5; }
-    .navbar__left--dropdown:hover .dropdown-list {
-      display: block; }
+      .navbar__left--dropdown .visible {
+        display: block; }
     .navbar__left--form .search-form {
       display: flex;
       align-items: center;
@@ -558,6 +558,8 @@ p.supHeading {
       color: #F5F5F5; }
     .navbar__right li {
       margin-left: 1.5rem; }
+      .navbar__right li .hide {
+        display: none; }
       .navbar__right li svg {
         width: 2.1rem;
         fill: #F5F5F5; }
@@ -936,6 +938,13 @@ svg.heart {
     color: #ffffff; }
   .category-page .card-main-categories {
     margin-top: 0rem; }
+  .category-page .submit-filter {
+    padding: .8rem 2rem;
+    border-radius: 2rem;
+    color: #ffffff;
+    margin-top: 2rem;
+    border: none;
+    background-color: #ed2266; }
   .category-page .filter-form {
     color: #F5F5F5;
     font-size: 1rem; }
@@ -943,7 +952,7 @@ svg.heart {
       color: #ffffff;
       background-color: #262e3a;
       padding: 0.5rem;
-      margin-bottom: 1rem; }
+      margin: 2rem 0 1rem; }
     .category-page .filter-form .range {
       padding: 2rem 0;
       color: #F5F5F5; }
@@ -955,13 +964,25 @@ svg.heart {
         background-color: #eee;
         border: 2px solid #ccc; }
     .category-page .filter-form .category-tags {
+      border-bottom: 1px solid rgba(204, 204, 204, 0.267);
+      padding-bottom: 2rem;
       margin-top: 2rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly; }
       .category-page .filter-form .category-tags li {
-        background-color: #ed2266;
-        padding: 0.5rem 0.5rem; }
+        color: #ffffff;
+        padding: 0.5rem 0.5rem;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        background-color: #707070; }
+      .category-page .filter-form .category-tags li:hover {
+        background-color: #262e3a; }
+      .category-page .filter-form .category-tags button {
+        margin: 0.7rem;
+        outline: none;
+        border: none;
+        background-color: transparent; }
   .category-page .category-page__selector {
     display: flex;
     justify-content: space-between; }

@@ -31,7 +31,8 @@ const getHome = async (req, res, next) => {
     // Send response
     res.render('index', {
       categories,
-      courses
+      courses,
+      news
     });
   } catch (error) {
     handleHTTPError(error, next);
