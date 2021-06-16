@@ -1,66 +1,226 @@
-# Webshop @Work2
-**Team: CodeGram**
+**Artevelde University of Applied Sciences**
 
----
+```
+Campus Mariakerke
+Industrieweg 232
+9030 Gent
+```
 
-## Latest changes (29/05/2021) by Charlotte
+June 15th 2021
 
-### Create seeders for all remaining tables
-- Modified `db/seeders/index.js`: the ugly spaghetti seeder monster
-- All tables have some data
-- There are many dragons in the code, it has no right to work and looks ugly as hell...  But for now it'll do
-- TODO: Slay the dragons, DRY up the code, turn the code into a piece of beauty
+# @WORK 2
 
-### Modified some models
-- Removed `models/course_videos` since it has been replaced by an association table
-- Removed `migrations/20210520115017-course_videos.mjs` since else the database keeps creating the redundant table (see above)
-- Modified `models/newsletter.js`: changed `through: 'UserNewsletter'` to `through: 'Newsletter_Users'`
-- Modified `models/promotions.js`: changed `through: 'PromotionOrder'` to `through: 'Promotion_Order'` AND changed `through: 'SubscriptionOrder'` to `through: 'Promotion_Subscription'`
-- Modified `models/subscriptions.js`: changed `through: 'ProfileSubscription'` to `through: 'Profile_Subscription'`
-- Modified `models/videos.js`: changed `paused_at: DataTypes.INTEGER` to `thumbnail_url: DataTypes.STRING`
+## Webshop: Codegram
 
----
-## Latest changes (28/05/2021) by Charlotte
-### Update package.json 
-- Changed node modules. Run `npm install` again to ensure you have all modules installed.
-- Changed scripts: 
-  - `npm run dev`: Only runs the server & database again.
-  - `npm run build-css`: Run this in a separate terminal tab/window to convert SCSS into CSS. Input files from: `/server/public/_sass/main.scss` and exported to: `/server/public/css/main.css`.
-- TO DO: Let me know if any of this works for you.
-  
-### Update server/app.js
-- Added publicRoutes to be rendered at `/`, using `/server/routes/index.js` to define the publicRoutes.
-- Added static rendering from `/server/public` to serve assets (_sass, css, images, ...) on the `/static/` route. Linking in njk templates through `/static/...`.
+## Team 04: Codegram
 
-### Create server/views/...
-- `base.html` = the base template (see: eleventy base layout). Contains main html file, header & footer links, sections and blocks.
-- `index.html` = the home page with some basic rendering | gets its rendered data from `publicController.getHome`. Can be reached from [http://localhost:8080/]
-- `categories.html` = the categories page with some basic data displayed - can be reached from [http://localhost:8080/categories] or [localhost:8080/categories?category={CategoryId}](http://localhost:8080/categories?category=1d67bfe9-4be2-4cdc-b92f-739fa745c71a)
-- `partials/header.njk` = the header block
-- `partials/footer.njk` = the footer block
+```
+Charlotte Delvaux
+Thabisa Dingani
+Karelle Keters
+```
 
-### Move client/assets/ to server/public/
-- Contains the _sass, css and images folder
-- Gets served on [https://localhost/static/images/icons/favicon.ico] for instance from server location `server/public/images/icons/favicon.ico`.
-- TO DO: Let me know if any of this works for you.
+2020 -2021 – Associate Degree in Computer Programming
 
-### Create server/routes/index.js
-- Contains all the public routes and callback functions for the public routes. For now that means: 
-  - `/`: home - `publicController.getHome`
-  - `/categories`: categories - `publicController.getCategories`
-    - This can be extended with query parameters as in [http://localhost:8080/categories?category=73652f20-5b07-428c-9e2a-cbff3a383bff]
+```
+Professors:
+Lennart Dubois
+Philippe De Pauw – Waterschoot
+Tim De Paepe
+```
 
-### Create server/controllers/publicController.js
-- Connect to database
-- Added `getHome`: renders data for homepage. Available data at this point in time:
-  - categories (all categories in the database): reached through nunjucks templates through `{% for category in categories %} --do something-- {% endfor %}`
-  - courses (all courses in the database): reached through nunjucks templates through `{% for course in courses %} --do something-- {% endfor %}`
-- Not exported as default, so can be reached through importing the file and calling the function: `import * as publicController from '../controllers/publicController.js'` - Call with: `publicController.getHome`.
+## Table of Contents
 
-### Updated server/db/seeders/index.js
-- Thanks to Philippe the first association table (the ones without an actual model) has gotten a seed. Hooray! (line 356-361)
-- TO DO: everything else.
+- Table of Contents
+- 1. Briefing
+- 2. Planning
+- 3. Design
+   - 1. Ideaboards ..........................................................................................................................................
+   - 2. Moodboard ........................................................................................................................................
+   - 3. Sitemap...............................................................................................................................................
+   - 4. Wireframes .........................................................................................................................................
+   - 5. Style Tile .............................................................................................................................................
+   - 8. Visual Designs .....................................................................................................................................
+   - 9. Clickable Prototype ..........................................................................................................................
+- 4. Develop
+   - 1. Content .............................................................................................................................................
+   - 2. Data ..................................................................................................................................................
+   - 3. Code Snippets ...................................................................................................................................
+   - 4. Screenshots ......................................................................................................................................
+   - 5. Deployment Guide ...........................................................................................................................
 
-### Pending delete depending on your views
-- `client/`
-  - Reasoning: Client has been moved to server side rendering. May have become redundant. We should discuss this.
+
+## 1. Briefing
+
+Dit project betreft het eindproject voor het vak @work2 in de opleiding Graduaat Programmeren aan
+Arteveldehogeschool, gemaakt door Team Codegram. Team members zijn: Charlotte Delvaux, Thabisa
+Dingani en Karelle Keters.
+
+Doel van deze opdracht is het ontwikkelen van een webshop om een project naar keuze te verkopen. Van
+idee, naar design, naar deployment.
+
+Team Codegram zal programmeercursussen verkopen in een webshop, personen kunnen deze per stuk
+kopen, of een abonnement nemen om toegang te hebben tot alle cursussen.
+
+## 2. Planning
+
+
+## 3. Design
+
+### 1. Ideaboards ..........................................................................................................................................
+
+Overzicht van de ideaboards:
+
+### 2. Moodboard ........................................................................................................................................
+
+Link naar het moodboard
+
+
+### 3. Sitemap...............................................................................................................................................
+
+
+### 4. Wireframes .........................................................................................................................................
+
+Link naar het overzicht van de wireframes
+
+**Figuur 1: Overzicht low fidelity wireframes**
+
+**Figuur 2: Low fidelity landing page**
+
+
+**Figuur 3: Low fidelity payment**
+
+**Figuur 4: Low fidelity course filter**
+
+
+### 5. Style Tile .............................................................................................................................................
+
+Link naar de style tile
+
+**Figuur 5: Style tile**
+
+
+### 8. Visual Designs .....................................................................................................................................
+
+Link naar de visual designs
+
+**Figuur 6: Visual Designs overzicht**
+
+**Figuur 7: Visual design contact page - Desktop**
+
+
+**Figuur 8: Visual design course details - Desktop**
+
+**Figuur 9: Visual design login - Desktop**
+
+
+**Figuur 10: Visual designs - Mobile**
+
+### 9. Clickable Prototype ..........................................................................................................................
+
+Link naar het clickable prototype
+
+**Figuur 10: Prototype overzicht**
+
+
+## 4. Develop
+
+### 1. Content .............................................................................................................................................
+
+De content voor de webshop werd toegevoegd aan de database met behulp van Faker.js. Zie data voor
+meer details rond de verschillende datatypes, tabellen, en de relaties tussen deze elementen.
+
+### 2. Data ..................................................................................................................................................
+
+Ontwerp database schema en relaties:
+
+**Figuur 11: Eerste ontwerp database schema.**
+
+
+**Figuur 12: Eindresultaat database schema en relaties.**
+
+
+### 3. Code Snippets ...................................................................................................................................
+
+**Figuur 13: Course database model - /server/db/models/category.js**
+
+
+**Figuur 14: Database bestand – /server/db/index.js**
+
+
+**Figuur 15 – Helper utilities – /server/utils/helper.js**
+
+
+**Figuur 16: Landing page – /server/views/index.html**
+
+
+**Figuur 17: Logic for user login - /server/public/js/main.js**
+
+
+**Figuur 18: 7-1 SCSS - /server/public/_sass/main.scss**
+
+
+**Figuur 19: Header partial - /server/views/partials/header.njk**
+
+
+**Figuur 20: Utilities for authentication - /server/utils/auth.js**
+
+
+**Figuur 21: Public routes - /server/routes/index.js**
+
+
+**Figuur 22: Simple seeder for newsletters - /server/db/seeders/index.js**
+
+**Figuur 23: Seeder for autogenerated tables through Sequelize ORM - /server/db/seeders/index.js**
+
+
+**Figuur 24: Default theme SCSS - /server/public/_sass/themes/_default.scss**
+
+
+**Figuur 25: Base template - /server/views/base.html**
+
+
+**Figuur 26: Example for API routes with Swagger documentation - /server/api/routes/index.js**
+
+
+**Figuur 27: API CRUD testing - /__tests__/server/requests.test.js**
+
+
+**Figuur 28: Setting up the app - /server/app.js**
+
+
+**Figuur 29: Authentication login endpoint - /server/utils/auth.js**
+
+
+**Figuur 30: Category controller - / server/api/controllers/category.controller.js**
+
+
+**Figuur 31: Rendering course using JWT bearer token - /server/public/js/course.js**
+
+
+### 4. Screenshots ......................................................................................................................................
+
+**Figuur 32: Homepage - Desktop**
+
+**Figuur 33: Project backlog**
+
+
+**Figuur 34: Swagger API docs – Rendered to [http://localhost:8080/api/docs](http://localhost:8080/api/docs) after starting the server.**
+
+**Figuur 35: Test coverage**
+
+### 5. Deployment Guide ...........................................................................................................................
+
+Voordat je deze webshop in actie kan zien, is het noodzakelijk om deze te clonen van GitHub, hiervoor is
+een installatie en configuratie van Git vereist. Installeer ook Node en NPM.
+
+- Open Visual Studio Code, open een nieuwe terminal
+- Gebruik ‘git clone https://github.com/pgmgent-pgm -4/webshop-codegram’
+- Navigeer naar het project ‘cd webshop-codegram’
+- Installeer de benodigde node modules ‘npm install’
+- Na het voltooien van deze installatie kan de server gestart worden ‘npm run dev’
+- Om de testen te kunnen doorlopen is het noodzakelijk om de database met de naam
+    ‘database.sqlite3’ te dupliceren en de naam ‘test.sqlite3’ te geven, zonder deze extra actie
+    zullen de tests falen. Om de testen te starten ‘npm run test’
+
+

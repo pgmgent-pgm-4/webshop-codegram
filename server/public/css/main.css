@@ -496,7 +496,11 @@ p.supHeading {
     justify-content: space-between;
     align-items: center; }
     .navbar__left--logo {
-      width: 10rem; }
+      width: 4rem;
+      transition: width 0.4s ease; }
+      @media screen and (min-width: 45rem) {
+        .navbar__left--logo {
+          width: 10rem; } }
     .navbar__left--dropdown {
       margin: 0 3rem;
       width: 8rem; }
@@ -558,6 +562,8 @@ p.supHeading {
       color: #F5F5F5; }
     .navbar__right li {
       margin-left: 1.5rem; }
+      .navbar__right li .btn {
+        display: block; }
       .navbar__right li .hide {
         display: none; }
       .navbar__right li svg {
