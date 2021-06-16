@@ -40,31 +40,6 @@ const getHome = async (req, res, next) => {
 };
 
 /**
- * Get Categories Render
- */
-const getCategories = async (req, res, next) => {
-  try {
-    const {
-      category
-    } = req.query;
-    // Get categories from database
-    const allCategories = await database.Category.findAll({
-      raw: true
-    });
-    let categories = allCategories;
-    if (!!category) {
-      courses = allCourses.filter(course => course.CategoryId === category);
-      categories = allCategories.filter(cat => cat.id === category);
-    }
-    res.render('categories', {
-      categories,
-    })
-  } catch (error) {
-    handleHTTPError(error, next);
-  }
-}
-
-/**
  * Get Login Render
  */
 const getLogin = async (req, res, next) => {
