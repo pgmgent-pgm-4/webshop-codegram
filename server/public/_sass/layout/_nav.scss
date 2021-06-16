@@ -58,6 +58,10 @@
                         color: $color-broken-white ;
                     }
                 }
+
+                li:hover{
+                    background-color:$color-gray-lightest;
+                }
             }
             .visible {
                 display: block;
