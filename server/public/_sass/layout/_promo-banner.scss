@@ -1,14 +1,14 @@
 .promo-banner{
-    margin-top:15rem;
+    margin-top:45rem;
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 
     padding-bottom: 6rem;
 
     &__left{
         @include gradient-bg;
 
-        padding:7rem;
+        padding:4rem;
         p:not(.supHeading){
             margin-bottom: 3rem;
         }
@@ -17,16 +17,15 @@
     &__right{
         background-color: $color-black;
         padding:2rem;
-
-        position:relative;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        display:flex;
+        justify-content:center;
+        align-items:center;
 
         .promo-course{
-            position:absolute;
-            left: -2rem;
-            top:22%;
             display:grid;
-            grid-template-columns:1fr 1fr;
-            grid-template-rows:1fr 1fr;
+            grid-template-columns:1fr;
             gap: 2rem;
 
             &__item{
@@ -54,4 +53,26 @@
 
     }
    
+}
+@media (min-width:38rem){
+    .promo-banner{
+        .promo-course{
+        grid-template-columns: 1fr 1fr;
+        }  
+
+    }
+}
+
+@media (min-width:76.5rem){
+    .promo-banner{
+        margin-top:32rem;
+        grid-template-columns: 1fr 1fr;
+
+    }
+}
+
+@media (min-width:87.5rem){
+    .promo-banner{
+        margin-top:15rem;
+    }
 }

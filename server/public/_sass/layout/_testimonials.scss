@@ -5,7 +5,7 @@
     &__list{
         margin-top: 3rem;
         display:grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 2rem;
 
         &--item{
@@ -29,6 +29,17 @@
             color: $color-broken-white ;
             border: 1px solid rgba(204, 204, 204, 0.452);
             padding:1rem;
+        }
+    }
+    @media (min-width:38rem){
+        &__list{
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (min-width:50.6rem){
+        &__list{
+            grid-template-columns: 1fr 1fr 1fr;
         }
     }
 }

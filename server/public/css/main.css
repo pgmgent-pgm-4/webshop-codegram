@@ -318,21 +318,32 @@ body {
   width: 100%; }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 700;
-  width: 50%;
+  width: 100%;
   color: #ffffff;
   line-height: 1.2;
   margin-bottom: 1.5rem; }
+
+@media (min-width: 76.5rem) {
+  h1 {
+    font-size: 4rem;
+    width: 50%; } }
 
 h2 {
   font-size: 2rem; }
 
 p.subHeading {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #F5F5F5;
   margin-bottom: 3rem;
-  width: 70%; }
+  width: 100%; }
+
+@media (min-width: 76.5rem) {
+  p.subHeading {
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+    width: 70%; } }
 
 p.supHeading {
   color: #EF4A3A; }
@@ -355,10 +366,12 @@ p.supHeading {
   border-bottom: solid 1px #f5f5f5b6;
   border-top: solid 1px #f5f5f5b6;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center; }
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center; }
   .footer__top form {
-    justify-self: end; }
+    justify-self: center;
+    padding-top: 2rem; }
     .footer__top form input {
       padding: 1rem;
       border-radius: .5rem 0 0 .5rem;
@@ -375,20 +388,49 @@ p.supHeading {
     .footer__top form button:hover {
       background-color: #707070; }
 
+@media (min-width: 76.5rem) {
+  .footer__top {
+    grid-template-columns: 1fr 1fr; }
+    .footer__top .form {
+      padding-top: 0;
+      align-self: end; } }
+
 .footer__middle {
   padding: 4rem 0;
   border-bottom: solid 1px #f5f5f5b6;
   color: #f5f5f5b6;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 1.8rem; }
+  grid-template-columns: 1fr;
+  gap: 2rem; }
   .footer__middle .svg--logo {
     width: 10rem; }
+
+@media (min-width: 76.5rem) {
+  .footer {
+    grid-template-columns: 1fr 1fr; } }
+
+@media (min-width: 76.5rem) {
+  .footer__middle {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1.8rem; } }
 
 .footer__bottom {
   color: #f5f5f5b6;
   text-align: center;
   padding: 2rem 0 0; }
+
+@media (min-width: 38rem) {
+  .promo-banner .promo-course {
+    grid-template-columns: 1fr 1fr; } }
+
+@media (min-width: 76.5rem) {
+  .promo-banner {
+    margin-top: 32rem;
+    grid-template-columns: 1fr 1fr; } }
+
+@media (min-width: 87.5rem) {
+  .promo-banner {
+    margin-top: 15rem; } }
 
 .hero {
   height: 48rem;
@@ -398,18 +440,21 @@ p.supHeading {
   background-position: center;
   background-repeat: no-repeat; }
   .hero .jumbotron {
-    padding-top: 8rem;
+    padding-top: 3rem;
     position: relative; }
     .hero .jumbotron__top {
       margin-bottom: 2rem; }
       .hero .jumbotron__top a {
         padding: 1rem 3rem; }
+    .hero .jumbotron .list--jambotron {
+      display: flex;
+      justify-content: center; }
     .hero .jumbotron__list {
-      margin-top: 7rem;
+      margin-top: 6rem;
       position: absolute;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      column-gap: 2rem; }
+      grid-template-columns: 1fr;
+      gap: 2rem; }
       .hero .jumbotron__list--item {
         border-radius: 1rem;
         background-color: #262e3a;
@@ -426,6 +471,20 @@ p.supHeading {
         .hero .jumbotron__list--item a {
           width: 50%;
           display: inline; }
+  @media (min-width: 38rem) {
+    .hero .jumbotron {
+      padding-top: 5rem; }
+      .hero .jumbotron__list {
+        margin-top: 13rem; } }
+  @media (min-width: 76.5rem) {
+    .hero .jumbotron {
+      padding-top: 8rem; }
+      .hero .jumbotron__list {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 7rem; } }
+  @media (min-width: 87.5rem) {
+    .hero .jumbotron__list {
+      grid-template-columns: 1fr 1fr 1fr; } }
 
 .navbar {
   display: flex;
@@ -542,7 +601,7 @@ p.supHeading {
         color: #707070; }
 
 .price-banner {
-  margin: 4rem 0 1rem;
+  margin: 3rem 0 1rem;
   background: #0a121e;
   color: #ffffff; }
   .price-banner h2 {
@@ -555,7 +614,7 @@ p.supHeading {
   .price-banner__inner {
     display: grid;
     padding-top: 3rem;
-    grid-template-columns: 1fr 1fr; }
+    grid-template-columns: 1fr; }
     .price-banner__inner h2 {
       color: #262e3a; }
     .price-banner__inner p.promo-banner__left--text {
@@ -566,7 +625,7 @@ p.supHeading {
       background-position: center;
       background-repeat: no-repeat; }
     .price-banner__inner--bottom {
-      padding: 5rem;
+      padding: 4rem;
       background-color: #ffffff; }
       .price-banner__inner--bottom .left-align-text {
         text-align: left; }
@@ -574,16 +633,19 @@ p.supHeading {
         padding-top: 4rem; }
         .price-banner__inner--bottom .price-banner-btn a {
           margin-right: 0.5rem; }
+  @media (min-width: 50.6rem) {
+    .price-banner__inner {
+      grid-template-columns: 1fr 1fr; } }
 
 .promo-banner {
-  margin-top: 15rem;
+  margin-top: 45rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   padding-bottom: 6rem; }
   .promo-banner__left {
     background: linear-gradient(to right, #8a2387, #e94057, #f27121);
     color: #ffffff;
-    padding: 7rem; }
+    padding: 4rem; }
     .promo-banner__left h2 {
       color: #ffffff;
       margin: 0.5rem 0 1rem; }
@@ -594,14 +656,14 @@ p.supHeading {
   .promo-banner__right {
     background-color: #000000;
     padding: 2rem;
-    position: relative; }
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
     .promo-banner__right .promo-course {
-      position: absolute;
-      left: -2rem;
-      top: 22%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 2rem; }
       .promo-banner__right .promo-course__item {
         padding: 1rem;
@@ -626,11 +688,25 @@ p.supHeading {
       .promo-banner__right .promo-course__item:hover {
         background-color: #262e3a; }
 
+@media (min-width: 38rem) {
+  .promo-banner .promo-course {
+    grid-template-columns: 1fr 1fr; } }
+
+@media (min-width: 76.5rem) {
+  .promo-banner {
+    margin-top: 32rem;
+    grid-template-columns: 1fr 1fr; } }
+
+@media (min-width: 87.5rem) {
+  .promo-banner {
+    margin-top: 15rem; } }
+
 .statistics {
   margin-top: 3rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
+  gap: 4rem;
   background: #0a121e;
   color: #ffffff; }
   .statistics h2 {
@@ -643,11 +719,20 @@ p.supHeading {
   .statistics li {
     display: flex;
     flex-direction: column;
-    align-items: center; }
+    align-items: center;
+    padding-bottom: 2rem; }
     .statistics li h4 {
-      font-size: 1.8rem; }
+      font-size: 1.6rem; }
   .statistics li:not(.last) {
-    border-right: 1px solid rgba(204, 204, 204, 0.452); }
+    border: none;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.452); }
+
+@media (min-width: 50.6rem) {
+  .statistics {
+    grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .statistics li:not(.last) {
+      border: none;
+      border-right: 1px solid rgba(204, 204, 204, 0.452); } }
 
 .testimonials {
   margin-top: 8rem;
@@ -663,7 +748,7 @@ p.supHeading {
   .testimonials__list {
     margin-top: 3rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 2rem; }
     .testimonials__list--item {
       color: #F5F5F5;
@@ -692,6 +777,12 @@ p.supHeading {
         line-height: 1rem;
         margin-right: 0.5rem;
         vertical-align: -0.4rem; }
+  @media (min-width: 38rem) {
+    .testimonials__list {
+      grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 50.6rem) {
+    .testimonials__list {
+      grid-template-columns: 1fr 1fr 1fr; } }
 
 .btn {
   padding: 0.8rem 1.5rem;
@@ -729,9 +820,17 @@ p.supHeading {
     margin-top: 1rem; }
   .wrapper .card-section {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     margin-top: 3rem;
     gap: 2rem; }
+
+@media (min-width: 38rem) {
+  .wrapper .card-section {
+    grid-template-columns: 1fr 1fr; } }
+
+@media (min-width: 76.5rem) {
+  .wrapper .card-section {
+    grid-template-columns: 1fr 1fr 1fr; } }
 
 .card-main {
   margin-top: 10rem;

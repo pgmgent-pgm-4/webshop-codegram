@@ -1,7 +1,11 @@
 .price-banner{
-    margin: 4rem 0 1rem;
+    margin: 3rem 0 1rem;
     @include dark-bg;
     &__inner{
+        display:grid;
+        padding-top: 3rem;
+        grid-template-columns: 1fr;
+
         h2{
             color: $color-gray-lighter;
             // padding: 0.5rem 0;
@@ -10,9 +14,6 @@
             color: $color-gray-lightest ;
     
         }
-        display:grid;
-        padding-top: 3rem;
-        grid-template-columns: 1fr 1fr;
 
         &--top{
             background-image: url(../images/price-banner.jpg);
@@ -20,7 +21,7 @@
 
         }
         &--bottom{
-            padding:5rem;
+            padding:4rem;
             background-color: $color-white;
             .left-align-text{
             
@@ -32,6 +33,13 @@
                     margin-right: 0.5rem;;
                 }
             }
+        }
+    }
+
+    
+    @media (min-width:50.6rem){
+        &__inner{
+            grid-template-columns: 1fr 1fr;
         }
     }
 }
